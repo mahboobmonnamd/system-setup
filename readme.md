@@ -26,5 +26,5 @@ Install brew
 ```
 - Install cask tools
 ```sh
-  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive
+  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
 ```
