@@ -35,11 +35,12 @@
 ```
 
 ### Shell
-1. Add `~/.zshrc` and `~/shell/env` from the repo.
+1. Add `~/.zshrc` and `~/shell/env.sh` from the repo.
 
 ```sh
+  code ~/.zshrc
+  code ~/shell/env.sh
   nvm install --lts
-  
 ```
 
 ## Finder
@@ -79,4 +80,4 @@
 - Enable file vault with icloud reset
 
 # Android Studio
-- In sdk manager, look for Android sdk platform and install it.
+- In sdk manager, look for Android sdk platform create vm.
