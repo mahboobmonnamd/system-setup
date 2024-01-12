@@ -2,11 +2,8 @@
 
 - Login with Apple ID
 - Remove unwanted apps from the dock
-- Open Notes, enable cloud sync
-
-# Messages
-
-- Menu **Messages** -> settings -> Enable icloud
+- Open **Notes**, enable cloud sync
+- Open **Messages**, In Menu **Messages** -> settings -> Enable icloud
 
 # Essentials Setup
 
