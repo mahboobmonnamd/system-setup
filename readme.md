@@ -29,6 +29,12 @@
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
   brew install git python3 zsh tree nvm go kubectl minikube watch
 ```
+### Shell
+1. Add `~/.zshrc` and `env` from the repo.
+```sh
+nvm install
+```
+
 ## Finder
 - CMD+SHIFT+. to show hidden folders
 - View -> Show Status Bar
