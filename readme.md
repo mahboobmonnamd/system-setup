@@ -30,6 +30,7 @@
   brew install git python3 zsh tree nvm go kubectl minikube watch
 ```
 ## Finder
+- CMD+SHIFT+. to show hidden folders
 - View -> Show Status Bar
 - View -> Show Path Bar
 - Finder -> Settings
