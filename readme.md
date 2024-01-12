@@ -29,7 +29,7 @@
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
   brew install git python3 zsh tree nvm go kubectl minikube watch
 ```
-### Finder
+## Finder
 - View -> Show Status Bar
 - View -> Show Path Bar
 - Finder -> Settings
@@ -40,3 +40,17 @@
   - In Advanced,
       1. Remove files after 30 days,
       2.  Search current folder
+- View -> Show view options
+      1. Icon size -> 68
+      2. Text size -> 14
+      3. Show Item Info
+      4. Show Library Folder
+      5. Sort by Name
+      6. Use Defaults.
+  
+## System Settings
+
+### Trackpad
+- Tap to click -> enable
+
+### 
