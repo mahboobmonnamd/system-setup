@@ -26,8 +26,8 @@
 ```
 - Install tools
 ```sh
-  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli appcleaner
-  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle
+  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
+  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli
 ```
 - Tools under expriment
 ```sh
@@ -49,24 +49,24 @@
 - Finder -> Settings
   - Change "New Finder windows show:", from "Recents" to "Developer" Folder.
   - In Sidebar,
-      1. Remove unwanted folders from sidebar. (recents airdrop applications)
+      1. Remove unwanted folders from the sidebar. (recent airdrop applications)
       2. ADD/Have (Airdrop, Home, Developer)
   - In Advanced,
       1. Remove files after 30 days,
-      2.  Search current folder
-- View -> Show view options
+      2.  Search the current folder
+  - In View -> Show view options
       1. Icon size -> 68
-      2. Text size -> 14
-      3. Show Item Info
-      4. Show Library Folder
-      5. Sort by Name
-      6. Use Defaults.
+      1. Text size -> 14
+      1. Show Item Info
+      1. Show Library Folder
+      1. Sort by Name
+      1. Use Defaults.
   
 ## System Settings
 
 ### Lock Screen
 - Screen saver never
-- Turn dispaly off **10 mins**
+- Turn display off **10 mins**
 - Require password **immediately**
 
 ### Desk and Dock
