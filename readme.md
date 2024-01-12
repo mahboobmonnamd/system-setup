@@ -24,3 +24,7 @@ Install brew
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
+- Install cask tools
+```sh
+  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive
+```
