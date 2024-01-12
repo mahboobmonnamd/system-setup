@@ -27,12 +27,19 @@
 - Install tools
 ```sh
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
-  brew install git python3 zsh tree nvm go kubectl minikube watch
+  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack
 ```
-### Shell
-1. Add `~/.zshrc` and `env` from the repo.
+- Tools under expriment
 ```sh
-nvm install
+  brew install --cask fig maccy devtoys
+```
+
+### Shell
+1. Add `~/.zshrc` and `~/shell/env` from the repo.
+
+```sh
+  nvm install --lts
+  
 ```
 
 ## Finder
@@ -60,4 +67,8 @@ nvm install
 ### Trackpad
 - Tap to click -> enable
 
-### 
+### File Vault
+- Enable file vault with icloud reset
+
+# Android Studio
+- In sdk manager, look for Android sdk platform and install it.
