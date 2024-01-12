@@ -26,8 +26,8 @@
 ```
 - Install tools
 ```sh
-  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
-  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack
+  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli appcleaner
+  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle
 ```
 - Tools under expriment
 ```sh
@@ -64,6 +64,14 @@
   
 ## System Settings
 
+### Lock Screen
+- Screen saver never
+- Turn dispaly off **10 mins**
+- Require password **immediately**
+
+### Desk and Dock
+- Show suggested and recent apps - Disable
+  
 ### Trackpad
 - Tap to click -> enable
 
