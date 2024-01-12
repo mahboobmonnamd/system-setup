@@ -14,7 +14,7 @@
   xcode-select --install
 ```
 ### brew
-Install brew
+- Install brew
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
@@ -29,3 +29,14 @@ Install brew
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive openshift-cli
   brew install git python3 zsh tree nvm go kubectl minikube watch
 ```
+### Finder
+- View -> Show Status Bar
+- View -> Show Path Bar
+- Finder -> Settings
+  - Change "New Finder windows show:", from "Recents" to "Developer" Folder.
+  - In Sidebar,
+      1. Remove unwanted folders from sidebar. (recents airdrop applications)
+      2. ADD/Have (Airdrop, Home, Developer)
+  - In Advanced,
+      1. Remove files after 30 days,
+      2.  Search current folder
