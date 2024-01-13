@@ -24,11 +24,14 @@
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
+
 - Install tools
 ```sh
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
   brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli
 - Tools under expriment
+```
+
 ```sh
   brew install --cask fig maccy devtoys
 ```
@@ -39,6 +42,10 @@
   code ~/.zshrc
   code ~/shell/env.sh
   nvm install --lts
+```
+- Install `oh my zsh`
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 - Install other tools
 ```sh
@@ -128,6 +135,6 @@ export GOPATH=$HOME/Developer/go
 - bitwarden
 - Hp Smart
 
-  ## Others
-  - vmware fusion
-  - 
+## Others
+- vmware fusion
+
