@@ -37,12 +37,6 @@
 ```
 
 ### Shell
-- Add `~/.zshrc` and `~/shell/env.sh` from the repo.
-```sh
-  code ~/.zshrc
-  code ~/shell/env.sh
-  nvm install --lts
-```
 - Install `oh my zsh`
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -50,6 +44,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 - Install pk10
 ```sh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+```
+- Add `~/.zshrc` and `~/shell/env.sh` from the repo.
+```sh
+  code ~/.zshrc
+  code ~/shell/env.sh
+  nvm install --lts
 ```
 
 - Install other tools
