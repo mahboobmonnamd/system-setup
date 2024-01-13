@@ -35,13 +35,36 @@
 ```
 
 ### Shell
-1. Add `~/.zshrc` and `~/shell/env.sh` from the repo.
-
+- Add `~/.zshrc` and `~/shell/env.sh` from the repo.
 ```sh
   code ~/.zshrc
   code ~/shell/env.sh
   nvm install --lts
 ```
+- Install other tools
+```sh
+npm i -g typescript ts-node
+```
+
+## GO
+configure go
+```sh
+mkdir -p $HOME/Developer/.go/{bin,pkg}
+export GOPATH=$HOME/Developer/go
+```
+
+### Warp
+#### Appearance
+
+- Expand alias
+- Theme Light
+- Update prompt (Remote Login, Working dir, git, +2, kube-context
+- Increase Font size to 14
+
+#### Features
+- Default App - vscode
+- Receive desktop notification
+- Working dir Advanced
 
 ## Finder
 - CMD+SHIFT+. to show hidden folders
@@ -72,7 +95,15 @@
 
 ### Desk and Dock
 - Show suggested and recent apps - Disable
-  
+- Default Browser - Brave
+- Ask to keep changes while closing
+
+### Control Center
+- Show Battery Percentage
+- Sound Always show in menubar
+- Spotlight dont show
+- App expose swipe down
+
 ### Trackpad
 - Tap to click -> enable
 
