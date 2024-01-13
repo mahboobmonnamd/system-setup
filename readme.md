@@ -45,6 +45,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```sh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 ```
+
+- Install fonts
+```sh
+brew tap homebrew/cask-fonts
+brew install font-iosevka
+```
+[Few other Fonts.](https://fonts.google.com/specimen/Source+Code+Pro)
 - Add `~/.zshrc` and `~/shell/env.sh` from the repo.
 ```sh
   code ~/.zshrc
