@@ -27,7 +27,7 @@
 - Install tools
 ```sh
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
-  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli
+  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli android-platform-tools
 ```
 - Tools under expriment
 ```sh
@@ -46,19 +46,12 @@
 npm i -g typescript ts-node
 ```
 
-## GO
-configure go
-```sh
-mkdir -p $HOME/Developer/.go/{bin,pkg}
-export GOPATH=$HOME/Developer/go
-```
-
-### Warp
+## Warp
 #### Appearance
 
 - Expand alias
 - Theme Light
-- Update prompt (Remote Login, Working dir, git, +2, kube-context
+- Update prompt (Remote Login, Working dir, git, +2, kube-context)
 - Increase Font size to 14
 
 #### Features
@@ -112,3 +105,27 @@ export GOPATH=$HOME/Developer/go
 
 # Android Studio
 - In sdk manager, look for Android sdk platform create vm.
+
+
+# GO
+configure go
+```sh
+mkdir -p $HOME/Developer/.go/{bin,pkg}
+export GOPATH=$HOME/Developer/go
+```
+
+# Git
+- Create ssh
+
+# Apps
+
+## App store
+- numbers
+- pages
+- keynote
+- bitwarden
+- Hp Smart
+
+  ## Others
+  - vmware fusion
+  - 
