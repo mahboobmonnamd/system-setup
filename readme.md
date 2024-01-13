@@ -27,8 +27,7 @@
 - Install tools
 ```sh
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
-  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli android-platform-tools
-```
+  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli
 - Tools under expriment
 ```sh
   brew install --cask fig maccy devtoys
@@ -105,7 +104,10 @@ npm i -g typescript ts-node
 
 # Android Studio
 - In sdk manager, look for Android sdk platform create vm.
-
+or install android-platform-tools for adb
+```sh
+brew install android-platform-tools
+```
 
 # GO
 configure go
