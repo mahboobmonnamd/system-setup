@@ -71,6 +71,7 @@ npm i -g typescript ts-node
 - Theme Light
 - Update prompt (Remote Login, Working dir, git, +2, kube-context)
 - Increase Font size to 14
+- Font to `Iosevka`
 
 #### Features
 - Default App - vscode
