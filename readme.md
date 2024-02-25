@@ -28,10 +28,11 @@
 - Install tools
 ```sh
   brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
-  brew install git python3 zsh tree nvm go kubectl minikube watch discord slack rectangle openshift-cli bat
-- Tools under expriment
+  brew install git python3 zsh nvm go kubectl minikube watch discord slack rectangle openshift-cli bat
+  sudo gem install colorls
 ```
 
+- Tools under expriment
 ```sh
   brew install --cask fig maccy devtoys
 ```
