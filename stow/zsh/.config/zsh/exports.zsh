@@ -13,11 +13,5 @@ export PATH=$MAKEPATH:$GOPATH/bin:/opt/homebrew/opt/openjdk/bin:${KREW_ROOT:-$HO
 # Specify default editor. Possible values: vim, nano, ed etc.
 export EDITOR=code
 
-# Create a folder and move into it in one command
-function mkcd() { mkdir -p "$@" && cd "$_"; }
 
-# Example aliases
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias envconfig="code ~/shell/env.sh"
-alias python="python3"
+

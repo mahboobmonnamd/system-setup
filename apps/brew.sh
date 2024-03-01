@@ -4,7 +4,7 @@
 
 # Make sure we’re using the latest Homebrew.
 
-source ./../scripts/functions.sh
+source ./functions.sh
 
 info "####### dotfiles #######"
 brew update
@@ -15,6 +15,9 @@ brew upgrade
 brew install git 
 brew install iterm2
 brew install stow
+brew install zplug
+brew install python
+brew install neovim
 
 # Remove outdated versions from the cellar.
 brew cleanup

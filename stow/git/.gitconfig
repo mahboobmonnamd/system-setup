@@ -1,0 +1,12 @@
+[push]
+	default = current
+[user]
+	name = mahboob
+	email = mahboobmonnamd@gmail.com
+[diff]
+	algorithm = patience
+	colorMoved = default
+[core]
+	editor = nvim
+[color]
+	ui = true
