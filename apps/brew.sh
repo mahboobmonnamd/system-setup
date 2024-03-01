@@ -1,29 +1,14 @@
 #! /usr/bin/env bash
 
-# Install command-line tools using Homebrew.
 
-# Make sure we’re using the latest Homebrew.
-source ./functions.sh
+echo "####### dotfiles #######"
 
-info "####### dotfiles #######"
 brew update
-
-# Upgrade any already-installed formulae.
-brew upgrade
-
-brew install git 
-brew install iterm2
-brew install stow
-brew install zplug
-brew install python
-brew install neovim
-brew install minikube
-brew install kubectl
-brew install openshift-cli 
-brew install bat
-
-# Remove outdated versions from the cellar.
+brew bundle -v
 brew cleanup
+brew doctor —verbose
+
+sudo gem install colorls
 
 info '##### Installting oh my zsh#######'
 

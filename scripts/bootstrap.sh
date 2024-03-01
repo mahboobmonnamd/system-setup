@@ -35,3 +35,4 @@ install_xcode
 install_homebrew
 
 cd ../apps && ./brew.sh
+./osx.sh

@@ -45,12 +45,7 @@ cd scripts
 ```
 
 ### Shell
-- Install `oh my zsh`
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
+
 - Install pk10
 ```sh
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -62,10 +57,8 @@ brew tap homebrew/cask-fonts
 brew install font-iosevka
 ```
 [Few other Fonts.](https://fonts.google.com/specimen/Source+Code+Pro)
-- Add `~/.zshrc` and `~/shell/env.sh` from the repo.
+
 ```sh
-  code ~/.zshrc
-  code ~/shell/env.sh
   nvm install --lts
 ```
 
@@ -90,23 +83,12 @@ npm i -g typescript ts-node
 
 ## Finder
 - CMD+SHIFT+. to show hidden folders
-- View -> Show Status Bar
-- View -> Show Path Bar
 - Finder -> Settings
   - Change "New Finder windows show:", from "Recents" to "Developer" Folder.
   - In Sidebar,
       1. Remove unwanted folders from the sidebar. (recent airdrop applications)
       2. ADD/Have (Airdrop, Home, Developer)
-  - In Advanced,
-      1. Remove files after 30 days,
-      2.  Search the current folder
-  - In View -> Show view options
-      1. Icon size -> 68
-      1. Text size -> 14
-      1. Show Item Info
-      1. Show Library Folder
-      1. Sort by Name
-      1. Use Defaults.
+
   
 ## System Settings
 
@@ -116,7 +98,6 @@ npm i -g typescript ts-node
 - Require password **immediately**
 
 ### Desk and Dock
-- Show suggested and recent apps - Disable
 - Default Browser - Brave
 - Ask to keep changes while closing
 
@@ -126,8 +107,6 @@ npm i -g typescript ts-node
 - Spotlight dont show
 - App expose swipe down
 
-### Trackpad
-- Tap to click -> enable
 
 ### File Vault
 - Enable file vault with icloud reset
@@ -146,8 +125,6 @@ mkdir -p $HOME/Developer/.go/{bin,pkg}
 export GOPATH=$HOME/Developer/go
 ```
 
-# Git
-- Create ssh
 
 # Apps
 

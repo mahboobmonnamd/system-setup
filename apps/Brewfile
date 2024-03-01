@@ -1,0 +1,60 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Distributed revision control system
+brew "git"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Mac App Store command-line interface
+brew "mas"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Manage multiple Node.js versions
+brew "nvm"
+# OpenShift command-line interface tools
+brew "openshift-cli"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Next-generation plugin manager for zsh
+brew "zplug"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Tools for building Android applications
+cask "android-studio"
+# Application uninstaller
+cask "appcleaner"
+# Web browser focusing on privacy
+cask "brave-browser"
+# Voice and text chat software
+cask "discord"
+# Client for the Google Drive storage service
+cask "google-drive"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# All-in-one bookmark manager
+cask "raindropio"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Team communication and collaboration software
+cask "slack"
+# Open-source code editor
+cask "visual-studio-code"
+mas "Bitwarden", id: 1352778147
+mas "HP Smart", id: 1474276998
+mas "Keynote", id: 409183694
+mas "Microsoft Outlook", id: 985367838
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "WhatsApp", id: 1147396723
