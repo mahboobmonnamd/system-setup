@@ -9,6 +9,10 @@ brew cleanup
 brew doctor —verbose
 
 sudo gem install colorls
+colorls --light
+
+nvm install --lts
+npm i -g typescript ts-node
 
 info '##### Installting oh my zsh#######'
 

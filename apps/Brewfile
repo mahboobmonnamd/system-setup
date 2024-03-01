@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -37,6 +38,8 @@ cask "appcleaner"
 cask "brave-browser"
 # Voice and text chat software
 cask "discord"
+# Developer targeted fonts with a high number of glyphs
+cask "font-agave-nerd-font"
 # Client for the Google Drive storage service
 cask "google-drive"
 # Terminal emulator as alternative to Apple's Terminal app

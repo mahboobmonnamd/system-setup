@@ -14,6 +14,9 @@ cd scripts
 
 # Essentials Setup
 
+## Themes
+https://github.com/catppuccin/catppuccin?tab=readme-ov-file
+
 ## Developer Tools
 
 - Install xcode-select
@@ -32,16 +35,10 @@ cd scripts
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-- Install tools
-```sh
-  brew install --cask warp brave-browser visual-studio-code docker raycast android-studio google-drive appcleaner
-  brew install git python3 zsh nvm go kubectl minikube watch discord slack rectangle openshift-cli bat
-  sudo gem install colorls
-```
 
 - Tools under expriment
 ```sh
-  brew install --cask fig maccy devtoys
+  brew install --cask maccy devtoys
 ```
 
 ### Shell
@@ -49,22 +46,6 @@ cd scripts
 - Install pk10
 ```sh
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-```
-
-- Install fonts
-```sh
-brew tap homebrew/cask-fonts
-brew install font-iosevka
-```
-[Few other Fonts.](https://fonts.google.com/specimen/Source+Code+Pro)
-
-```sh
-  nvm install --lts
-```
-
-- Install other tools
-```sh
-npm i -g typescript ts-node
 ```
 
 ## Warp
