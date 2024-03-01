@@ -52,6 +52,7 @@ cask "slack"
 # Open-source code editor
 cask "visual-studio-code"
 mas "Bitwarden", id: 1352778147
+mas "Goodnotes", id: 1444383602
 mas "HP Smart", id: 1474276998
 mas "Keynote", id: 409183694
 mas "Microsoft Outlook", id: 985367838
