@@ -3,7 +3,6 @@
 # Install command-line tools using Homebrew.
 
 # Make sure we’re using the latest Homebrew.
-
 source ./functions.sh
 
 info "####### dotfiles #######"
@@ -18,6 +17,10 @@ brew install stow
 brew install zplug
 brew install python
 brew install neovim
+brew install minikube
+brew install kubectl
+brew install openshift-cli 
+brew install bat
 
 # Remove outdated versions from the cellar.
 brew cleanup

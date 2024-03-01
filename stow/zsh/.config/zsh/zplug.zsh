@@ -1,8 +1,7 @@
-echo "loading Plugins"
-
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions", defer:"2"
 zplug "ohmyzsh/ohmyzsh", use:"plugins/git", defer:"2"
+zplug "ohmyzsh/ohmyzsh", use:"plugins/kubectl", defer:"2"
 
 if ! zplug check; then
     zplug install
