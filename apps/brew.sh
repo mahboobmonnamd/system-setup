@@ -4,7 +4,7 @@
 
 # Make sure we’re using the latest Homebrew.
 
-source ./functions.sh
+source ./../scripts/functions.sh
 
 info "####### dotfiles #######"
 brew update
@@ -18,3 +18,7 @@ brew install stow
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+info '##### Installting oh my zsh#######'
+
+./oh-my-zsh.sh
