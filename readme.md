@@ -5,6 +5,13 @@
 - Open **Notes**, enable cloud sync
 - Open **Messages**, In Menu **Messages** -> settings -> Enable icloud
 
+## Run Commands
+```sh
+cd scripts
+./bootstrap.sh
+./git_setup.sh
+```
+
 # Essentials Setup
 
 ## Developer Tools
