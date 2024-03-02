@@ -33,6 +33,8 @@ brew bundle --file="$brewfile"
 
 # Additional setup or configurations can be added here
 
+mkdir -p $HOME/Developer/.go/{bin,pkg}
+
 info '##### Installting colorls#######'
 
 sudo gem install colorls

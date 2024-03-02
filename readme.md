@@ -76,7 +76,6 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 ## Finder
 - CMD+SHIFT+. to show hidden folders
 - Finder -> Settings
-  - Change "New Finder windows show:", from "Recents" to "Developer" Folder.
   - In Sidebar,
       1. Remove unwanted folders from the sidebar. (recent airdrop applications)
       2. ADD/Have (Airdrop, Home, Developer)
@@ -90,7 +89,6 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 - Require password **immediately**
 
 ### Desk and Dock
-- Default Browser - Brave
 - Ask to keep changes while closing
 
 ### Control Center
@@ -103,12 +101,6 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 ### File Vault
 - Enable file vault with icloud reset
 
-# Android Studio
-- In sdk manager, look for Android sdk platform create vm.
-or install android-platform-tools for adb
-```sh
-brew install android-platform-tools
-```
 
 # GO
 configure go
