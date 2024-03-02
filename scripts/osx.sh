@@ -55,6 +55,10 @@ setup_osx_defaults() {
 
     # Finder: show path bar
     defaults write com.apple.finder ShowPathbar -bool true
+    
+    # Finder: Show list view
+    # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`,`Nlsv`
+    defaults write com.apple.finder FXPreferredViewStyle Nlsv
 
     # Keep folders on top when sorting by name
     defaults write com.apple.finder _FXSortFoldersFirst -bool true
@@ -112,6 +116,7 @@ setup_osx_defaults() {
     /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 68" ~/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 68" ~/Library/Preferences/com.apple.finder.plist
 
+    defaults write com.apple.finder ListViewSettings -dict iconSize 68
     # Increase the text size
     /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 14" ~/Library/Preferences/com.apple.finder.plist
     /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 14" ~/Library/Preferences/com.apple.finder.plist
