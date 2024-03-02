@@ -4,6 +4,8 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # Distributed revision control system
 brew "git"
 # Open source programming language to build simple/reliable/efficient software
@@ -26,6 +28,8 @@ brew "python@3.12"
 brew "stow"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # Next-generation plugin manager for zsh
 brew "zplug"
 # UNIX shell (command interpreter)
@@ -66,3 +70,24 @@ mas "Microsoft Outlook", id: 985367838
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "WhatsApp", id: 1147396723
+vscode "catppuccin.catppuccin-vsc"
+vscode "catppuccin.catppuccin-vsc-icons"
+vscode "eamodio.gitlens"
+vscode "eriklynd.json-tools"
+vscode "esbenp.prettier-vscode"
+vscode "foxundermoon.shell-format"
+vscode "golang.go"
+vscode "graphql.vscode-graphql"
+vscode "graphql.vscode-graphql-syntax"
+vscode "gruntfuggly.todo-tree"
+vscode "hashicorp.terraform"
+vscode "hediet.vscode-drawio"
+vscode "jebbs.plantuml"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode.makefile-tools"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "redhat.vscode-redhat-account"
+vscode "redhat.vscode-yaml"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "yzhang.markdown-all-in-one"
