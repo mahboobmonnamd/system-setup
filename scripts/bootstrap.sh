@@ -2,6 +2,8 @@
 
 set -o errexit
 
+script_root=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 source ./functions.sh
 
 install_xcode() {
@@ -11,19 +13,6 @@ install_xcode() {
 		info "Installing xCode Command Line Tools..."
 		xcode-select --install
 		sudo xcodebuild -license accept
-	fi
-}
-
-install_homebrew() {
-	export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-	if hash brew &>/dev/null; then
-		warn "Homebrew already installed"
-	else
-		info "Installing homebrew..."
-		sudo --validate # reset `sudo` timeout to use Homebrew install in noninteractive mode
-		NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-		(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
-		eval "$(/opt/homebrew/bin/brew shellenv)"
 	fi
 }
 
@@ -38,9 +27,9 @@ info "Bootstraping..."
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 install_xcode
-install_homebrew
 
-ln -s ../apps/Brewfile ~
-../apps/install.sh
+$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh"
 
 ./osx.sh
+
+cd ../stow && ./stow.sh

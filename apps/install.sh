@@ -1,15 +1,44 @@
-#! /usr/bin/env bash
+#!/bin/bash
+
+echo "####### Installing brew and other scripts #######"
+
+brewfile="${1:-./Brewfile}"
+omzfile="${2:-./oh-my-zsh.sh}"
+
+# Ensure the brewfile exists
+if [ ! -f "$brewfile" ]; then
+    echo "Brewfile not found: $brewfile"
+    exit 1
+fi
+
+# Ensure the brewfile exists
+if [ ! -f "$brewfile" ]; then
+    echo "Brewfile not found: $brewfile"
+    exit 1
+fi
+
+# Install Homebrew (if not already installed)
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    sudo --validate
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 
-echo "####### dotfiles #######"
+# Install applications from the brewfile
+echo "Installing applications from $brewfile..."
+brew bundle --file="$brewfile"
 
-brew update
-brew bundle -v
-brew cleanup
-brew doctor —verbose
+# Additional setup or configurations can be added here
+
+info '##### Installting colorls#######'
 
 sudo gem install colorls
 colorls --light
+
+info '##### Npm Based install #######'
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 nvm install --lts
@@ -17,6 +46,8 @@ npm i -g typescript ts-node
 
 info '##### Installting oh my zsh#######'
 
-chmod +x ./oh-my-zsh.sh
+chmod +x $omzfile
 
-./oh-my-zsh.sh
+$omzfile
+
+echo "Installation completed."
