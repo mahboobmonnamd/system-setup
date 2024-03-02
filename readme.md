@@ -102,23 +102,6 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 - Enable file vault with icloud reset
 
 
-# GO
-configure go
-```sh
-mkdir -p $HOME/Developer/.go/{bin,pkg}
-export GOPATH=$HOME/Developer/go
-```
-
-
-# Apps
-
-## App store
-- numbers
-- pages
-- keynote
-- bitwarden
-- Hp Smart
-
 ## Others
 - vmware fusion
 
