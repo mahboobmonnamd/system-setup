@@ -12,6 +12,17 @@ cd scripts
 ./git_setup.sh
 ```
 
+# Brew
+
+- Install brew
+```sh
+brew bundle -v
+```
+- Dump brew
+```sh
+brew bundle dump --describe -fv
+```
+
 # Essentials Setup
 
 ## Themes

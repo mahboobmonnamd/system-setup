@@ -1,6 +1,3 @@
-# Example aliases
-echo "alias"
-
 # Aliases
 alias ll='ls -la'
 alias ..='cd ..'

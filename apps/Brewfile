@@ -30,6 +30,8 @@ brew "watch"
 brew "zplug"
 # UNIX shell (command interpreter)
 brew "zsh"
+# GPU-accelerated terminal emulator
+cask "alacritty"
 # Tools for building Android applications
 cask "android-studio"
 # Application uninstaller
@@ -52,6 +54,8 @@ cask "raycast"
 cask "rectangle"
 # Team communication and collaboration software
 cask "slack"
+# Virtual machines UI using QEMU
+cask "utm"
 # Open-source code editor
 cask "visual-studio-code"
 mas "Bitwarden", id: 1352778147

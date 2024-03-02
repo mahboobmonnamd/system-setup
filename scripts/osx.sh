@@ -198,6 +198,10 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 ###############################################################################
 
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+killall SystemUIServer
+killall Dock
+killall Finder
 }
 
 setup_osx_defaults
