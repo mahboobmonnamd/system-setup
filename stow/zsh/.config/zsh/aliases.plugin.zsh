@@ -7,3 +7,4 @@ alias df='df -h'
 alias du='du -h'
 alias ls='colorls'
 alias cat="bat"
+alias zshconfig="code ~/.zshrc"
