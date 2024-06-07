@@ -60,6 +60,8 @@ cask "google-drive"
 cask "iterm2"
 # Clipboard manager
 cask "maccy"
+# Administration and development platform for PostgreSQL
+cask "pgadmin4"
 # All-in-one bookmark manager
 cask "raindropio"
 # Imaging utility to install operating systems to a microSD card
@@ -68,12 +70,16 @@ cask "raspberry-pi-imager"
 cask "raycast"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Programmes interactive stories, games, and animations
+cask "scratch"
 # Team communication and collaboration software
 cask "slack"
 # Virtual machines UI using QEMU
 cask "utm"
 # Open-source code editor
 cask "visual-studio-code"
+# Video communication and virtual meeting platform
+cask "zoom"
 mas "Bitwarden", id: 1352778147
 mas "Goodnotes", id: 1444383602
 mas "HP Smart", id: 1474276998
@@ -83,11 +89,14 @@ mas "MoneyCoach", id: 989642198
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "WhatsApp", id: 1147396723
+vscode "bierner.markdown-mermaid"
+vscode "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
 vscode "catppuccin.catppuccin-vsc"
 vscode "catppuccin.catppuccin-vsc-icons"
 vscode "eamodio.gitlens"
 vscode "eriklynd.json-tools"
 vscode "esbenp.prettier-vscode"
+vscode "formulahendry.auto-close-tag"
 vscode "foxundermoon.shell-format"
 vscode "golang.go"
 vscode "graphql.vscode-graphql"
@@ -96,6 +105,7 @@ vscode "gruntfuggly.todo-tree"
 vscode "hashicorp.terraform"
 vscode "hediet.vscode-drawio"
 vscode "jebbs.plantuml"
+vscode "mermaidchart.vscode-mermaid-chart"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.makefile-tools"
@@ -103,4 +113,6 @@ vscode "ms-vsliveshare.vsliveshare"
 vscode "redhat.vscode-redhat-account"
 vscode "redhat.vscode-yaml"
 vscode "streetsidesoftware.code-spell-checker"
+vscode "unifiedjs.vscode-mdx"
+vscode "vstirbu.vscode-mermaid-preview"
 vscode "yzhang.markdown-all-in-one"

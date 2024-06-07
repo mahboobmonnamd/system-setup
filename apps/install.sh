@@ -11,11 +11,6 @@ if [ ! -f "$brewfile" ]; then
     exit 1
 fi
 
-# Ensure the brewfile exists
-if [ ! -f "$brewfile" ]; then
-    echo "Brewfile not found: $brewfile"
-    exit 1
-fi
 
 # Install Homebrew (if not already installed)
 if ! command -v brew &> /dev/null; then
