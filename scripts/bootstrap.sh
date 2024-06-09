@@ -28,7 +28,7 @@ info "Bootstraping..."
 
 install_xcode
 
-$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh.sh"
+$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh.sh" "$script_root/../apps/bat-theme.sh"
 
 ./osx.sh
 

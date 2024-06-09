@@ -887,6 +887,12 @@
         "options": {
           "full_name": "zoom"
         }
+      },
+      "font-hack-nerd-font": {
+        "version": "3.2.1",
+        "options": {
+          "full_name": "font-hack-nerd-font"
+        }
       }
     },
     "mas": {

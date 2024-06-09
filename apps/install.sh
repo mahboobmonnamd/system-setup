@@ -4,6 +4,7 @@ echo "####### Installing brew and other scripts #######"
 
 brewfile="${1:-./Brewfile}"
 omzfile="${2:-./oh-my-zsh.sh}"
+batfile="${3:-./bat-theme.sh}"
 
 # Ensure the brewfile exists
 if [ ! -f "$brewfile" ]; then
@@ -47,5 +48,8 @@ echo '##### Installing oh my zsh#######'
 chmod +x $omzfile
 
 $omzfile
+
+chmod +x $batfile
+$batfile
 
 echo "Installation completed."
