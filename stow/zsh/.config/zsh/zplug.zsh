@@ -12,6 +12,7 @@ zplug "ohmyzsh/ohmyzsh", use:"plugins/z", defer:2
 source "$HOME/.config/zsh/aliases.plugin.zsh"
 source "$HOME/.config/zsh/exports.zsh"
 source "$HOME/.config/zsh/functions.zsh"
+source "$HOME/.config/zsh/env.zsh"
 
 if ! zplug check; then
     zplug install
