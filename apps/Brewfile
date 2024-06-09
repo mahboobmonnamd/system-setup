@@ -78,6 +78,8 @@ cask "slack"
 cask "utm"
 # Open-source code editor
 cask "visual-studio-code"
+# Rust-based terminal
+cask "warp"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "Bitwarden", id: 1352778147
@@ -88,6 +90,8 @@ mas "Microsoft Outlook", id: 985367838
 mas "MoneyCoach", id: 989642198
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Playgrounds", id: 1496833156
+mas "Telegram", id: 747648890
 mas "WhatsApp", id: 1147396723
 vscode "bierner.markdown-mermaid"
 vscode "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
