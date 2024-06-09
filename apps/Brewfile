@@ -5,7 +5,6 @@ brew "bat"
 brew "fzf"
 # Distributed revision control system
 brew "git"
-brew "pyenv"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Kubernetes command-line interface
@@ -22,6 +21,8 @@ brew "neovim"
 brew "nvm"
 # OpenShift command-line interface tools
 brew "openshift-cli"
+# Python version management
+brew "pyenv"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -46,6 +47,8 @@ cask "discord"
 cask "docker"
 # Developer targeted fonts with a high number of glyphs
 cask "font-agave-nerd-font"
+# Developer targeted fonts with a high number of glyphs
+cask "font-hack-nerd-font"
 # GIT client
 cask "fork"
 # Client for the Google Drive storage service
