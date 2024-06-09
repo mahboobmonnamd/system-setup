@@ -4,7 +4,7 @@ echo "####### Installing brew and other scripts #######"
 
 brewfile="${1:-./Brewfile}"
 omzfile="${2:-./oh-my-zsh.sh}"
-batfile="${3:-./bat-theme.sh}"
+batfile="${3:-./catppuccin-theme.sh}"
 
 # Ensure the brewfile exists
 if [ ! -f "$brewfile" ]; then
