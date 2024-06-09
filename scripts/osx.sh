@@ -153,7 +153,7 @@ defaults write com.apple.dock persistent-apps -array
 
 # Define arrays for system and user applications
 systemApps=(/System/Applications/Launchpad.app /System/Applications/Notes.app)
-userApps=(/Applications/iTerm.app /Applications/Visual\ Studio\ Code.app /Applications/Brave\ Browser.app)
+userApps=(/Applications/Warp.app /Applications/Visual\ Studio\ Code.app /Applications/Brave\ Browser.app)
 
 # Iterate over the arrays and add the applications to the Dock
 for dockItem in "${systemApps[@]}" "${userApps[@]}"; do

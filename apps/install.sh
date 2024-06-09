@@ -30,18 +30,19 @@ brew bundle --file="$brewfile"
 
 pyenv install 3.9
 
-info '##### Installting colorls#######'
-
+echo '##### Installing colorls#######'
+if ! command -v colorls &> /dev/null; then
 sudo gem install colorls
 colorls --light
+fi
 
-info '##### Npm Based install #######'
+echo '##### Npm Based install #######'
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 nvm install --lts
 npm i -g typescript ts-node
 
-info '##### Installting oh my zsh#######'
+echo '##### Installing oh my zsh#######'
 
 chmod +x $omzfile
 

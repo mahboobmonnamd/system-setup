@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -o errexit
+set +v -o errexit
 
 script_root=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -28,7 +28,7 @@ info "Bootstraping..."
 
 install_xcode
 
-$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh"
+$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh.sh"
 
 ./osx.sh
 

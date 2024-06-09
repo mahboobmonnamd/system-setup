@@ -9,5 +9,6 @@ source $ZSH/oh-my-zsh.sh
 
 source $ZPLUG_HOME/init.zsh
 source $HOME/.config/zsh/zplug.zsh
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
