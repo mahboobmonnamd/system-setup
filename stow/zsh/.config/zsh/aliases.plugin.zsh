@@ -8,4 +8,4 @@ alias du='du -h'
 alias ls='colorls'
 alias cat="bat"
 alias zshconfig="code ~/.zshrc"
-
+alias envconfig="code ~/.config/zsh/env.zsh"
