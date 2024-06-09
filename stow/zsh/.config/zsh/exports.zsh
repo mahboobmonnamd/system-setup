@@ -11,6 +11,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Specify default editor. Possible values: vim, nano, ed etc.
 export EDITOR=vim
-
-
+export BAT_THEME="GitHub"
 
