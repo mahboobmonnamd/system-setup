@@ -1,13 +1,11 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Distributed revision control system
 brew "git"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
+brew "pyenv"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Kubernetes command-line interface
@@ -38,10 +36,6 @@ brew "zoxide"
 brew "zplug"
 # UNIX shell (command interpreter)
 brew "zsh"
-# GPU-accelerated terminal emulator
-cask "alacritty"
-# Tools for building Android applications
-cask "android-studio"
 # Application uninstaller
 cask "appcleaner"
 # Web browser focusing on privacy
@@ -87,7 +81,6 @@ mas "Goodnotes", id: 1444383602
 mas "HP Smart", id: 1474276998
 mas "Keynote", id: 409183694
 mas "Microsoft Outlook", id: 985367838
-mas "MoneyCoach", id: 989642198
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Playgrounds", id: 1496833156
