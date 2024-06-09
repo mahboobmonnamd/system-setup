@@ -11,6 +11,7 @@ cd scripts
 ./bootstrap.sh
 ./git_setup.sh
 ```
+> bootstrap will install the below steps (brew, dev tool). Configuration which is mentioned below needs to updated manually. 
 
 # Brew
 
@@ -63,10 +64,11 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 #### Appearance
 
 - Expand alias
-- Theme Light
-- Update prompt (Remote Login, Working dir, git, +2, kube-context)
-- Increase Font size to 14
-- Font to `Iosevka`
+- Theme `Catppuccin Latte`
+- Update prompt (Remote Login, Working dir, git, +2, kube-context, Date)
+- Increase Font size to 15
+- Font to `Nerd`
+- 
 
 #### Features
 - Default App - vscode
