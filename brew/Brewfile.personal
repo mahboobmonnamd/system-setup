@@ -1,0 +1,7 @@
+# Personal machine extras (SETUP_PROFILE=personal)
+cask "discord"
+cask "raindropio"
+cask "raspberry-pi-imager"
+cask "scratch"
+cask "google-drive"
+cask "docker"

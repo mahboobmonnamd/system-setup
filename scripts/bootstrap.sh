@@ -1,37 +1,47 @@
 #!/usr/bin/env bash
 
-set +v -o errexit
+set -o errexit
 
 script_root=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+REPO_ROOT=$(cd "$script_root/.." && pwd)
 
-source ./functions.sh
-
-install_xcode() {
-	if xcode-select -p >/dev/null; then
-		warn "xCode Command Line Tools already installed"
-	else
-		info "Installing xCode Command Line Tools..."
-		xcode-select --install
-		sudo xcodebuild -license accept
-	fi
-}
+# shellcheck source=../modules/lib.sh
+source "$REPO_ROOT/modules/lib.sh"
 
 info "####### dotfiles #######"
 if [[ -z "${BOOTSTRAP_NONINTERACTIVE:-}" ]]; then
   read -r -p "Press enter to start:"
 fi
-info "Bootstrapping..."
+info "Bootstrapping (SETUP_PROFILE=${SETUP_PROFILE:-personal})..."
 
-    # Ask for the administrator password upfront
-    sudo -v
+require_darwin
 
-    # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+if [[ -n "${DRY_RUN:-}" ]]; then
+  export DRY_RUN=1
+  warn "[dry-run] Skipping sudo, Xcode CLT, and osx.sh (defaults/killall)"
+  bash "$REPO_ROOT/modules/setup-apps.sh"
+  bash "$REPO_ROOT/modules/stow.sh"
+  success "Bootstrap dry-run finished."
+  exit 0
+fi
+
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+install_xcode() {
+  if xcode-select -p >/dev/null; then
+    warn "Xcode Command Line Tools already installed"
+  else
+    info "Installing Xcode Command Line Tools..."
+    xcode-select --install
+    sudo xcodebuild -license accept
+  fi
+}
 
 install_xcode
 
-$script_root/../apps/install.sh "$script_root/../apps/Brewfile" "$script_root/../apps/oh-my-zsh.sh" "$script_root/../apps/catppuccin-theme.sh"
+bash "$REPO_ROOT/modules/setup-apps.sh"
+bash "$script_root/osx.sh"
+bash "$REPO_ROOT/modules/stow.sh"
 
-./osx.sh
-
-cd ../stow && ./stow.sh
+success "Bootstrap finished."

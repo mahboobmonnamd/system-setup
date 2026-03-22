@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "osx.sh is for macOS only." >&2
+  exit 1
+fi
+
 setup_osx_defaults() {
     
     echo "Configuring MacOS default settings"
