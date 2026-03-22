@@ -1,13 +1,6 @@
+# Extra plugins only (git/kubectl/z come from Oh My Zsh — avoids cloning OMZ twice via zplug)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions", defer:2
-zplug "ohmyzsh/ohmyzsh", use:"plugins/git", defer:2
-zplug "ohmyzsh/ohmyzsh", use:"plugins/kubectl", defer:2
-zplug "ohmyzsh/ohmyzsh", use:"plugins/z", defer:2
-
-# source
-# zplug "$HOME/.config/zsh/aliases.plugin.zsh", from:local, as:plugin, use:"zsh/*.zsh", defer:2
-# zplug "$HOME/.config/zsh/exports.zsh", from:local, as:plugin, use:"zsh/*.zsh", defer:2
-# zplug "$HOME/.config/zsh/functions.zsh", from:local, as:plugin, use:"zsh/*.zsh", defer:2
 
 source "$HOME/.config/zsh/aliases.plugin.zsh"
 source "$HOME/.config/zsh/exports.zsh"
@@ -15,8 +8,7 @@ source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/env.zsh"
 
 if ! zplug check; then
-    zplug install
+  zplug install
 fi
 
 zplug load
-

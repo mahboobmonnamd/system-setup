@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 echo "####### Installing brew and other scripts #######"
 
@@ -6,50 +8,40 @@ brewfile="${1:-./Brewfile}"
 omzfile="${2:-./oh-my-zsh.sh}"
 batfile="${3:-./catppuccin-theme.sh}"
 
-# Ensure the brewfile exists
-if [ ! -f "$brewfile" ]; then
-    echo "Brewfile not found: $brewfile"
-    exit 1
+if [[ ! -f "$brewfile" ]]; then
+  echo "Brewfile not found: $brewfile"
+  exit 1
 fi
 
-
-# Install Homebrew (if not already installed)
-if ! command -v brew &> /dev/null; then
-    echo "Installing Homebrew..."
-    sudo --validate
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-	(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+if ! command -v brew &>/dev/null; then
+  echo "Installing Homebrew..."
+  sudo --validate
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  {
+    echo
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+  } >>"$HOME/.zprofile"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-
-# Install applications from the brewfile
 echo "Installing applications from $brewfile..."
 brew bundle --file="$brewfile"
 
-# Additional setup or configurations can be added here
-
-pyenv install 3.9
-
-echo '##### Installing colorls#######'
-if ! command -v colorls &> /dev/null; then
-sudo gem install colorls
-colorls --light
+if command -v pyenv &>/dev/null; then
+  pyenv install -s 3.9
 fi
 
-echo '##### Npm Based install #######'
+if [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+  # shellcheck source=/dev/null
+  . "/opt/homebrew/opt/nvm/nvm.sh"
+  nvm install --lts --default
+  npm i -g typescript ts-node
+fi
 
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-nvm install --lts
-npm i -g typescript ts-node
+chmod +x "$omzfile"
+"$omzfile"
 
-echo '##### Installing oh my zsh#######'
-
-chmod +x $omzfile
-
-$omzfile
-
-chmod +x $batfile
-$batfile
+chmod +x "$batfile"
+"$batfile"
 
 echo "Installation completed."

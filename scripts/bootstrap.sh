@@ -17,8 +17,10 @@ install_xcode() {
 }
 
 info "####### dotfiles #######"
-read -p "Press enter to start:"
-info "Bootstraping..."
+if [[ -z "${BOOTSTRAP_NONINTERACTIVE:-}" ]]; then
+  read -r -p "Press enter to start:"
+fi
+info "Bootstrapping..."
 
     # Ask for the administrator password upfront
     sudo -v

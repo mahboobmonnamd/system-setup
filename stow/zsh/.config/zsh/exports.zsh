@@ -1,15 +1,32 @@
 #!/bin/zsh
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# export GOPATH=$HOME/Developer/.go
-# export MAKEPATH="/opt/homebrew/Cellar/make/4.4.1/libexec/gnubin"
-# # export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin:$GOPATH/bin:$MAKEPATH"
-# export PATH=$MAKEPATH:$GOPATH/bin:/opt/homebrew/opt/openjdk/bin:${KREW_ROOT:-$HOME/.krew}/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+_lazy_nvm_load() {
+  unset -f nvm node npm npx _lazy_nvm_load
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+}
 
-# Specify default editor. Possible values: vim, nano, ed etc.
+nvm() {
+  _lazy_nvm_load
+  nvm "$@"
+}
+
+node() {
+  _lazy_nvm_load
+  command node "$@"
+}
+
+npm() {
+  _lazy_nvm_load
+  command npm "$@"
+}
+
+npx() {
+  _lazy_nvm_load
+  command npx "$@"
+}
+
 export EDITOR=vim
 export BAT_THEME="Catppuccin Latte"
-
