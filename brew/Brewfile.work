@@ -1,3 +1,2 @@
 # Work machine extras (SETUP_PROFILE=work)
 cask "slack"
-cask "zoom"
