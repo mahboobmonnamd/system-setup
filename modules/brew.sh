@@ -53,6 +53,8 @@ main_brew() {
   fi
 
   if [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+    # nvm.sh expects NVM_DIR; keep this safe under `set -u`.
+    export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
     # shellcheck source=/dev/null
     . "/opt/homebrew/opt/nvm/nvm.sh"
     nvm install --lts --default

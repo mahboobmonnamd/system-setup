@@ -19,6 +19,7 @@ require_darwin
 
 STOW_DIR="${STOW_DIR:-$REPO_ROOT/stow}"
 _default_pkgs=(git zsh nvim finicky)
+STOW_BACKUP_CONFLICTS="${STOW_BACKUP_CONFLICTS:-1}"
 if [[ -n "${STOW_PACKAGES:-}" ]]; then
   read -r -a pkgs <<<"$STOW_PACKAGES"
 else
@@ -27,7 +28,27 @@ fi
 
 cd "$STOW_DIR"
 
-stow_one() {
+backup_conflicts_from_output() {
+  local output="$1"
+  local backup_root="$HOME/.stow-backup/$(date +%Y%m%d-%H%M%S)"
+  local found=0
+  while IFS= read -r rel_target; do
+    [[ -z "$rel_target" ]] && continue
+    found=1
+    local src="$HOME/$rel_target"
+    local dst="$backup_root/$rel_target"
+    mkdir -p "$(dirname "$dst")"
+    mv "$src" "$dst"
+    warn "Backed up conflict: $src -> $dst"
+  done < <(
+    printf '%s\n' "$output" \
+      | sed -nE 's/^.*over existing target ([^ ]+) since neither.*/\1/p' \
+      | sort -u
+  )
+  [[ $found -eq 1 ]]
+}
+
+stow_cmd() {
   local pkg="$1"
   local -a cmd=(stow)
 
@@ -42,7 +63,39 @@ stow_one() {
     warn "Using --adopt for $pkg (see modules/stow.sh header)."
   fi
 
-  run "${cmd[@]}"
+  "${cmd[@]}"
+}
+
+stow_one() {
+  local pkg="$1"
+  if [[ -n "${DRY_RUN:-}" ]]; then
+    local output
+    if output="$(stow_cmd "$pkg" 2>&1)"; then
+      printf '%s\n' "$output"
+    else
+      warn "Dry-run conflict for package '$pkg':"
+      printf '%s\n' "$output"
+    fi
+    return 0
+  fi
+
+  local output
+  if output="$(stow_cmd "$pkg" 2>&1)"; then
+    printf '%s\n' "$output"
+    return 0
+  fi
+
+  printf '%s\n' "$output" >&2
+  if [[ -n "${STOW_ADOPT:-}" || "$STOW_BACKUP_CONFLICTS" != "1" ]]; then
+    return 1
+  fi
+
+  if backup_conflicts_from_output "$output"; then
+    warn "Retrying stow for $pkg after backing up conflicts..."
+    stow_cmd "$pkg"
+  else
+    return 1
+  fi
 }
 
 main_stow() {

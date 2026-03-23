@@ -156,13 +156,18 @@ defaults write com.apple.dock showhidden -bool true
 
 defaults write com.apple.dock persistent-apps -array
 
-# Define arrays for system and user applications
-systemApps=(/System/Applications/Launchpad.app /System/Applications/Notes.app)
-userApps=(/Applications/Warp.app /Applications/Visual\ Studio\ Code.app /Applications/Brave\ Browser.app)
+# Define arrays for system and user applications.
+# Newer macOS versions use Apps.app instead of Launchpad.app.
+systemApps=(/System/Applications/Apps.app /System/Applications/Notes.app)
+userApps=(/Applications/Visual\ Studio\ Code.app /Applications/Brave\ Browser.app)
 
 # Iterate over the arrays and add the applications to the Dock
 for dockItem in "${systemApps[@]}" "${userApps[@]}"; do
-  defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>'"$dockItem"'</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+  if [[ -d "$dockItem" ]]; then
+    defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>'"$dockItem"'</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+  else
+    echo "Skipping missing Dock app: $dockItem"
+  fi
 done
 
 ###############################################################################
