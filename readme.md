@@ -36,7 +36,7 @@ Homebrew installs **`brew/Brewfile.base`** plus **`brew/Brewfile.<profile>`**.
 | Profile    | Extra Brewfile        | Typical use        |
 |-----------|------------------------|--------------------|
 | `personal` (default) | `brew/Brewfile.personal` | Discord, Scratch, etc. |
-| `work`    | `brew/Brewfile.work`   | Slack, Zoom, etc.  |
+| `work`    | `brew/Brewfile.work`   | Slack, etc.  |
 
 Examples:
 

@@ -1,14 +1,13 @@
 # Personal machine extras (SETUP_PROFILE=personal)
+cask "antigravity"
+cask "cursor"
 cask "discord"
+cask "docker-desktop"
+cask "google-drive"
 cask "raindropio"
 cask "raspberry-pi-imager"
 cask "scratch"
-cask "google-drive"
-cask "cursor"
-cask "docker-desktop"
 cask "utm"
-cask "antigravity"
-
 mas "HP", id: 1474276998
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
