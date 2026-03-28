@@ -30,3 +30,6 @@ npx() {
 
 export EDITOR=vim
 export BAT_THEME="Catppuccin Latte"
+export PATH="/Users/mahboob/.local/bin:$PATH"
+# Added by Antigravity
+export PATH="/Users/mahboob/.antigravity/antigravity/bin:$PATH"
