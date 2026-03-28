@@ -209,6 +209,14 @@ defaults write com.apple.commerce AutoUpdate -bool true
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 ###############################################################################
+# Battery                                                                     #
+###############################################################################
+
+# Show battery percentage in menu bar (macOS Big Sur+ / Tahoe)
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+###############################################################################
 # iterm                                                                      #
 ###############################################################################
 
