@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Aliases
 alias ll='ls -la'
 alias ..='cd ..'
@@ -11,4 +13,5 @@ if command -v eza >/dev/null 2>&1; then
 else
   alias ls='ls -G'
 fi
+
 alias zshconfig="code ~/.zshrc"

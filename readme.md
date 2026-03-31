@@ -145,7 +145,7 @@ Typical workflow:
 1. Dump to a **scratch** file (do not overwrite `Brewfile.base` blindly):
 
    ```sh
-   brew bundle dump --describe --force --file=brew/Brewfile.dumped
+   brew bundle dump --force --file=brew/Brewfile.dumped
    ```
 
 2. **Manually** reconcile: keep shared lines in **`brew/Brewfile.base`**, and only machine- or role-specific lines in **`brew/Brewfile.personal`** or **`brew/Brewfile.work`**. Use `diff` / your editor; remove duplicates so each formula/cask appears in **one** place.

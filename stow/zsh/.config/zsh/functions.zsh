@@ -7,6 +7,8 @@ envconfig() {
   code "$f"
 }
 
+eval "$(fzf --zsh)"
+
 function kill_port() { lsof -ti:"$@" | xargs kill -9 }
 
 eval "$(zoxide init zsh)"

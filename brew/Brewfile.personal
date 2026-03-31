@@ -1,6 +1,7 @@
 # Personal machine extras (SETUP_PROFILE=personal)
-cask "bitwarden"
+cask "android-studio"
 cask "antigravity"
+cask "bitwarden"
 cask "cursor"
 cask "discord"
 cask "docker-desktop"
@@ -10,5 +11,9 @@ cask "raspberry-pi-imager"
 cask "scratch"
 cask "utm"
 cask "wpsoffice"
+mas "CrystalFetch", id: 6454431289
 mas "HP", id: 1474276998
+mas "Numbers", id: 361304891
 mas "WhatsApp", id: 310633997
+vscode "chakrounanas.turbo-console-log"
+vscode "github.copilot-chat"
