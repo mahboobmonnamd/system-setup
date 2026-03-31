@@ -1,4 +1,5 @@
 # Personal machine extras (SETUP_PROFILE=personal)
+cask "bitwarden"
 cask "antigravity"
 cask "cursor"
 cask "discord"

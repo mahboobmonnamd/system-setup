@@ -1,7 +1,7 @@
 # Dotfiles automation (run from repo root)
 ROOT := $(abspath .)
 PROFILE ?= personal
-export SETUP_PROFILE := $(PROFILE)
+export SETUP_PROFILE ?= $(PROFILE)
 
 # Set DRY_RUN=1 to print actions without changing the system (brew/stow simulate; osx.sh skipped in bootstrap)
 DRY_RUN ?=
