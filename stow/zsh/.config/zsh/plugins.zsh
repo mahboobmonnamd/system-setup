@@ -35,8 +35,3 @@ zinit snippet OMZP::git                 # Git aliases and functions
 zinit snippet OMZP::sudo                # Press ESC twice to add sudo to command
 zinit snippet OMZP::kubectl             # kubectl aliases and completions
 zinit snippet OMZP::command-not-found   # Suggests package to install for missing commands
-
-# ===============================================================================
-# Replay cached completions for faster loading
-# ===============================================================================
-zinit cdreplay -q

@@ -1,3 +1,32 @@
+[alias]
+    # Short aliases
+    st = status -sb
+    co = checkout
+    br = branch
+    ci = commit
+    unstage = reset HEAD --
+    
+    # Pretty logs
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    
+    # Show contributors
+    contributors = shortlog --summary --numbered --email
+    
+    # Show branches sorted by last modified
+    recent = branch --sort=-committerdate
+    
+    # Amend without editing message
+    amend = commit --amend --no-edit
+    
+    # Show what I did today
+    today = log --since=midnight --author='$(git config user.name)' --oneline
+    
+    # Undo last commit but keep changes
+    undo = reset --soft HEAD^
+    
+    # Show files in last commit
+    last = diff-tree --no-commit-id --name-only -r HEAD
 [push]
 	default = current
 [user]

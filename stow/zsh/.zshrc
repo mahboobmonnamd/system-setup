@@ -27,6 +27,11 @@ source $HOME/.config/zsh/plugins.zsh
 # Load and initialize the completion system
 autoload -Uz compinit && compinit
 
+# ===============================================================================
+# Replay cached completions for faster loading
+# ===============================================================================
+zinit cdreplay -q
+
 # Faster compinit cache location (avoids slow compaudit on some setups)
 mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump-${SHORT_HOST:-$HOST}"

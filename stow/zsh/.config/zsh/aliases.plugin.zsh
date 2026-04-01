@@ -47,11 +47,18 @@ if command -v fd >/dev/null 2>&1; then
 fi
 
 # ===============================================================================
-# Git Aliases (enhanced with lazygit)
+# Git Aliases
 # ===============================================================================
 if command -v lazygit >/dev/null 2>&1; then
   alias lg='lazygit'
 fi
+
+# additional unique aliases with OMZ git plugin
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+alias gplr='git pull --rebase'
+alias gprune='git remote prune origin'
+alias gbr='git branch --sort=-committerdate'
+alias gcontirb='git shortlog -sn'             # show contributors
 
 # ===============================================================================
 # System Utilities
