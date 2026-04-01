@@ -1,14 +1,14 @@
 # Create a folder and move into it in one command
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
-envconfig() {
+function envconfig() {
   local f="${HOME}/.config/zsh/env.local.zsh"
   [[ -f $f ]] || print '# Machine-local (gitignored)\n' >"$f"
   code "$f"
 }
 
 # Github util functions
-gstats() {
+function gstats() {
   echo "Repo statistics"
   echo "======================"
   git log --shortstat --pretty=format:"" | \
@@ -24,7 +24,7 @@ gstats() {
 }
 
 # Interactive branch delete (with fzf)
-gbd-fzf() {
+function gbd-fzf() {
     local branches=$(git branch | grep -v "^\*" | fzf --multi --preview 'git log --oneline --graph --color=always {}')
     if [ -n "$branches" ]; then
         echo "$branches" | xargs git branch -d
@@ -32,7 +32,7 @@ gbd-fzf() {
 }
 
 # Checkout branch with fzf
-gco-fzf() {
+function gco-fzf() {
     local branch=$(git branch -a | grep -v "^\*" | sed 's/remotes\/origin\///' | sort -u | fzf --preview 'git log --oneline --graph --color=always {}')
     if [ -n "$branch" ]; then
         git checkout $(echo "$branch" | sed 's/^[* ]*//')
@@ -40,7 +40,7 @@ gco-fzf() {
 }
 
 # Show files changed in last commit
-glast() {
+function glast() {
     git diff-tree --no-commit-id --name-only -r HEAD
 }
 
@@ -54,7 +54,7 @@ function gpr() {
 }
 
 # undo last N commits
-gundo() {
+function gundo() {
   local n=${1:-1}
   git reset --soft HEAD~$n
 }
