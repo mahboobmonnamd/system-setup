@@ -1,0 +1,71 @@
+# Atuin Configuration - Local-Only Mode (No Cloud Sync)
+# This configuration keeps all history on your local machine
+
+## Sync Settings (DISABLED)
+[sync]
+# Disable automatic sync
+auto_sync = false
+
+# No sync address (local-only)
+# sync_address = ""
+
+## Search Settings
+[search]
+# Search mode: prefix, fulltext, or fuzzy
+search_mode = "fuzzy"
+
+# Filter mode: global, host, session, or directory
+filter_mode = "global"
+
+# Show preview of command context
+show_preview = true
+max_preview_height = 4
+
+# Show help text
+show_help = true
+
+## History Settings
+[history]
+# Update snapshots for better search
+update_snapshots = true
+
+# Filter out sensitive commands (don't save these)
+filter = [
+    "^export.*PASSWORD",
+    "^export.*SECRET",
+    "^export.*TOKEN",
+    "^export.*API_KEY",
+    "^export.*APIKEY",
+    "^.*api[_-]?key",
+    "^.*api[_-]?secret",
+    "^aws.*secret",
+    "^curl.*Authorization",
+    "^docker login",
+    "^npm.*_authToken",
+]
+
+## UI Settings
+[ui]
+# Style: compact, full, or auto
+style = "compact"
+
+# Show command duration
+show_duration = true
+
+# Show exit code
+show_exit_code = true
+
+## Keybindings
+[keys]
+# Keybinding mode: vim, emacs, or auto
+keymap_mode = "auto"
+
+# Disable up arrow binding (keep default zsh behavior)
+# only use Ctrl+R for atuin search
+up_arrow = false
+
+## Stats Settings
+[stats]
+# Number of commands to show in stats
+common_subcommands = 10
+common_prefix = 10

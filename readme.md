@@ -199,3 +199,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ## Others
 
 - VMware Fusion (or **UTM** from the base Brewfile) if you need VMs
+
+## Explore
+- navi
+- mcfly
+- tealdeer
+- mise
+
