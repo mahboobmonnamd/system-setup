@@ -17,40 +17,9 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
 fi
 
 # ===============================================================================
-# zInit Plugin Manager Setup
+# Plugins (zinit, themes, zsh plugins, OMZ snippets)
 # ===============================================================================
-# zInit is faster and auto-installs on first run and supports turbo mode for lazy loading
-source $HOMEBREW_PREFIX/opt/zinit/zinit.zsh
-
-# ===============================================================================
-# Theme: Powerlevel10k
-# ===============================================================================
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# ===============================================================================
-# Essential zsh plugins
-# ===============================================================================
-# syntax highlighting
-zinit light zsh-users/zsh-syntax-highlighting
-
-# Auto completions
-zinit light zsh-users/zsh-completions
-
-# Auto suggestions
-zinit light zsh-users/zsh-autosuggestions
-
-# fzf-tab: Replaces default tab completion with fzf finder
-zinit light Aloxaf/fzf-tab
-
-# ===============================================================================
-# Oh My ZSH Snippets
-# ===============================================================================
-# load only specific OMZ plugins as snippets
-zinit snippet OMZL::git.zsh             # Git library functions
-zinit snippet OMZP::git                 # Git aliases and functions
-zinit snippet OMZP::sudo                # Press ESC twice to add sudo to command
-zinit snippet OMZP::kubectl             # kubectl aliases and completions
-zinit snippet OMZP::command-not-found   # suggests package to install for missing commands
+source $HOME/.config/zsh/plugins.zsh
 
 # ===============================================================================
 # Completion System
@@ -61,9 +30,6 @@ autoload -Uz compinit && compinit
 # Faster compinit cache location (avoids slow compaudit on some setups)
 mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump-${SHORT_HOST:-$HOST}"
-
-# Replay cached completions for faster loading
-zinit cdreplay -q
 
 # ===============================================================================
 # Keybindings
@@ -104,12 +70,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # Disable default completion menu (fzf-tab provides better interface)
 zstyle ':completion:*' menu no
 
-# fzf-tab preview configurations
-# show directory contents when completing cd command
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-
-# show directory contents when completing zoxide command
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# ===============================================================================
+# Load FZF-tab config (muli-select previews keybindings)
+# ===============================================================================
+source $HOME/.config/zsh/fzf.zsh
 
 # ===============================================================================
 # Custom configurations
