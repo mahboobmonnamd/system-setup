@@ -42,9 +42,11 @@ export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump-${SHORT_HOST
 # Use Emacs-style keybindings (vs vi mode)
 bindkey -e
 
-bindkey '^p' history-search-backward # ctrl+P Previous command in history
-bindkey '^n' history-search-forward  # ctrl+N Next command in history
-bindkey '^w' kill-region             # Alt+W Kill/cut selected region
+bindkey '^p' history-search-backward   # ctrl+P Previous command in history
+bindkey '^n' history-search-forward    # ctrl+N Next command in history
+bindkey '^w' kill-region               # Alt+W Kill/cut selected region
+bindkey '^[[A' history-search-backward # ↑ Previous command in history
+bindkey '^[[B' history-search-forward  # ↓ Next command in history
 
 # ===============================================================================
 # History Configuration

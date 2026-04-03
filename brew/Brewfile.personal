@@ -11,6 +11,7 @@ cask "raspberry-pi-imager"
 cask "scratch"
 cask "utm"
 cask "wpsoffice"
+cask "claude"
 mas "CrystalFetch", id: 6454431289
 mas "HP", id: 1474276998
 mas "Numbers", id: 361304891

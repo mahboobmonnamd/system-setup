@@ -7,6 +7,8 @@ function envconfig() {
   code "$f"
 }
 
+function kill_port() { lsof -ti:"$@" | xargs kill -9 }
+
 # Github util functions
 function gstats() {
   echo "Repo statistics"

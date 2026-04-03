@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Reference — mahboobmonnamd</title>
+<style>
+  :root {
+    --base:#eff1f5;--mantle:#e6e9ef;--crust:#dce0e8;--surface0:#ccd0da;--surface1:#bcc0cc;
+    --overlay0:#9ca0b0;--text:#4c4f69;--subtext:#6c6f85;
+    --red:#d20f39;--peach:#fe640b;--yellow:#df8e1d;--green:#40a02b;
+    --teal:#179299;--blue:#1e66f5;--mauve:#8839ef;--lavender:#7287fd;
+    --pink:#ea76cb;--sapphire:#209fb5;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#c8ccd6;color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:9.2px;line-height:1.38;}
+
+  .print-banner{background:var(--blue);color:#fff;text-align:center;padding:7px;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;position:sticky;top:0;z-index:100;}
+  .print-banner:hover{background:var(--lavender);}
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+    body{background:white;}
+    .page{margin:0!important;padding:7mm!important;page-break-after:always;}
+    .page:last-child{page-break-after:avoid;}
+    .print-banner{display:none;}
+  }
+
+  .page{width:210mm;background:var(--base);margin:6mm auto;padding:7mm 7mm 5mm;}
+
+  /* HEADER */
+  .header{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--blue);padding-bottom:4px;margin-bottom:6px;}
+  .header-left{display:flex;align-items:baseline;}
+  .header h1{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--blue);letter-spacing:-0.5px;}
+  .header h1 span{color:var(--mauve);}
+  .header-meta{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--overlay0);margin-left:8px;}
+  .header-badges{display:flex;gap:3px;}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:7.5px;padding:2px 5px;border-radius:999px;font-weight:700;}
+  .b-zsh{background:var(--green);color:#fff;}.b-p10k{background:var(--mauve);color:#fff;}.b-lat{background:var(--peach);color:#fff;}
+  .b-tmux{background:var(--sapphire);color:#fff;}.b-vim{background:var(--red);color:#fff;}.b-dev{background:var(--yellow);color:#fff;}
+
+  /* GRID */
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;}
+
+  /* DIVIDER */
+  .divider{grid-column:span 3;display:flex;align-items:center;gap:6px;margin-top:2px;}
+  .divider span{font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--overlay0);white-space:nowrap;}
+  .divider::after{content:'';flex:1;height:1px;background:var(--surface0);}
+
+  /* CARD */
+  .card{background:var(--mantle);border:1px solid var(--surface0);border-radius:5px;overflow:hidden;}
+  .card-head{display:flex;align-items:center;gap:4px;padding:3px 7px;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;border-bottom:1px solid var(--surface0);}
+  .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .card-body{padding:4px 6px;}
+  .card.col2{grid-column:span 2;}.card.col3{grid-column:span 3;}
+
+  .a-blue .card-head{background:#dde6fc;color:var(--blue);}.a-blue .dot{background:var(--blue);}
+  .a-green .card-head{background:#d7f0d1;color:var(--green);}.a-green .dot{background:var(--green);}
+  .a-mauve .card-head{background:#e8d8f7;color:var(--mauve);}.a-mauve .dot{background:var(--mauve);}
+  .a-teal .card-head{background:#d1ecee;color:var(--teal);}.a-teal .dot{background:var(--teal);}
+  .a-peach .card-head{background:#fde8d5;color:var(--peach);}.a-peach .dot{background:var(--peach);}
+  .a-red .card-head{background:#fad4d4;color:var(--red);}.a-red .dot{background:var(--red);}
+  .a-yellow .card-head{background:#f7ead1;color:var(--yellow);}.a-yellow .dot{background:var(--yellow);}
+  .a-pink .card-head{background:#f9d9ee;color:var(--pink);}.a-pink .dot{background:var(--pink);}
+  .a-saph .card-head{background:#d3eff4;color:var(--sapphire);}.a-saph .dot{background:var(--sapphire);}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;}
+  tr:not(:last-child) td{border-bottom:1px solid var(--crust);}
+  td{padding:2px 3px;vertical-align:top;}
+  td:first-child{width:44%;}
+  td:last-child{color:var(--subtext);}
+
+  kbd{font-family:'JetBrains Mono',monospace;font-size:7.8px;font-weight:600;color:var(--text);background:var(--crust);border:1px solid var(--surface1);border-radius:3px;padding:0 3px;white-space:nowrap;display:inline-block;}
+  code{font-family:'JetBrains Mono',monospace;font-size:8.2px;color:var(--blue);background:var(--crust);border-radius:2px;padding:0 2px;}
+  .note{font-size:7.5px;color:var(--overlay0);margin-top:3px;padding-top:3px;border-top:1px solid var(--crust);}
+  .note strong{color:var(--subtext);}
+
+  /* FOOTER */
+  .footer{margin-top:5px;padding-top:4px;border-top:1px solid var(--surface0);display:flex;justify-content:space-between;align-items:center;}
+  .footer-l{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--overlay0);}
+  .footer-l strong{color:var(--subtext);}
+  .footer-r{display:flex;gap:3px;}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--subtext);background:var(--crust);border:1px solid var(--surface0);border-radius:3px;padding:1px 5px;}
+</style>
+</head>
+<body>
+
+<div class="print-banner" onclick="window.print()">🖨️ Click to Print / Save as PDF — 2 pages · A4 · enable "Background graphics"</div>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>~/<span>terminal</span>.ref</h1>
+      <span class="header-meta">&nbsp;mahboobmonnamd · system-setup · April 2026 · Page 1 / 2</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge b-zsh">ZSH + zinit</span>
+      <span class="badge b-p10k">powerlevel10k</span>
+      <span class="badge b-lat">catppuccin latte</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="divider"><span>Navigation &amp; Files</span></div>
+
+    <div class="card a-blue">
+      <div class="card-head"><div class="dot"></div>Navigation</div>
+      <div class="card-body"><table>
+        <tr><td><code>z &lt;dir&gt;</code></td><td>Smart jump (zoxide)</td></tr>
+        <tr><td><code>..</code> / <code>...</code> / <code>....</code></td><td>Up 1 / 2 / 3 levels</td></tr>
+        <tr><td><code>mkcd &lt;dir&gt;</code></td><td>Create dir &amp; cd into it</td></tr>
+        <tr><td><kbd>Alt+C</kbd></td><td>fzf directory + tree preview</td></tr>
+        <tr><td><kbd>Ctrl+T</kbd></td><td>fzf file search with preview</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-teal">
+      <div class="card-head"><div class="dot"></div>eza — Listing</div>
+      <div class="card-body"><table>
+        <tr><td><code>ls</code></td><td>Icons + grouped dirs</td></tr>
+        <tr><td><code>ll</code></td><td>Long format, all details</td></tr>
+        <tr><td><code>la</code></td><td>Include hidden files</td></tr>
+        <tr><td><code>lt</code></td><td>Tree view (2 levels)</td></tr>
+        <tr><td><code>lta</code></td><td>Tree view + hidden</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>bat · rg · fd · jq</div>
+      <div class="card-body"><table>
+        <tr><td><code>cat &lt;file&gt;</code></td><td>Syntax-highlighted (bat)</td></tr>
+        <tr><td><code>catt &lt;file&gt;</code></td><td>Plain view, no decorations</td></tr>
+        <tr><td><code>grep &lt;pat&gt;</code></td><td>ripgrep (respects .gitignore)</td></tr>
+        <tr><td><code>find &lt;pat&gt;</code></td><td>fd — fast file find</td></tr>
+        <tr><td><code>json</code> / <code>yaml</code></td><td>Pretty-print jq / yq</td></tr>
+      </table></div>
+    </div>
+
+    <div class="divider"><span>Git Workflow</span></div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Custom Git Functions</div>
+      <div class="card-body"><table>
+        <tr><td><code>lg</code></td><td>lazygit TUI</td></tr>
+        <tr><td><code>gco-fzf</code></td><td>Interactive branch checkout</td></tr>
+        <tr><td><code>gbd-fzf</code></td><td>Interactive branch delete (multi)</td></tr>
+        <tr><td><code>gstats</code></td><td>Repo stats (files, lines ±)</td></tr>
+        <tr><td><code>glast</code></td><td>Files changed in last commit</td></tr>
+        <tr><td><code>gpr</code></td><td>Create PR with GitHub CLI</td></tr>
+        <tr><td><code>gundo [n]</code></td><td>Undo last N commits (default 1)</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>OMZ Git Aliases</div>
+      <div class="card-body"><table>
+        <tr><td><code>gst</code></td><td><code>git status</code></td></tr>
+        <tr><td><code>ga .</code></td><td><code>git add .</code></td></tr>
+        <tr><td><code>gcmsg "msg"</code></td><td><code>git commit -m</code></td></tr>
+        <tr><td><code>gp</code></td><td><code>git push</code></td></tr>
+        <tr><td><code>gd</code></td><td><code>git diff</code></td></tr>
+        <tr><td><code>gplr</code></td><td><code>git pull --rebase</code></td></tr>
+        <tr><td><code>gbr</code></td><td>Branches by recent commit</td></tr>
+        <tr><td><code>gprune</code></td><td><code>git remote prune origin</code></td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Git Essentials</div>
+      <div class="card-body"><table>
+        <tr><td><code>git stash</code></td><td>Stash working changes</td></tr>
+        <tr><td><code>git stash pop</code></td><td>Apply + drop last stash</td></tr>
+        <tr><td><code>git log --oneline</code></td><td>Compact commit history</td></tr>
+        <tr><td><code>git rebase -i HEAD~n</code></td><td>Interactive rebase last N</td></tr>
+        <tr><td><code>git cherry-pick &lt;sha&gt;</code></td><td>Apply specific commit</td></tr>
+        <tr><td><code>git bisect start</code></td><td>Binary search for bug</td></tr>
+        <tr><td><code>git reflog</code></td><td>Full history incl. resets</td></tr>
+      </table></div>
+    </div>
+
+    <div class="divider"><span>FZF &amp; Shell Keybindings</span></div>
+
+    <div class="card a-mauve">
+      <div class="card-head"><div class="dot"></div>FZF Triggers</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>Ctrl+R</kbd></td><td>Fuzzy search history → run</td></tr>
+        <tr><td><kbd>Ctrl+T</kbd></td><td>Fuzzy find file → insert path at cursor</td></tr>
+        <tr><td><kbd>Alt+C</kbd></td><td>Fuzzy find dir → cd into it instantly</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-mauve">
+      <div class="card-head"><div class="dot"></div>FZF Multi-Select</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>Ctrl+Space</kbd></td><td>Toggle (no cursor move)</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td>Move down only</td></tr>
+        <tr><td><kbd>Ctrl+A</kbd> / <kbd>Ctrl+D</kbd></td><td>Select all / deselect all</td></tr>
+        <tr><td><kbd>Ctrl+/</kbd></td><td>Toggle preview window</td></tr>
+        <tr><td><kbd>Ctrl+J/K</kbd></td><td>Navigate vim-style</td></tr>
+        <tr><td><kbd>Ctrl+U/F</kbd></td><td>Preview scroll ↑ / ↓</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-yellow">
+      <div class="card-head"><div class="dot"></div>ZSH Keybindings</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>Ctrl+P</kbd> / <kbd>N</kbd></td><td>History prev / next</td></tr>
+        <tr><td><kbd>Ctrl+W</kbd></td><td>Delete word backwards</td></tr>
+        <tr><td><kbd>Ctrl+A</kbd> / <kbd>E</kbd></td><td>Jump line start / end</td></tr>
+        <tr><td><kbd>ESC ESC</kbd></td><td>Prepend sudo (OMZ)</td></tr>
+        <tr><td><code>fuck</code> / <code>fk</code></td><td>Auto-correct last command</td></tr>
+      </table></div>
+    </div>
+
+    <div class="divider"><span>Setup &amp; Dotfiles</span></div>
+
+    <div class="card a-teal">
+      <div class="card-head"><div class="dot"></div>Config Quick Access</div>
+      <div class="card-body"><table>
+        <tr><td><code>zshconfig</code></td><td>Edit ~/.zshrc</td></tr>
+        <tr><td><code>aliasconfig</code></td><td>Edit aliases.plugin.zsh</td></tr>
+        <tr><td><code>envconfig</code></td><td>Edit env.local.zsh (gitignored)</td></tr>
+        <tr><td><code>source ~/.zshrc</code></td><td>Reload shell config now</td></tr>
+        <tr><td><code>exec zsh</code></td><td>Restart shell in-place</td></tr>
+        <tr><td><code>echo $PATH | tr ':' '\n'</code></td><td>Print PATH line by line</td></tr>
+        <tr><td><code>type &lt;cmd&gt;</code></td><td>Show what a command resolves to</td></tr>
+      </table>
+      <div class="note"><strong>Stow packages:</strong> git · zsh · nvim · tmux · finicky</div>
+      </div>
+    </div>
+
+    <div class="card a-pink col2">
+      <div class="card-head"><div class="dot"></div>Misc Dev Utilities</div>
+      <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr;gap:0 12px;">
+        <table>
+          <tr><td><code>pbcopy</code> / <code>pbpaste</code></td><td>macOS clipboard in / out</td></tr>
+          <tr><td><code>open &lt;file|url&gt;</code></td><td>Open with default app (macOS)</td></tr>
+          <tr><td><code>which &lt;cmd&gt;</code></td><td>Locate binary on PATH</td></tr>
+          <tr><td><code>type &lt;cmd&gt;</code></td><td>Show alias / function / binary</td></tr>
+        </table>
+        <table>
+          <tr><td><code>watch -n2 &lt;cmd&gt;</code></td><td>Re-run command every 2 seconds</td></tr>
+          <tr><td><code>tee &lt;file&gt;</code></td><td>Split stdout → file + screen</td></tr>
+          <tr><td><code>history | tail -20</code></td><td>Show recent commands</td></tr>
+          <tr><td><code>xargs &lt;cmd&gt;</code></td><td>Pipe stdin as args to command</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-l"><strong>github.com/mahboobmonnamd/system-setup</strong> · ZSH + Zinit · Powerlevel10k · Catppuccin Latte</div>
+    <div class="footer-r">
+      <span class="pill">NVM lazy-loaded</span>
+      <span class="pill">p10k instant prompt</span>
+      <span class="pill">history 5000 dedup</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>~/<span>terminal</span>.ref</h1>
+      <span class="header-meta">&nbsp;mahboobmonnamd · system-setup · April 2026 · Page 2 / 2</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge b-tmux">tmux</span>
+      <span class="badge b-vim">neovim</span>
+      <span class="badge b-dev">dev tools</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- TMUX -->
+    <div class="divider"><span>Tmux — Prefix: Ctrl+A</span></div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Sessions</div>
+      <div class="card-body"><table>
+        <tr><td><code>tmux new -s &lt;name&gt;</code></td><td>New named session</td></tr>
+        <tr><td><code>tmux ls</code></td><td>List sessions</td></tr>
+        <tr><td><code>tmux a -t &lt;name&gt;</code></td><td>Attach to session</td></tr>
+        <tr><td><code>tmux kill-ses -t &lt;n&gt;</code></td><td>Kill session</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>$</kbd></td><td>Rename session</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>d</kbd></td><td>Detach</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>s</kbd></td><td>Switch sessions (tree)</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>(</kbd> / <kbd>)</kbd></td><td>Prev / next session</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Windows &amp; Panes</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>C-a</kbd> <kbd>c</kbd></td><td>New window in current path</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>n</kbd> / <kbd>p</kbd></td><td>Next / prev window</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>1-9</kbd></td><td>Go to window N</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>,</kbd></td><td>Rename window</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>&amp;</kbd></td><td>Kill window</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>|</kbd></td><td>Split vertical in current path</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>-</kbd></td><td>Split horizontal in current path</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td>Navigate panes</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>H</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd></td><td>Resize pane by 5 cells</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Copy Mode &amp; Misc</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>C-a</kbd> <kbd>[</kbd></td><td>Enter copy / scroll mode</td></tr>
+        <tr><td><kbd>v</kbd></td><td>Start selection (copy mode)</td></tr>
+        <tr><td><kbd>y</kbd></td><td>Copy selection and exit</td></tr>
+        <tr><td><kbd>q</kbd></td><td>Exit copy mode</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>]</kbd></td><td>Paste buffer</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>?</kbd></td><td>List all keybindings</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>:</kbd></td><td>Command prompt</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>t</kbd></td><td>Show clock</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>q</kbd></td><td>Show pane numbers</td></tr>
+        <tr><td><kbd>C-a</kbd> <kbd>r</kbd></td><td>Reload config</td></tr>
+      </table></div>
+    </div>
+
+    <!-- NVIM -->
+    <div class="divider"><span>Neovim — Normal Mode unless marked</span></div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Motion &amp; Navigation</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td>← ↓ ↑ →</td></tr>
+        <tr><td><kbd>w</kbd> / <kbd>b</kbd> / <kbd>e</kbd></td><td>Word next / prev / end</td></tr>
+        <tr><td><kbd>0</kbd> / <kbd>^</kbd> / <kbd>$</kbd></td><td>Col 0 / first char / line end</td></tr>
+        <tr><td><kbd>gg</kbd> / <kbd>G</kbd></td><td>File top / bottom</td></tr>
+        <tr><td><kbd>Ctrl+d</kbd> / <kbd>u</kbd></td><td>Half page ↓ / ↑</td></tr>
+        <tr><td><kbd>%</kbd></td><td>Jump to matching bracket</td></tr>
+        <tr><td><kbd>f</kbd><kbd>x</kbd> / <kbd>F</kbd><kbd>x</kbd></td><td>Find char x → / ←</td></tr>
+        <tr><td><kbd>*</kbd> / <kbd>#</kbd></td><td>Next / prev word under cursor</td></tr>
+        <tr><td><kbd>Ctrl+o</kbd> / <kbd>i</kbd></td><td>Jump list back / forward</td></tr>
+        <tr><td><code>:&lt;n&gt;</code></td><td>Jump to line N</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Editing</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>i</kbd> / <kbd>a</kbd></td><td>Insert before / after cursor</td></tr>
+        <tr><td><kbd>I</kbd> / <kbd>A</kbd></td><td>Insert line start / end</td></tr>
+        <tr><td><kbd>o</kbd> / <kbd>O</kbd></td><td>New line below / above</td></tr>
+        <tr><td><kbd>c</kbd><kbd>i</kbd><kbd>w</kbd></td><td>Change inner word</td></tr>
+        <tr><td><kbd>d</kbd><kbd>i</kbd><kbd>w</kbd></td><td>Delete inner word</td></tr>
+        <tr><td><kbd>y</kbd><kbd>y</kbd> / <kbd>p</kbd></td><td>Yank line / paste below</td></tr>
+        <tr><td><kbd>u</kbd> / <kbd>Ctrl+r</kbd></td><td>Undo / redo</td></tr>
+        <tr><td><kbd>.</kbd></td><td>Repeat last change</td></tr>
+        <tr><td><kbd>~</kbd></td><td>Toggle case</td></tr>
+        <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd></td><td>Indent left / right</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Visual line mode</td></tr>
+        <tr><td><kbd>Ctrl+v</kbd></td><td>Visual block mode</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Search, Files &amp; Windows</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>/</kbd><code>pattern</code></td><td>Search forward</td></tr>
+        <tr><td><kbd>n</kbd> / <kbd>N</kbd></td><td>Next / prev match</td></tr>
+        <tr><td><code>:%s/old/new/gc</code></td><td>Replace all (confirm)</td></tr>
+        <tr><td><kbd>:w</kbd> / <kbd>:q!</kbd> / <kbd>:wq</kbd></td><td>Save / force quit / save+quit</td></tr>
+        <tr><td><kbd>:e &lt;file&gt;</kbd></td><td>Open file</td></tr>
+        <tr><td><kbd>:bn</kbd> / <kbd>:bp</kbd> / <kbd>:bd</kbd></td><td>Buffer next / prev / close</td></tr>
+        <tr><td><kbd>Ctrl+w s</kbd> / <kbd>v</kbd></td><td>Split horiz / vert</td></tr>
+        <tr><td><kbd>Ctrl+w h/j/k/l</kbd></td><td>Move between splits</td></tr>
+        <tr><td><kbd>:set nu rnu</kbd></td><td>Line + relative numbers</td></tr>
+        <tr><td><kbd>:noh</kbd></td><td>Clear search highlight</td></tr>
+      </table></div>
+    </div>
+
+    <!-- DEV TOOLS -->
+    <div class="divider"><span>Dev Terminal Essentials</span></div>
+
+    <div class="card a-yellow">
+      <div class="card-head"><div class="dot"></div>Process &amp; System</div>
+      <div class="card-body"><table>
+        <tr><td><code>ps aux | grep &lt;n&gt;</code></td><td>Find process by name</td></tr>
+        <tr><td><code>kill -9 &lt;pid&gt;</code></td><td>Force kill process</td></tr>
+        <tr><td><code>lsof -i :&lt;port&gt;</code></td><td>What's using this port?</td></tr>
+        <tr><td><code>kill $(lsof -t -i:3000)</code></td><td>Kill port 3000</td></tr>
+        <tr><td><code>df -h</code> / <code>du -sh &lt;dir&gt;</code></td><td>Disk / dir size</td></tr>
+        <tr><td><code>top</code> / <code>htop</code></td><td>Process monitor</td></tr>
+        <tr><td><code>env | grep &lt;key&gt;</code></td><td>Check env variable</td></tr>
+        <tr><td><code>export KEY=val</code></td><td>Set env variable</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>Network &amp; HTTP</div>
+      <div class="card-body"><table>
+        <tr><td><code>curl -s &lt;url&gt;</code></td><td>HTTP GET request</td></tr>
+        <tr><td><code>curl -X POST -d '{}' &lt;url&gt;</code></td><td>POST with JSON body</td></tr>
+        <tr><td><code>curl -H "Auth: Bearer …"</code></td><td>Add request header</td></tr>
+        <tr><td><code>curl -I &lt;url&gt;</code></td><td>Headers only (HEAD)</td></tr>
+        <tr><td><code>netstat -tuln</code></td><td>Open ports &amp; listeners</td></tr>
+        <tr><td><code>ssh user@host</code></td><td>SSH connect</td></tr>
+        <tr><td><code>scp &lt;file&gt; user@host:/path</code></td><td>Copy file via SSH</td></tr>
+        <tr><td><code>ping &lt;host&gt;</code></td><td>Check connectivity</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-mauve">
+      <div class="card-head"><div class="dot"></div>Docker</div>
+      <div class="card-body"><table>
+        <tr><td><code>lzd</code></td><td>lazydocker TUI</td></tr>
+        <tr><td><code>docker ps -a</code></td><td>All containers</td></tr>
+        <tr><td><code>docker logs -f &lt;id&gt;</code></td><td>Follow container logs</td></tr>
+        <tr><td><code>docker exec -it &lt;id&gt; sh</code></td><td>Shell into container</td></tr>
+        <tr><td><code>docker build -t &lt;tag&gt; .</code></td><td>Build image</td></tr>
+        <tr><td><code>docker compose up -d</code></td><td>Start compose stack</td></tr>
+        <tr><td><code>docker compose down -v</code></td><td>Stop + remove volumes</td></tr>
+        <tr><td><code>docker system prune -af</code></td><td>Nuke unused resources</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-blue">
+      <div class="card-head"><div class="dot"></div>Node / npm / nvm</div>
+      <div class="card-body"><table>
+        <tr><td><code>nvm use &lt;ver&gt;</code></td><td>Switch Node version</td></tr>
+        <tr><td><code>nvm ls</code></td><td>List installed versions</td></tr>
+        <tr><td><code>npm run &lt;script&gt;</code></td><td>Run package script</td></tr>
+        <tr><td><code>npm install --save-dev</code></td><td>Install as devDep</td></tr>
+        <tr><td><code>npx &lt;tool&gt;</code></td><td>Run without installing</td></tr>
+        <tr><td><code>npm ls --depth=0</code></td><td>Top-level deps</td></tr>
+        <tr><td><code>npm outdated</code></td><td>Check stale packages</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Python · pyenv · pip</div>
+      <div class="card-body"><table>
+        <tr><td><code>pyenv versions</code></td><td>List installed versions</td></tr>
+        <tr><td><code>pyenv local &lt;ver&gt;</code></td><td>Pin version for project</td></tr>
+        <tr><td><code>pyenv install &lt;ver&gt;</code></td><td>Install a Python version</td></tr>
+        <tr><td><code>python -m venv .venv</code></td><td>Create virtual env</td></tr>
+        <tr><td><code>source .venv/bin/activate</code></td><td>Activate venv</td></tr>
+        <tr><td><code>deactivate</code></td><td>Exit venv</td></tr>
+        <tr><td><code>pip install -r req.txt</code></td><td>Install requirements</td></tr>
+        <tr><td><code>pip freeze &gt; req.txt</code></td><td>Save current deps</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>uv — Fast Python Toolchain</div>
+      <div class="card-body"><table>
+        <tr><td><code>uv init &lt;name&gt;</code></td><td>New project with pyproject.toml</td></tr>
+        <tr><td><code>uv venv</code></td><td>Create .venv (auto-detects Python)</td></tr>
+        <tr><td><code>uv add &lt;pkg&gt;</code></td><td>Add dep + update lockfile</td></tr>
+        <tr><td><code>uv add --dev &lt;pkg&gt;</code></td><td>Add dev dependency</td></tr>
+        <tr><td><code>uv remove &lt;pkg&gt;</code></td><td>Remove dependency</td></tr>
+        <tr><td><code>uv sync</code></td><td>Install from lockfile</td></tr>
+        <tr><td><code>uv run &lt;script&gt;</code></td><td>Run in project env (no activate)</td></tr>
+        <tr><td><code>uv pip install &lt;pkg&gt;</code></td><td>Drop-in replacement for pip</td></tr>
+      </table>
+      <div class="note"><strong>uv</strong> replaces pip + venv + pip-tools in one fast binary (Rust)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-l"><strong>github.com/mahboobmonnamd/system-setup</strong> · tmux · neovim · ZSH + Zinit · Catppuccin Latte</div>
+    <div class="footer-r">
+      <span class="pill">nvm lazy-loaded</span>
+      <span class="pill">pyenv via brew</span>
+      <span class="pill">lazygit + lazydocker</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
