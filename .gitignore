@@ -1,2 +1,3 @@
-.DS_Store
+**/.DS_Store
 stow/zsh/.config/zsh/env.local.zsh
+stow/nvim/.config/nvim/lazyvim.json

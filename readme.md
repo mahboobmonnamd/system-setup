@@ -1,12 +1,14 @@
 # system-setup
 
-macOS bootstrap and dotfiles for setting up a new machine with Homebrew, Zsh, Neovim, and a small set of stowed configs.
+macOS bootstrap and dotfiles for setting up a new machine with Homebrew, Zsh, Neovim, and Tmux.
 
 ## What this repo manages
 
 - Homebrew packages from `brew/Brewfile.base` plus a profile-specific Brewfile
 - Oh My Zsh and the `bat` Catppuccin theme
-- Stowed config for `git`, `zsh`, `nvim`, and `finicky`
+- Stowed config for `git`, `zsh`, `nvim`, `tmux`, and `finicky`
+- Neovim full dev setup (LazyVim + LSP + formatting + light theme)
+- Tmux with Catppuccin Latte theme, session persistence, and nvim integration
 - macOS defaults applied by `scripts/osx.sh` during bootstrap
 
 ## Requirements
@@ -90,6 +92,7 @@ Default stow packages:
 | `git` | `~/.gitconfig` |
 | `zsh` | `~/.zshrc`, `~/.config/zsh/*` |
 | `nvim` | `~/.config/nvim` |
+| `tmux` | `~/.config/tmux/tmux.conf`, `~/.config/tmux/plugins/tpm` |
 | `finicky` | `~/.config/finicky/finicky.js` |
 
 Run a subset if needed:
@@ -109,6 +112,60 @@ After stow, open a new terminal tab, or reload with:
 ```sh
 STOW_RELOAD_SHELL=1 ./modules/stow.sh
 ```
+
+## Neovim
+
+Built on [LazyVim](https://www.lazyvim.org/) with:
+
+- **Theme**: Catppuccin Latte (light)
+- **LSP**: TypeScript (`ts_ls`), Python (`pyright`), JSON, Lua
+- **Formatting**: `prettierd` for TS/JS, `black` + `isort` for Python, `stylua` for Lua
+- **Linting**: `eslint_d` for TS/JS, `flake8` for Python
+- **Plugins**: Treesitter, Telescope, neo-tree, Trouble, LazyGit, Toggleterm, todo-comments, autopairs
+
+All language servers and formatters are auto-installed by Mason on first launch.
+
+### Key bindings (on top of LazyVim defaults)
+
+| Key | Action |
+|---|---|
+| `jk` | Exit insert mode |
+| `<leader>w` | Save file |
+| `<leader>e` | Toggle file explorer |
+| `<leader>gg` | Open LazyGit |
+| `<C-\>` | Toggle terminal |
+| `<leader>xx` | Toggle diagnostics (Trouble) |
+| `<leader>st` | Search TODOs |
+| `<S-h>` / `<S-l>` | Previous / next buffer |
+| `<C-h/j/k/l>` | Navigate windows (also works across tmux panes) |
+
+## Tmux
+
+- **Theme**: Catppuccin Latte (matches Neovim)
+- **Prefix**: `Ctrl+b` (default)
+- **Plugin manager**: TPM (tracked as a git submodule)
+
+### Plugins
+
+| Plugin | Purpose |
+|---|---|
+| `tmux-sensible` | Sane defaults |
+| `tmux-resurrect` | Save and restore sessions across reboots |
+| `tmux-continuum` | Auto-save sessions every 15 min |
+| `vim-tmux-navigator` | Seamless `Ctrl+h/j/k/l` navigation across nvim and tmux panes |
+
+### Key bindings
+
+| Key | Action |
+|---|---|
+| `Ctrl+b \|` | Split pane vertically |
+| `Ctrl+b -` | Split pane horizontally |
+| `Ctrl+b r` | Reload tmux config |
+| `Ctrl+b h/j/k/l` | Navigate panes (vim-style) |
+| `Ctrl+h/j/k/l` | Navigate panes + nvim windows seamlessly |
+| `Enter` | Enter copy mode |
+| `v` (copy mode) | Begin selection |
+| `y` (copy mode) | Copy selection |
 
 ## Shell notes
 
@@ -149,12 +206,14 @@ cd scripts
 - `scripts/osx.sh`: macOS defaults
 - `brew/`: shared and profile-specific Brewfiles
 - `stow/`: managed dotfiles
+  - `stow/nvim/`: Neovim config (LazyVim-based)
+  - `stow/tmux/`: Tmux config + TPM submodule
 - `terminal-reference.html`: local printable terminal cheat sheet
 
 ## Recommended flow on a new Mac
 
 ```sh
-git clone <repo-url>
+git clone --recurse-submodules <repo-url>
 cd system-setup
 make bootstrap
 ```
@@ -163,4 +222,6 @@ Then:
 
 1. open a new terminal tab
 2. run `cd scripts && ./git_setup.sh`
-3. verify your shell, git, and Neovim config look right
+3. open `nvim` — plugins install automatically on first launch
+4. open `tmux`, press `Ctrl+b I` to install tmux plugins
+5. verify your shell, git, Neovim, and Tmux config look right

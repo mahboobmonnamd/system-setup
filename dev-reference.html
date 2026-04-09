@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Reference — mahboobmonnamd</title>
+<style>
+  :root {
+    --base:#eff1f5;--mantle:#e6e9ef;--crust:#dce0e8;--surface0:#ccd0da;--surface1:#bcc0cc;
+    --overlay0:#9ca0b0;--text:#4c4f69;--subtext:#6c6f85;
+    --red:#d20f39;--peach:#fe640b;--yellow:#df8e1d;--green:#40a02b;
+    --teal:#179299;--blue:#1e66f5;--mauve:#8839ef;--lavender:#7287fd;
+    --pink:#ea76cb;--sapphire:#209fb5;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#c8ccd6;color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:9.2px;line-height:1.38;}
+
+  .print-banner{background:var(--blue);color:#fff;text-align:center;padding:7px;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;position:sticky;top:0;z-index:100;}
+  .print-banner:hover{background:var(--lavender);}
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+    body{background:white;}
+    .page{margin:0!important;padding:7mm!important;page-break-after:always;}
+    .page:last-child{page-break-after:avoid;}
+    .print-banner{display:none;}
+  }
+
+  .page{width:210mm;background:var(--base);margin:6mm auto;padding:7mm 7mm 5mm;}
+
+  .header{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--blue);padding-bottom:4px;margin-bottom:6px;}
+  .header-left{display:flex;align-items:baseline;}
+  .header h1{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--blue);letter-spacing:-0.5px;}
+  .header h1 span{color:var(--mauve);}
+  .header-meta{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--overlay0);margin-left:8px;}
+  .header-badges{display:flex;gap:3px;}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:7.5px;padding:2px 5px;border-radius:999px;font-weight:700;}
+  .b-tmux{background:var(--sapphire);color:#fff;}.b-vim{background:var(--red);color:#fff;}
+  .b-k8s{background:var(--teal);color:#fff;}.b-lsp{background:var(--mauve);color:#fff;}
+  .b-lazy{background:var(--peach);color:#fff;}.b-git{background:var(--green);color:#fff;}
+  .b-sh{background:var(--yellow);color:#fff;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;}
+
+  .divider{grid-column:span 3;display:flex;align-items:center;gap:6px;margin-top:2px;}
+  .divider span{font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--overlay0);white-space:nowrap;}
+  .divider::after{content:'';flex:1;height:1px;background:var(--surface0);}
+
+  .card{background:var(--mantle);border:1px solid var(--surface0);border-radius:5px;overflow:hidden;}
+  .card-head{display:flex;align-items:center;gap:4px;padding:3px 7px;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;border-bottom:1px solid var(--surface0);}
+  .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .card-body{padding:4px 6px;}
+  .card.col2{grid-column:span 2;}.card.col3{grid-column:span 3;}
+
+  .a-blue .card-head{background:#dde6fc;color:var(--blue);}.a-blue .dot{background:var(--blue);}
+  .a-green .card-head{background:#d7f0d1;color:var(--green);}.a-green .dot{background:var(--green);}
+  .a-mauve .card-head{background:#e8d8f7;color:var(--mauve);}.a-mauve .dot{background:var(--mauve);}
+  .a-teal .card-head{background:#d1ecee;color:var(--teal);}.a-teal .dot{background:var(--teal);}
+  .a-peach .card-head{background:#fde8d5;color:var(--peach);}.a-peach .dot{background:var(--peach);}
+  .a-red .card-head{background:#fad4d4;color:var(--red);}.a-red .dot{background:var(--red);}
+  .a-yellow .card-head{background:#f7ead1;color:var(--yellow);}.a-yellow .dot{background:var(--yellow);}
+  .a-pink .card-head{background:#f9d9ee;color:var(--pink);}.a-pink .dot{background:var(--pink);}
+  .a-saph .card-head{background:#d3eff4;color:var(--sapphire);}.a-saph .dot{background:var(--sapphire);}
+
+  table{width:100%;border-collapse:collapse;}
+  tr:not(:last-child) td{border-bottom:1px solid var(--crust);}
+  td{padding:2px 3px;vertical-align:top;}
+  td:first-child{width:46%;}
+  td:last-child{color:var(--subtext);}
+
+  kbd{font-family:'JetBrains Mono',monospace;font-size:7.8px;font-weight:600;color:var(--text);background:var(--crust);border:1px solid var(--surface1);border-radius:3px;padding:0 3px;white-space:nowrap;display:inline-block;}
+  kbd.spc{background:var(--mauve);color:#fff;border-color:var(--mauve);}
+  code{font-family:'JetBrains Mono',monospace;font-size:8.2px;color:var(--blue);background:var(--crust);border-radius:2px;padding:0 2px;}
+  .note{font-size:7.5px;color:var(--overlay0);margin-top:3px;padding-top:3px;border-top:1px solid var(--crust);}
+  .note strong{color:var(--subtext);}
+
+  .footer{margin-top:5px;padding-top:4px;border-top:1px solid var(--surface0);display:flex;justify-content:space-between;align-items:center;}
+  .footer-l{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--overlay0);}
+  .footer-l strong{color:var(--subtext);}
+  .footer-r{display:flex;gap:3px;}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--subtext);background:var(--crust);border:1px solid var(--surface0);border-radius:3px;padding:1px 5px;}
+</style>
+</head>
+<body>
+
+<div class="print-banner" onclick="window.print()">🖨️ Click to Print / Save as PDF — 3 pages · A4 · enable "Background graphics"</div>
+
+<!-- ══════════════════════════════════════════════════════ PAGE 1 ══ -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>~/<span>dev</span>.ref</h1>
+      <span class="header-meta">&nbsp;mahboobmonnamd · system-setup · April 2026 · Page 1 / 3</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge b-tmux">tmux · prefix C-b</span>
+      <span class="badge b-k8s">kubectl</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- TMUX -->
+    <div class="divider"><span>Tmux — Prefix: Ctrl+B</span></div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Sessions</div>
+      <div class="card-body"><table>
+        <tr><td><code>tmux new -s &lt;name&gt;</code></td><td>New named session</td></tr>
+        <tr><td><code>tmux ls</code></td><td>List sessions</td></tr>
+        <tr><td><code>tmux a -t &lt;name&gt;</code></td><td>Attach to session</td></tr>
+        <tr><td><code>tmux kill-ses -t &lt;name&gt;</code></td><td>Kill session</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>$</kbd></td><td>Rename session</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>d</kbd></td><td>Detach (session stays alive)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>s</kbd></td><td>Switch sessions (tree view)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>(</kbd> / <kbd>)</kbd></td><td>Prev / next session</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>C-b</kbd> <kbd>d</kbd></td><td>Detach inner (nested SSH tmux)</td></tr>
+      </table>
+      <div class="note"><strong>Resurrect:</strong> saves &amp; restores sessions across reboots · auto-saves every 15 min</div>
+      </div>
+    </div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Windows &amp; Panes</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>C-b</kbd> <kbd>c</kbd></td><td>New window (current path)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>n</kbd> / <kbd>p</kbd></td><td>Next / prev window</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>1–9</kbd></td><td>Go to window N</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>,</kbd></td><td>Rename window</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>&amp;</kbd></td><td>Kill window</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>|</kbd></td><td>Split vertical (current path)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>-</kbd></td><td>Split horizontal (current path)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>h/j/k/l</kbd></td><td>Navigate panes (vim-style)</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>H/J/K/L</kbd></td><td>Resize pane by 5 cells</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>q</kbd></td><td>Show pane numbers</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-saph">
+      <div class="card-head"><div class="dot"></div>Copy Mode &amp; Misc</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>C-b</kbd> <kbd>Enter</kbd></td><td>Enter copy / scroll mode</td></tr>
+        <tr><td><kbd>v</kbd></td><td>Start selection (copy mode)</td></tr>
+        <tr><td><kbd>y</kbd></td><td>Copy selection and exit</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Cancel / exit copy mode</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>]</kbd></td><td>Paste buffer</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>r</kbd></td><td>Reload config</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>?</kbd></td><td>List all keybindings</td></tr>
+        <tr><td><kbd>C-b</kbd> <kbd>:</kbd></td><td>Command prompt</td></tr>
+        <tr><td><kbd>C-h/j/k/l</kbd></td><td>Navigate panes (vim-tmux-navigator)</td></tr>
+      </table>
+      <div class="note"><strong>Continuum:</strong> auto-restore on tmux start · <strong>Resurrect:</strong> saves nvim sessions too</div>
+      </div>
+    </div>
+
+    <!-- KUBECTL -->
+    <div class="divider"><span>kubectl — Kubernetes</span></div>
+
+    <div class="card a-teal">
+      <div class="card-head"><div class="dot"></div>Logs</div>
+      <div class="card-body"><table>
+        <tr><td><code>kubectl logs &lt;pod&gt;</code></td><td>Full pod logs</td></tr>
+        <tr><td><code>kubectl logs -f &lt;pod&gt;</code></td><td>Follow live (tail -f)</td></tr>
+        <tr><td><code>kubectl logs --tail=100 &lt;pod&gt;</code></td><td>Last N lines</td></tr>
+        <tr><td><code>kubectl logs --since=1h &lt;pod&gt;</code></td><td>Logs from last hour</td></tr>
+        <tr><td><code>kubectl logs &lt;pod&gt; -c &lt;container&gt;</code></td><td>Specific container in pod</td></tr>
+        <tr><td><code>kubectl logs &lt;pod&gt; --previous</code></td><td>Logs from crashed container</td></tr>
+        <tr><td><code>kubectl logs -f deploy/&lt;name&gt;</code></td><td>Logs from deployment</td></tr>
+        <tr><td><code>kubectl logs -l app=&lt;name&gt; --all-containers</code></td><td>All pods by label</td></tr>
+        <tr><td><code>kubectl logs &lt;pod&gt; | grep ERROR</code></td><td>Filter output</td></tr>
+      </table>
+      <div class="note">Combine freely: <code>-f --tail=50 | grep &lt;pattern&gt;</code></div>
+      </div>
+    </div>
+
+    <div class="card a-teal">
+      <div class="card-head"><div class="dot"></div>Get · Describe · Watch</div>
+      <div class="card-body"><table>
+        <tr><td><code>kubectl get pods -n &lt;ns&gt;</code></td><td>Pods in namespace</td></tr>
+        <tr><td><code>kubectl get pods -A</code></td><td>All pods (all namespaces)</td></tr>
+        <tr><td><code>kubectl get pods -w</code></td><td>Watch pod state live</td></tr>
+        <tr><td><code>kubectl get all -n &lt;ns&gt;</code></td><td>All resources in namespace</td></tr>
+        <tr><td><code>kubectl get pod -l app=&lt;name&gt;</code></td><td>Filter by label</td></tr>
+        <tr><td><code>kubectl get pod &lt;pod&gt; -o yaml</code></td><td>Full spec as YAML</td></tr>
+        <tr><td><code>kubectl describe pod &lt;pod&gt;</code></td><td>Details + events</td></tr>
+        <tr><td><code>kubectl get events --sort-by=.lastTimestamp</code></td><td>Sorted events</td></tr>
+        <tr><td><code>kubectl top pods -n &lt;ns&gt;</code></td><td>CPU / memory usage</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Exec · Port-forward · Context</div>
+      <div class="card-body"><table>
+        <tr><td><code>kubectl exec -it &lt;pod&gt; -- sh</code></td><td>Shell into pod</td></tr>
+        <tr><td><code>kubectl exec -it &lt;pod&gt; -c &lt;c&gt; -- bash</code></td><td>Specific container shell</td></tr>
+        <tr><td><code>kubectl port-forward &lt;pod&gt; 8080:80</code></td><td>Forward pod port to local</td></tr>
+        <tr><td><code>kubectl port-forward svc/&lt;svc&gt; 8080:80</code></td><td>Forward service port</td></tr>
+        <tr><td><code>kubectl cp &lt;pod&gt;:/path ./local</code></td><td>Copy file from pod</td></tr>
+        <tr><td><code>kubectl cp ./local &lt;pod&gt;:/path</code></td><td>Copy file to pod</td></tr>
+        <tr><td><code>kubectl config get-contexts</code></td><td>List all contexts</td></tr>
+        <tr><td><code>kubectl config use-context &lt;ctx&gt;</code></td><td>Switch context</td></tr>
+        <tr><td><code>kubectl config current-context</code></td><td>Show active context</td></tr>
+      </table></div>
+    </div>
+
+    <!-- KUBECTL OPS -->
+    <div class="divider"><span>kubectl — Resources · Rollout · Apply</span></div>
+
+    <div class="card a-green col3">
+      <div class="card-head"><div class="dot"></div>Daily Operations</div>
+      <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px;">
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--green);text-align:left;padding-bottom:2px;">Get Resources</caption>
+          <tr><td><code>kubectl get svc -n &lt;ns&gt;</code></td><td>Services</td></tr>
+          <tr><td><code>kubectl get deploy -n &lt;ns&gt;</code></td><td>Deployments</td></tr>
+          <tr><td><code>kubectl get ns</code></td><td>Namespaces</td></tr>
+          <tr><td><code>kubectl get ingress -n &lt;ns&gt;</code></td><td>Ingresses</td></tr>
+          <tr><td><code>kubectl get configmap -n &lt;ns&gt;</code></td><td>ConfigMaps</td></tr>
+          <tr><td><code>kubectl get secret -n &lt;ns&gt;</code></td><td>Secrets</td></tr>
+          <tr><td><code>kubectl get pods -o wide</code></td><td>Pods with node + IP</td></tr>
+        </table>
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--green);text-align:left;padding-bottom:2px;">Rollout &amp; Scale</caption>
+          <tr><td><code>kubectl rollout restart deploy/&lt;name&gt;</code></td><td>Rolling restart</td></tr>
+          <tr><td><code>kubectl rollout status deploy/&lt;name&gt;</code></td><td>Watch rollout progress</td></tr>
+          <tr><td><code>kubectl rollout history deploy/&lt;name&gt;</code></td><td>Revision history</td></tr>
+          <tr><td><code>kubectl rollout undo deploy/&lt;name&gt;</code></td><td>Roll back one revision</td></tr>
+          <tr><td><code>kubectl scale deploy/&lt;name&gt; --replicas=3</code></td><td>Scale replicas</td></tr>
+          <tr><td><code>kubectl get deploy &lt;name&gt; -o yaml | grep replica</code></td><td>Check replica count</td></tr>
+        </table>
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--green);text-align:left;padding-bottom:2px;">Apply · Edit · Export</caption>
+          <tr><td><code>kubectl apply -f &lt;file.yaml&gt;</code></td><td>Apply resource</td></tr>
+          <tr><td><code>kubectl delete -f &lt;file.yaml&gt;</code></td><td>Delete resource</td></tr>
+          <tr><td><code>kubectl edit deploy/&lt;name&gt;</code></td><td>Edit resource inline</td></tr>
+          <tr><td><code>kubectl get pod &lt;pod&gt; -o yaml &gt; out.yaml</code></td><td>Export spec to file</td></tr>
+          <tr><td><code>kubectl delete pod &lt;pod&gt; --force</code></td><td>Force delete stuck pod</td></tr>
+          <tr><td><code>kubectl label pod &lt;pod&gt; key=val</code></td><td>Add / update label</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-l"><strong>github.com/mahboobmonnamd/system-setup</strong> · tmux (C-b prefix) · kubectl</div>
+    <div class="footer-r">
+      <span class="pill">resurrect + continuum</span>
+      <span class="pill">vim-tmux-navigator</span>
+      <span class="pill">nested: C-b C-b d</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ PAGE 2 ══ -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>~/<span>dev</span>.ref</h1>
+      <span class="header-meta">&nbsp;mahboobmonnamd · system-setup · April 2026 · Page 2 / 3</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge b-vim">neovim</span>
+      <span class="badge b-lsp">LSP</span>
+      <span class="badge b-lazy">LazyVim · SPC = Space (leader)</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- NEOVIM CUSTOM KEYMAPS -->
+    <div class="divider"><span>Neovim — Custom Keymaps (keymaps.lua) · <kbd class="spc">SPC</kbd> = Space bar = leader key</span></div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Navigation &amp; Buffers</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>C-h</kbd> / <kbd>C-j</kbd> / <kbd>C-k</kbd> / <kbd>C-l</kbd></td><td>Move between windows / tmux panes</td></tr>
+        <tr><td><kbd>Shift+H</kbd> / <kbd>Shift+L</kbd></td><td>Prev / next buffer</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>bd</kbd></td><td>Close current buffer</td></tr>
+        <tr><td><kbd>C-d</kbd> / <kbd>C-u</kbd></td><td>Scroll half-page (cursor centred)</td></tr>
+        <tr><td><kbd>n</kbd> / <kbd>N</kbd></td><td>Next / prev match (cursor centred)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>e</kbd></td><td>Toggle Neotree file explorer</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>nh</kbd></td><td>Clear search highlight</td></tr>
+        <tr><td><code>:&lt;n&gt;</code> / <kbd>gg</kbd> / <kbd>G</kbd></td><td>Jump to line / top / bottom</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Editing &amp; Splits</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>jk</kbd> (insert)</td><td>Exit insert mode (custom ESC)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>w</kbd></td><td>Save file</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>q</kbd> / <kbd>Q</kbd></td><td>Quit / quit all</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>sv</kbd> / <kbd>sh</kbd></td><td>Split vertical / horizontal</td></tr>
+        <tr><td><kbd>J</kbd> / <kbd>K</kbd> (visual)</td><td>Move selection down / up</td></tr>
+        <tr><td><kbd>&lt;</kbd> / <kbd>&gt;</kbd> (visual)</td><td>Indent left / right (stays in visual)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>p</kbd> (visual)</td><td>Paste without overwriting register</td></tr>
+        <tr><td><kbd>C-↑/↓/←/→</kbd></td><td>Resize window by 2</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td>Toggle terminal (horizontal)</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-red">
+      <div class="card-head"><div class="dot"></div>Editing Essentials</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>c</kbd><kbd>i</kbd><kbd>w</kbd> / <kbd>d</kbd><kbd>i</kbd><kbd>w</kbd></td><td>Change / delete inner word</td></tr>
+        <tr><td><kbd>c</kbd><kbd>i</kbd><kbd>"</kbd> / <kbd>c</kbd><kbd>i</kbd><kbd>(</kbd></td><td>Change inside quotes / parens</td></tr>
+        <tr><td><kbd>y</kbd><kbd>y</kbd> / <kbd>p</kbd> / <kbd>P</kbd></td><td>Yank line / paste below / above</td></tr>
+        <tr><td><kbd>u</kbd> / <kbd>C-r</kbd></td><td>Undo / redo</td></tr>
+        <tr><td><kbd>.</kbd></td><td>Repeat last change</td></tr>
+        <tr><td><kbd>g</kbd><kbd>c</kbd><kbd>c</kbd></td><td>Toggle comment (line)</td></tr>
+        <tr><td><kbd>g</kbd><kbd>c</kbd> (visual)</td><td>Toggle comment (selection)</td></tr>
+        <tr><td><code>:%s/old/new/gc</code></td><td>Replace all with confirm</td></tr>
+        <tr><td><kbd>C-space</kbd></td><td>Expand treesitter selection</td></tr>
+      </table></div>
+    </div>
+
+    <!-- NEOVIM LSP + PLUGINS -->
+    <div class="divider"><span>Neovim — LSP · Telescope · Plugins</span></div>
+
+    <div class="card a-mauve">
+      <div class="card-head"><div class="dot"></div>LSP (LazyVim defaults)</div>
+      <div class="card-body"><table>
+        <tr><td><kbd>K</kbd></td><td>Hover docs for symbol</td></tr>
+        <tr><td><kbd>g</kbd><kbd>d</kbd></td><td>Go to definition</td></tr>
+        <tr><td><kbd>g</kbd><kbd>r</kbd></td><td>Go to references</td></tr>
+        <tr><td><kbd>g</kbd><kbd>I</kbd></td><td>Go to implementation</td></tr>
+        <tr><td><kbd>g</kbd><kbd>y</kbd></td><td>Go to type definition</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>ca</kbd></td><td>Code action</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>cr</kbd></td><td>Rename symbol</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>cf</kbd></td><td>Format file (conform)</td></tr>
+        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Prev / next diagnostic</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>cd</kbd></td><td>Line diagnostics (float)</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-blue">
+      <div class="card-head"><div class="dot"></div>Telescope — Fuzzy Finder</div>
+      <div class="card-body"><table>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>ff</kbd></td><td>Find files</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>fg</kbd> / <kbd>/</kbd></td><td>Live grep (search in project)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>fb</kbd></td><td>Open buffers</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>fr</kbd></td><td>Recent files</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>st</kbd></td><td>Search TODOs (TodoTelescope)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>ss</kbd></td><td>Search symbols (LSP)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>sk</kbd></td><td>Search keymaps</td></tr>
+        <tr><td colspan="2" style="color:var(--overlay0);font-size:7.5px;padding-top:3px;"><strong>Inside Telescope:</strong> <kbd>C-j/k</kbd> navigate · <kbd>C-u/d</kbd> preview scroll · <kbd>Esc</kbd> close</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>Plugins — Trouble · LazyGit · Todo</div>
+      <div class="card-body"><table>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>gg</kbd></td><td>Open LazyGit (full TUI)</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td>Toggle terminal (toggleterm)</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>xx</kbd></td><td>Trouble: all diagnostics</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>xX</kbd></td><td>Trouble: current buffer only</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>xs</kbd></td><td>Trouble: symbols panel</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>xl</kbd></td><td>Trouble: LSP definitions panel</td></tr>
+        <tr><td><kbd class="spc">SPC</kbd> <kbd>st</kbd></td><td>TodoTelescope (search TODOs)</td></tr>
+        <tr><td><code>:Mason</code></td><td>Manage LSP servers / formatters</td></tr>
+        <tr><td><code>:Lazy</code></td><td>Plugin manager UI</td></tr>
+      </table>
+      <div class="note"><strong>Formatters on save:</strong> prettier (TS/JS/JSON/CSS) · black+isort (Python) · stylua (Lua) · shfmt (sh)</div>
+      </div>
+    </div>
+
+    <!-- ALIASES -->
+    <div class="divider"><span>Shell Aliases — Quick Reference</span></div>
+
+    <div class="card a-yellow col3">
+      <div class="card-head"><div class="dot"></div>Your Active Aliases</div>
+      <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px;">
+        <table>
+          <tr><td><code>lg</code></td><td>lazygit</td></tr>
+          <tr><td><code>lzd</code></td><td>lazydocker</td></tr>
+          <tr><td><code>cat</code></td><td>bat --style=auto</td></tr>
+          <tr><td><code>catt</code></td><td>bat plain (no decorations)</td></tr>
+          <tr><td><code>grep</code></td><td>rg (ripgrep)</td></tr>
+          <tr><td><code>find</code></td><td>fd</td></tr>
+          <tr><td><code>json</code></td><td>jq . (pretty-print)</td></tr>
+          <tr><td><code>yaml</code></td><td>yq . (pretty-print)</td></tr>
+        </table>
+        <table>
+          <tr><td><code>ls / ll / la</code></td><td>eza variants</td></tr>
+          <tr><td><code>lt / lta</code></td><td>eza tree (2 levels)</td></tr>
+          <tr><td><code>df / du</code></td><td>df -h / du -h</td></tr>
+          <tr><td><code>gplr</code></td><td>git pull --rebase</td></tr>
+          <tr><td><code>gprune</code></td><td>git remote prune origin</td></tr>
+          <tr><td><code>gbr</code></td><td>branches by recent commit</td></tr>
+          <tr><td><code>gcontrib</code></td><td>git shortlog -sn</td></tr>
+          <tr><td><code>fuck / fk</code></td><td>thefuck auto-correct</td></tr>
+        </table>
+        <table>
+          <tr><td><code>gco-fzf</code></td><td>fzf branch checkout</td></tr>
+          <tr><td><code>gbd-fzf</code></td><td>fzf branch delete (multi)</td></tr>
+          <tr><td><code>gstats</code></td><td>repo stats (files, lines ±)</td></tr>
+          <tr><td><code>glast</code></td><td>files changed in last commit</td></tr>
+          <tr><td><code>gpr</code></td><td>gh pr create --fill</td></tr>
+          <tr><td><code>gundo [n]</code></td><td>git reset --soft HEAD~n</td></tr>
+          <tr><td><code>mkcd &lt;dir&gt;</code></td><td>mkdir + cd in one</td></tr>
+          <tr><td><code>kill_port &lt;port&gt;</code></td><td>kill process on port</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-l"><strong>github.com/mahboobmonnamd/system-setup</strong> · neovim + LazyVim · LSP · Telescope · Trouble</div>
+    <div class="footer-r">
+      <span class="pill">format on save</span>
+      <span class="pill">jk → ESC</span>
+      <span class="pill">SPC = Space = leader</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ PAGE 3 ══ -->
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>~/<span>dev</span>.ref</h1>
+      <span class="header-meta">&nbsp;mahboobmonnamd · system-setup · April 2026 · Page 3 / 3</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge b-git">git workflow</span>
+      <span class="badge b-sh">shell commands</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- GIT WORKFLOW -->
+    <div class="divider"><span>Git Workflow</span></div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Custom Git Functions</div>
+      <div class="card-body"><table>
+        <tr><td><code>lg</code></td><td>lazygit TUI</td></tr>
+        <tr><td><code>gco-fzf</code></td><td>Interactive branch checkout</td></tr>
+        <tr><td><code>gbd-fzf</code></td><td>Interactive branch delete (multi)</td></tr>
+        <tr><td><code>gstats</code></td><td>Repo stats (files, lines ±)</td></tr>
+        <tr><td><code>glast</code></td><td>Files changed in last commit</td></tr>
+        <tr><td><code>gpr</code></td><td>Create PR with GitHub CLI</td></tr>
+        <tr><td><code>gundo [n]</code></td><td>Undo last N commits (default 1)</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>OMZ Git Aliases</div>
+      <div class="card-body"><table>
+        <tr><td><code>gst</code></td><td><code>git status</code></td></tr>
+        <tr><td><code>ga .</code></td><td><code>git add .</code></td></tr>
+        <tr><td><code>gcmsg "msg"</code></td><td><code>git commit -m</code></td></tr>
+        <tr><td><code>gp</code></td><td><code>git push</code></td></tr>
+        <tr><td><code>gd</code></td><td><code>git diff</code></td></tr>
+        <tr><td><code>gplr</code></td><td><code>git pull --rebase</code></td></tr>
+        <tr><td><code>gbr</code></td><td>Branches by recent commit</td></tr>
+        <tr><td><code>gprune</code></td><td><code>git remote prune origin</code></td></tr>
+        <tr><td><code>gcontrib</code></td><td>Show contributors (shortlog)</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-green">
+      <div class="card-head"><div class="dot"></div>Git Essentials</div>
+      <div class="card-body"><table>
+        <tr><td><code>git stash</code></td><td>Stash working changes</td></tr>
+        <tr><td><code>git stash pop</code></td><td>Apply + drop last stash</td></tr>
+        <tr><td><code>git log --oneline</code></td><td>Compact commit history</td></tr>
+        <tr><td><code>git rebase -i HEAD~n</code></td><td>Interactive rebase last N</td></tr>
+        <tr><td><code>git cherry-pick &lt;sha&gt;</code></td><td>Apply specific commit</td></tr>
+        <tr><td><code>git bisect start</code></td><td>Binary search for bug</td></tr>
+        <tr><td><code>git reflog</code></td><td>Full history incl. resets</td></tr>
+      </table></div>
+    </div>
+
+    <!-- GIT ADVANCED -->
+    <div class="divider"><span>Git Advanced</span></div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>Worktrees</div>
+      <div class="card-body"><table>
+        <tr><td><code>git worktree add ../feat feat</code></td><td>Check out branch in new dir</td></tr>
+        <tr><td><code>git worktree add -b feat ../feat</code></td><td>Create branch + worktree</td></tr>
+        <tr><td><code>git worktree list</code></td><td>List all worktrees</td></tr>
+        <tr><td><code>git worktree remove ../feat</code></td><td>Remove worktree dir</td></tr>
+        <tr><td><code>git worktree prune</code></td><td>Clean stale references</td></tr>
+      </table>
+      <div class="note"><strong>Worktrees:</strong> multiple branches checked out simultaneously — no stashing needed when switching context</div>
+      </div>
+    </div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>Stash Advanced</div>
+      <div class="card-body"><table>
+        <tr><td><code>git stash push -m "msg"</code></td><td>Named stash</td></tr>
+        <tr><td><code>git stash list</code></td><td>All stashes with names</td></tr>
+        <tr><td><code>git stash show -p stash@{1}</code></td><td>Diff of stash N</td></tr>
+        <tr><td><code>git stash pop stash@{1}</code></td><td>Apply + drop specific stash</td></tr>
+        <tr><td><code>git stash apply</code></td><td>Apply but keep stash</td></tr>
+        <tr><td><code>git stash drop stash@{0}</code></td><td>Delete without applying</td></tr>
+        <tr><td><code>git stash branch feat stash@{0}</code></td><td>Stash → new branch</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card a-peach">
+      <div class="card-head"><div class="dot"></div>History · Diff · Remote</div>
+      <div class="card-body"><table>
+        <tr><td><code>git commit --amend --no-edit</code></td><td>Add to last commit silently</td></tr>
+        <tr><td><code>git revert &lt;sha&gt;</code></td><td>Safe undo (new commit)</td></tr>
+        <tr><td><code>git diff main...feat</code></td><td>What feat added since branching</td></tr>
+        <tr><td><code>git log --all --graph --oneline</code></td><td>Visual branch tree</td></tr>
+        <tr><td><code>git log -p -- &lt;file&gt;</code></td><td>Full history of a file</td></tr>
+        <tr><td><code>git blame &lt;file&gt;</code></td><td>Who wrote each line</td></tr>
+        <tr><td><code>git push --force-with-lease</code></td><td>Safe force push</td></tr>
+        <tr><td><code>git fetch --all --prune</code></td><td>Fetch all + clean dead branches</td></tr>
+      </table></div>
+    </div>
+
+    <!-- SHELL COMMANDS -->
+    <div class="divider"><span>Frequently Used Shell Commands</span></div>
+
+    <div class="card a-teal col3">
+      <div class="card-head"><div class="dot"></div>cat · tail · grep · find · pipes &amp; redirection</div>
+      <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px;">
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--teal);text-align:left;padding-bottom:2px;">File Viewing</caption>
+          <tr><td><code>cat &lt;file&gt;</code></td><td>bat — syntax highlighted</td></tr>
+          <tr><td><code>catt &lt;file&gt;</code></td><td>bat plain (no decorations)</td></tr>
+          <tr><td><code>head -n 20 &lt;file&gt;</code></td><td>First 20 lines</td></tr>
+          <tr><td><code>tail -n 100 &lt;file&gt;</code></td><td>Last 100 lines</td></tr>
+          <tr><td><code>tail -f &lt;file&gt;</code></td><td>Follow a live log</td></tr>
+          <tr><td><code>tail -f &lt;file&gt; | grep ERR</code></td><td>Follow + filter live</td></tr>
+          <tr><td><code>less &lt;file&gt;</code></td><td>Paginate (q to quit)</td></tr>
+          <tr><td><code>wc -l &lt;file&gt;</code></td><td>Count lines in file</td></tr>
+        </table>
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--teal);text-align:left;padding-bottom:2px;">Search &amp; Filter</caption>
+          <tr><td><code>grep &lt;pat&gt; &lt;file&gt;</code></td><td>rg — search in file</td></tr>
+          <tr><td><code>grep -i &lt;pat&gt;</code></td><td>Case-insensitive search</td></tr>
+          <tr><td><code>grep -n &lt;pat&gt;</code></td><td>Show line numbers</td></tr>
+          <tr><td><code>grep -r &lt;pat&gt; .</code></td><td>Recursive in all files</td></tr>
+          <tr><td><code>grep -l &lt;pat&gt;</code></td><td>Only filenames (no content)</td></tr>
+          <tr><td><code>find &lt;name&gt;</code></td><td>fd — fast file find</td></tr>
+          <tr><td><code>find -e ts .</code></td><td>fd by extension</td></tr>
+          <tr><td><code>find -t d .</code><br><code>find -t f .</code></td><td>fd dirs only / files only</td></tr>
+        </table>
+        <table>
+          <caption style="font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;color:var(--teal);text-align:left;padding-bottom:2px;">Pipes &amp; Streams</caption>
+          <tr><td><code>cmd | grep &lt;pat&gt;</code></td><td>Filter command output</td></tr>
+          <tr><td><code>cmd | head -20</code></td><td>First 20 lines of output</td></tr>
+          <tr><td><code>cmd | tail -20</code></td><td>Last 20 lines of output</td></tr>
+          <tr><td><code>cmd | sort | uniq -c</code></td><td>Count unique occurrences</td></tr>
+          <tr><td><code>cmd &gt; file.txt</code></td><td>Redirect stdout to file</td></tr>
+          <tr><td><code>cmd &gt;&gt; file.txt</code></td><td>Append stdout to file</td></tr>
+          <tr><td><code>cmd 2&gt;&amp;1 | grep</code></td><td>Redirect stderr into pipe</td></tr>
+          <tr><td><code>cmd | tee file.txt</code></td><td>Split to file + screen</td></tr>
+          <tr><td><code>cmd | xargs &lt;cmd2&gt;</code></td><td>Pipe as args to next cmd</td></tr>
+          <tr><td><code>watch -n2 &lt;cmd&gt;</code></td><td>Re-run every 2 seconds</td></tr>
+        </table>
+      </div>
+      <div class="note"><strong>Aliases active:</strong> <code>cat</code> → bat · <code>grep</code> → rg · <code>find</code> → fd &nbsp;·&nbsp; <strong>Tip:</strong> combine <code>tail -f</code> + <code>| grep</code> to watch logs and filter noise in real time</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-l"><strong>github.com/mahboobmonnamd/system-setup</strong> · git · shell · bat · rg · fd</div>
+    <div class="footer-r">
+      <span class="pill">cat → bat</span>
+      <span class="pill">grep → rg</span>
+      <span class="pill">find → fd</span>
+      <span class="pill">lg → lazygit</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -65,7 +65,7 @@ fi
 alias gplr='git pull --rebase'
 alias gprune='git remote prune origin'
 alias gbr='git branch --sort=-committerdate'
-alias gcontirb='git shortlog -sn'             # show contributors
+alias gcontrib='git shortlog -sn'             # show contributors
 
 # ===============================================================================
 # System Utilities

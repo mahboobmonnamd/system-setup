@@ -61,5 +61,5 @@ function gundo() {
   git reset --soft HEAD~$n
 }
 
-eval "$(fzf --zsh)"
+# eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"

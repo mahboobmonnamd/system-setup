@@ -39,6 +39,9 @@ export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump-${SHORT_HOST
 # ===============================================================================
 # Keybindings
 # ===============================================================================
+# Set WORDCHARS empty so that backward-kill-word stops at special characters (/ _ - etc)
+WORDCHARS=''
+
 # Use Emacs-style keybindings (vs vi mode)
 bindkey -e
 
@@ -47,6 +50,9 @@ bindkey '^n' history-search-forward    # ctrl+N Next command in history
 bindkey '^w' kill-region               # Alt+W Kill/cut selected region
 bindkey '^[[A' history-search-backward # ↑ Previous command in history
 bindkey '^[[B' history-search-forward  # ↓ Next command in history
+bindkey '^[^?' backward-kill-word      # Option+Delete in terminals that send ESC+DEL
+bindkey '^[\b' backward-kill-word      # Option+Delete in terminals that send ESC+Backspace
+bindkey '^[[3;3~' kill-word            # Option+Fn+Delete / forward word delete in some terminals
 
 # ===============================================================================
 # History Configuration
