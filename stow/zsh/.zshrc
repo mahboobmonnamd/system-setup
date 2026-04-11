@@ -47,7 +47,13 @@ bindkey -e
 
 bindkey '^p' history-search-backward   # ctrl+P Previous command in history
 bindkey '^n' history-search-forward    # ctrl+N Next command in history
-bindkey '^w' kill-region               # Alt+W Kill/cut selected region
+bindkey '^w' kill-region               # Ctrl+W Kill/cut selected region (iTerm)
+
+# VSCode/Cursor terminal sends ^W (0x17) for Ctrl+Backspace instead of ESC+DEL.
+# Re-bind to backward-kill-word so it stops at word boundaries, not the whole line.
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    bindkey '^w' backward-kill-word
+fi
 bindkey '^[[A' history-search-backward # ↑ Previous command in history
 bindkey '^[[B' history-search-forward  # ↓ Next command in history
 bindkey '^[^?' backward-kill-word      # Option+Delete in terminals that send ESC+DEL

@@ -12,9 +12,13 @@ cask "scratch"
 cask "utm"
 cask "wpsoffice"
 cask "claude"
+cask "claude-code"
 mas "CrystalFetch", id: 6454431289
 mas "HP", id: 1474276998
 mas "Numbers", id: 361304891
 mas "WhatsApp", id: 310633997
-vscode "chakrounanas.turbo-console-log"
+mas "Save to Raindrop.io", id: 1549370672
+mas "Xcode", id: 497799835
 vscode "github.copilot-chat"
+vscode "anthropic.claude-code"
+vscode "openai.chatgpt"

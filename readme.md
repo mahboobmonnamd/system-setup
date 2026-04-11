@@ -68,6 +68,42 @@ SETUP_PROFILE=work make bootstrap
 
 If you want another profile, add `brew/Brewfile.<name>` and run with `PROFILE=<name>`.
 
+## Managing Brewfiles
+
+### Adding a new package
+
+Edit the right file based on where the package belongs:
+
+| File | Purpose |
+|---|---|
+| `brew/Brewfile.base` | Every machine (tools, shell, dev essentials) |
+| `brew/Brewfile.personal` | Personal machines only |
+| `brew/Brewfile.work` | Work machines only |
+
+Then install it:
+
+```sh
+make brew                        # installs base + current profile
+brew bundle --file=brew/Brewfile.base   # or target a specific file
+```
+
+### Capturing what's currently installed
+
+Dump everything Homebrew knows about the current machine:
+
+```sh
+brew bundle dump --file=brew/Brewfile.dumped --force
+```
+
+Then compare against the tracked files to find anything not yet classified:
+
+```sh
+# see what's in the dump but not in base/personal/work
+diff <(sort brew/Brewfile.dumped) <(sort brew/Brewfile.base brew/Brewfile.personal brew/Brewfile.work | sort)
+```
+
+Move unclassified entries into the right Brewfile, then delete `Brewfile.dumped` (it is not tracked).
+
 ## Dry run
 
 Preview changes without applying them:
