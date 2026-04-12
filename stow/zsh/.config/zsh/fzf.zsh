@@ -99,3 +99,5 @@ export FZF_ALT_C_OPTS="
   --preview 'eza --tree --level=2 --color=always {}'
   --preview-window=right:60%
 "
+
+source $HOME/.config/zsh/fzf-git.sh
