@@ -2,7 +2,6 @@
 
 unset PREFIX
 
-export NVM_DIR="$HOME/.nvm"
 
 _lazy_nvm_load() {
   unset -f nvm node npm npx _lazy_nvm_load
