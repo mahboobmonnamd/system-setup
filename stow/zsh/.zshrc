@@ -1,4 +1,12 @@
 # ===============================================================================
+# Homebrew setup (macOS)
+# ===============================================================================
+# Initialize Homebrew environment and PATH
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# ===============================================================================
 # Powerlevel10k Instant Prompt
 # ===============================================================================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -6,14 +14,6 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# ===============================================================================
-# Homebrew setup (macOS)
-# ===============================================================================
-# Initialize Homebrew environment and PATH
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # ===============================================================================
