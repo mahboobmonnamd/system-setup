@@ -25,7 +25,7 @@ mas "WhatsApp", id: 310633997
 mas "Save to Raindrop.io", id: 1549370672
 mas "Xcode", id: 497799835
 mas "CleanMyKeyboard", id: 6468120888
-mas "Telegram"
+mas "Telegram", id: 747648890
 vscode "github.copilot-chat"
 vscode "anthropic.claude-code"
 vscode "openai.chatgpt"
