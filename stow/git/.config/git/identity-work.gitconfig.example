@@ -1,0 +1,7 @@
+# Work identity — machine-local. Copy to identity-work.gitconfig (drop .example)
+# and fill in. The real file is gitignored and never committed.
+[user]
+	name = Your Name
+	email = you@work.example
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519_work

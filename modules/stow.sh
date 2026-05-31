@@ -18,7 +18,7 @@ source "$_STOW_MOD_DIR/lib.sh"
 require_darwin
 
 STOW_DIR="${STOW_DIR:-$REPO_ROOT/stow}"
-_default_pkgs=(git zsh nvim tmux finicky)
+_default_pkgs=(git zsh nvim tmux finicky ssh)
 STOW_BACKUP_CONFLICTS="${STOW_BACKUP_CONFLICTS:-1}"
 if [[ -n "${STOW_PACKAGES:-}" ]]; then
   read -r -a pkgs <<<"$STOW_PACKAGES"

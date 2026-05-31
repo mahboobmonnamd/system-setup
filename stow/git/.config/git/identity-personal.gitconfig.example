@@ -1,0 +1,8 @@
+# Personal identity — machine-local. Copy to identity-personal.gitconfig
+# (drop .example) and fill in. The real file is gitignored and never committed.
+[user]
+	name = Your Name
+	email = you@personal.example
+[core]
+	# Use the personal SSH key for repos under this identity's directories.
+	sshCommand = ssh -i ~/.ssh/id_ed25519_personal

@@ -5,33 +5,42 @@
     br = branch
     ci = commit
     unstage = reset HEAD --
-    
+
     # Pretty logs
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
-    
+
     # Show contributors
     contributors = shortlog --summary --numbered --email
-    
+
     # Show branches sorted by last modified
     recent = branch --sort=-committerdate
-    
+
     # Amend without editing message
     amend = commit --amend --no-edit
-    
+
     # Show what I did today
     today = log --since=midnight --author='$(git config user.name)' --oneline
-    
+
     # Undo last commit but keep changes
     undo = reset --soft HEAD^
-    
+
     # Show files in last commit
     last = diff-tree --no-commit-id --name-only -r HEAD
+
+    # Print the active identity (handy to confirm the right profile loaded)
+    whoami = "!echo \"$(git config user.name) <$(git config user.email)>\""
 [push]
 	default = current
 [user]
-	name = mahboob
-	email = mahboobmonnamd@gmail.com
+	# Force an explicit identity. With this on, git will NOT auto-guess a
+	# name/email from the system (e.g. user@hostname). If a repo's remote
+	# matches none of the [includeIf hasconfig:] rules below, no identity loads
+	# and `git commit` errors out asking you to set user.name/user.email — a
+	# loud stop beats a silent wrong author. Fix by cloning via the right host
+	# alias, or set a local identity:
+	#   git config user.name "..." && git config user.email "..."
+	useConfigOnly = true
 [diff]
 	algorithm = patience
 	colorMoved = default
@@ -49,3 +58,47 @@
 	conflictstyle = diff3
 [color]
 	ui = true
+
+# ---------------------------------------------------------------------------
+# Per-account identities, selected by the repo's REMOTE URL.
+#
+# This PUBLIC config carries NO real names, emails, or folder names — only
+# generic SSH host aliases (github.com / github.com-<account>) defined in the
+# public ssh config. The actual name/email live in machine-local, gitignored
+# identity files, so nothing identifying is committed.
+#
+# How it works: when a repo has a remote whose URL matches a pattern below,
+# git loads that account's identity file. Identity follows the clone URL, not
+# the folder — so where you put the repo doesn't matter.
+#
+# Clone with the matching host alias to bind an account:
+#   git clone git@github.com:owner/repo.git          -> personal
+#   git clone git@github.com-work:owner/repo.git     -> work
+# For an existing repo, just point its remote at the right alias:
+#   git remote set-url origin git@github.com-work:owner/repo.git
+#
+# Need git >= 2.36 for hasconfig (you have it). New machine: copy each
+# ~/.config/git/identity-*.gitconfig.example to its real name and fill in.
+# Add another account by adding a host alias in the ssh config, a matching
+# block here, and an identity file.
+# ---------------------------------------------------------------------------
+# Two patterns per account on purpose: git's config glob does NOT let a single
+# '*' cross the '/' in owner/repo, so ':*' alone misses the usual owner/repo
+# URL. ':*' catches single-segment URLs, ':*/*' catches owner/repo. The host
+# segment (github.com vs github.com-<account>) keeps accounts from overlapping.
+[includeIf "hasconfig:remote.*.url:git@github.com:*"]
+	path = ~/.config/git/identity-personal.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
+	path = ~/.config/git/identity-personal.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-work:*"]
+	path = ~/.config/git/identity-work.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-work:*/*"]
+	path = ~/.config/git/identity-work.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-freelance:*"]
+	path = ~/.config/git/identity-freelance.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-freelance:*/*"]
+	path = ~/.config/git/identity-freelance.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-oss:*"]
+	path = ~/.config/git/identity-oss.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-oss:*/*"]
+	path = ~/.config/git/identity-oss.gitconfig

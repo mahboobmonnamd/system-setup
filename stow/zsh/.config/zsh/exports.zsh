@@ -52,7 +52,9 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=247'
 # Ripgrep colors for light theme
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
-export PATH="/Users/mahboob/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # Added by Antigravity
-export PATH="/Users/mahboob/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"

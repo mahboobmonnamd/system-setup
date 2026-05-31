@@ -1,3 +1,10 @@
 **/.DS_Store
 stow/zsh/.config/zsh/env.local.zsh
 stow/nvim/.config/nvim/lazyvim.json
+
+# Private git identities (names/emails) — only .example templates are tracked.
+stow/git/.config/git/identity-*.gitconfig
+!stow/git/.config/git/identity-*.gitconfig.example
+
+# Local-only SSH overrides (kept out of the public repo).
+stow/ssh/.ssh/config.local
