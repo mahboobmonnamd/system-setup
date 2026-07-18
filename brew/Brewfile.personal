@@ -1,2 +1,10 @@
 # Brewfile.personal — extras for personal machines only.
-# (Apps like Brave, Bitwarden, Obsidian, Cursor land here in later phases.)
+brew "colima"               # container VM behind the docker CLI (work uses Rancher Desktop)
+cask "brave-browser"
+cask "bitwarden"
+cask "obsidian"
+cask "visual-studio-code"   # fallback editor during the terminal transition
+cask "cursor"
+cask "appcleaner"
+cask "claude"
+cask "claude-code"

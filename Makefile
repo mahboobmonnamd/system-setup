@@ -9,13 +9,15 @@ PROFILE ?= personal
 # Override for a subset: make stow PACKAGES="zsh"
 PACKAGES ?= $(notdir $(wildcard stow/*))
 
-.PHONY: help brew stow unstow sync
+.PHONY: help brew stow unstow sync macos touchid
 
 help:
-	@echo "make brew    install everything in brew/Brewfile.base + brew/Brewfile.$(PROFILE)"
-	@echo "make stow    symlink stow/* packages into \$$HOME  (currently: $(PACKAGES))"
-	@echo "make unstow  remove those symlinks"
-	@echo "make sync    brew + stow"
+	@echo "make brew     install everything in brew/Brewfile.base + brew/Brewfile.$(PROFILE)"
+	@echo "make stow     symlink stow/* packages into \$$HOME  (currently: $(PACKAGES))"
+	@echo "make unstow   remove those symlinks"
+	@echo "make sync     brew + stow"
+	@echo "make macos    apply macOS defaults (keyboard/Finder/Dock) — run yourself"
+	@echo "make touchid  enable Touch ID for sudo — run yourself"
 
 brew:
 	brew bundle --file=brew/Brewfile.base
@@ -23,10 +25,19 @@ brew:
 
 # --restow = re-link (safe to run repeatedly; picks up new files)
 # --target  = where the symlinks land; --dir = where the packages live
+# Pre-creating ~/.ssh (700) stops stow from symlinking the whole directory
+# into the repo — only the config file inside it gets linked.
 stow:
+	@mkdir -p $(HOME)/.config $(HOME)/.ssh && chmod 700 $(HOME)/.ssh
 	stow --dir=stow --target=$(HOME) --restow $(PACKAGES)
 
 unstow:
 	stow --dir=stow --target=$(HOME) --delete $(PACKAGES)
 
 sync: brew stow
+
+macos:
+	bash scripts/macos.sh
+
+touchid:
+	bash scripts/touchid_sudo.sh

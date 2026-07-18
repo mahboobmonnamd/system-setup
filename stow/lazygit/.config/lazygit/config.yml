@@ -1,0 +1,28 @@
+# lazygit — git TUI. Launch with `lazygit` (alias: lg).
+# Catppuccin Latte (light) theme + delta for diffs.
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - '#8839ef'
+      - bold
+    inactiveBorderColor:
+      - '#8c8fa1'
+    optionsTextColor:
+      - '#1e66f5'
+    selectedLineBgColor:
+      - '#ccd0da'
+    cherryPickedCommitBgColor:
+      - '#bcc0cc'
+    cherryPickedCommitFgColor:
+      - '#8839ef'
+    unstagedChangesColor:
+      - '#d20f39'
+    defaultFgColor:
+      - '#4c4f69'
+    searchingActiveBorderColor:
+      - '#df8e1d'
+git:
+  paging:
+    colorArg: always
+    pager: delta --light --paging=never

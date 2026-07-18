@@ -1,0 +1,22 @@
+# atuin — shell history as a searchable local database (Ctrl-R).
+# Local-only: no account, no cloud sync. Docs: https://docs.atuin.sh/
+
+## Never leave this machine
+auto_sync = false
+update_check = false
+
+## Search behavior
+search_mode = "fuzzy"     # type any fragment of the command
+filter_mode = "global"    # search across all sessions/dirs by default
+style = "compact"
+show_preview = true       # show the full command under the cursor
+
+## Don't record commands matching these patterns (secrets protection).
+## Note: zsh's hist_ignore_space also skips anything typed with a leading space.
+history_filter = [
+  "^export .*(PASSWORD|SECRET|TOKEN|API_?KEY)",
+  "(?i)api[_-]?key",
+  "^aws .*secret",
+  "^curl .*Authorization",
+  "^docker login",
+]

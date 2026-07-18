@@ -1,0 +1,29 @@
+# Ghostty — the terminal. Docs: https://ghostty.org/docs/config
+# Validate after editing with:  ghostty +show-config
+
+# --- Look & feel ------------------------------------------------------------
+theme = Catppuccin Latte
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+window-padding-x = 8
+window-padding-y = 8
+
+# Slight frosted-glass effect. Set opacity to 1 for a fully solid window.
+background-opacity = 0.95
+background-blur-radius = 20
+
+# --- Behavior ---------------------------------------------------------------
+# Option acts as Alt (needed for Alt-C fzf directory search and word-jumps)
+macos-option-as-alt = true
+mouse-hide-while-typing = true
+# Sane scrollback
+scrollback-limit = 100000
+
+# Shell integration: Ghostty marks each prompt, so Cmd+Up/Down jumps between
+# commands and closing a window with a running job asks first.
+shell-integration = zsh
+
+# --- Quake-style dropdown terminal ------------------------------------------
+# Cmd+` from ANYWHERE (any app) slides a terminal down from the top of the
+# screen. Same key hides it. Great for quick one-off commands.
+keybind = global:cmd+grave_accent=toggle_quick_terminal

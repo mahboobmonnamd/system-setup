@@ -1,6 +1,77 @@
 # Brewfile.base — installed on EVERY machine (personal and work).
-# Grows phase by phase. `make brew` applies it.
+# `make brew` applies it. Every tool here is invoked by its OWN name —
+# nothing shadows standard commands (cat/ls/grep/find stay untouched).
 
-# Phase 0 — the automation itself
-brew "stow"   # symlink manager for dotfiles (see README)
-brew "git"    # newer than the Apple-bundled git, updated via brew
+# --- Automation itself ------------------------------------------------------
+brew "stow"        # symlink manager for dotfiles (see README)
+brew "git"         # newer than the Apple-bundled git, updated via brew
+
+# --- Shell ------------------------------------------------------------------
+brew "zinit"       # zsh plugin manager (fast, lazy-loading)
+brew "starship"    # the prompt (configured in stow/starship)
+brew "atuin"       # shell history as a searchable database (Ctrl-R)
+brew "direnv"      # auto-load per-project env vars from .envrc
+
+# --- Find / search / view (own names: rg, fd, bat, eza, fzf) ---------------
+brew "fzf"         # fuzzy finder — Ctrl-R history, Ctrl-T files, Alt-C dirs
+brew "zoxide"      # smart cd that learns your directories (`z name`)
+brew "eza"         # modern ls (used via ll/lt aliases + `eza`)
+brew "bat"         # cat with syntax highlighting (use as `bat`)
+brew "fd"          # simpler/faster find (use as `fd`)
+brew "ripgrep"     # fast code search (use as `rg`)
+
+# --- Modern system tools (own names) ---------------------------------------
+brew "dust"        # visual disk usage (`dust` vs du)
+brew "duf"         # disk free overview (`duf` vs df)
+brew "sd"          # simpler sed for find/replace (`sd 'old' 'new' file`)
+brew "btop"        # pretty system monitor (`btop` vs top)
+brew "tlrc"        # tldr client — community cheatsheets (`tldr tar`)
+brew "jq"          # JSON processor
+brew "yq"          # YAML processor
+brew "watch"       # re-run a command every N seconds
+brew "wget"        # downloads
+brew "just"        # modern per-project command runner (justfile)
+brew "yazi"        # terminal file manager with previews (`yazi`)
+
+# --- Git experience ---------------------------------------------------------
+brew "gh"          # GitHub CLI (PRs, issues from the terminal)
+brew "git-delta"   # syntax-highlighted diffs (wired in .gitconfig)
+brew "lazygit"     # full git TUI (`lazygit` or `lg`)
+
+# --- Multiplexer / sessions -------------------------------------------------
+brew "tmux"        # terminal multiplexer — sessions survive disconnects
+brew "sesh"        # fzf-powered tmux session picker
+
+# --- Editor -----------------------------------------------------------------
+brew "neovim"      # the editor (LazyVim config in stow/nvim)
+
+# --- Language runtimes ------------------------------------------------------
+brew "mise"        # ONE version manager: node, go, python (reads .nvmrc too)
+brew "rustup"      # rust toolchain manager (run: rustup default stable)
+brew "uv"          # fast python package/project manager
+
+# --- Containers & Kubernetes ------------------------------------------------
+# LICENSE POLICY: base must contain ONLY open-source/free-for-commercial-use
+# tools (this file is shared with the work machine). The docker CLI + plugins
+# are Apache-2.0 — the commercial product is Docker *Desktop*, which is not
+# used here. The VM behind the CLI differs per machine:
+#   personal -> colima (in Brewfile.personal)
+#   work     -> Rancher Desktop (installed per company policy)
+brew "docker"                    # docker CLI (talks to colima or Rancher)
+brew "docker-compose"            # compose v2 plugin
+brew "docker-buildx"             # buildkit plugin
+brew "lazydocker"                # docker TUI
+brew "kubernetes-cli"            # kubectl
+brew "kubectx"                   # fast context/namespace switching (kubectx/kubens)
+brew "k9s"                       # kubernetes TUI
+brew "helm"                      # k8s package manager
+brew "kind"                      # local k8s clusters in docker
+brew "stern"                     # multi-pod log tailing
+brew "dive"                      # inspect image layers
+
+# --- Terminal & font --------------------------------------------------------
+cask "ghostty"                        # the terminal (config in stow/ghostty)
+cask "font-jetbrains-mono-nerd-font"  # icons for prompt/eza/nvim
+
+# --- Window management (Spotlight stays as the launcher) --------------------
+cask "loop"      # open-source window snapping (halves/thirds via keyboard)

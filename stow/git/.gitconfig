@@ -1,0 +1,61 @@
+[core]
+	editor = nvim
+	pager = delta
+
+# --- delta: syntax-highlighted diffs (git diff / git show / git log -p) -----
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true          # n / N jump between files in a diff
+	light = true             # colors tuned for a light terminal background
+	line-numbers = true
+[diff]
+	algorithm = histogram    # noticeably better diffs than the default
+	colorMoved = default
+[merge]
+	conflictstyle = zdiff3   # show the common ancestor in conflict markers
+
+[push]
+	default = current        # `git push` pushes the current branch, no args
+	autoSetupRemote = true   # first push auto-creates the remote branch
+[pull]
+	rebase = true            # `git pull` rebases instead of merge-committing
+[fetch]
+	prune = true             # deleted remote branches disappear locally
+[rebase]
+	autoStash = true         # `git pull` works even with uncommitted changes
+[init]
+	defaultBranch = main
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch --sort=-committerdate   # branches, most recent first
+	amend = commit --amend --no-edit
+	undo = reset --soft HEAD^           # un-commit, keep the changes staged
+	last = diff-tree --no-commit-id --name-only -r HEAD
+	lg = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	# Print the active identity — confirms the right profile loaded
+	whoami = "!echo \"$(git config user.name) <$(git config user.email)>\""
+
+# --- Multi-account identities, selected by the repo's REMOTE URL ------------
+# The clone URL decides who you are — folder location doesn't matter:
+#   git clone git@github.com:owner/repo.git        -> personal identity
+#   git clone git@github.com-work:owner/repo.git   -> work identity
+# Real names/emails live in gitignored files (see .example templates).
+# scripts/git_setup.sh creates keys + identity files interactively.
+[user]
+	# No global identity on purpose: if a repo matches no rule below, commit
+	# fails loudly instead of silently using a wrong author.
+	useConfigOnly = true
+
+# Two patterns per account: git's glob can't cross '/' so ':*' alone would
+# miss owner/repo URLs. ':*' catches single-segment, ':*/*' catches owner/repo.
+[includeIf "hasconfig:remote.*.url:git@github.com:*"]
+	path = ~/.config/git/identity-personal.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
+	path = ~/.config/git/identity-personal.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-work:*"]
+	path = ~/.config/git/identity-work.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-work:*/*"]
+	path = ~/.config/git/identity-work.gitconfig

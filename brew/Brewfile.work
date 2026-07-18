@@ -1,1 +1,2 @@
-# Brewfile.work — extras for the work machine only (e.g. Slack).
+# Brewfile.work — extras for the work machine only.
+cask "slack"

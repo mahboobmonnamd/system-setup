@@ -1,0 +1,70 @@
+# Starship prompt — Catppuccin Latte (light). Docs: https://starship.rs/config/
+# Starship only shows modules relevant to the current directory (git info in
+# repos, node version in node projects, etc.). This file themes it and trims.
+
+palette = "catppuccin_latte"
+add_newline = true       # blank line between prompts — commands don't cramp
+command_timeout = 1000   # wait up to 1s for slow git repos before skipping
+
+# ❯ green on success, red after a failed command — instant visual feedback
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[directory]
+style = "bold blue"
+truncation_length = 4          # show at most 4 path segments
+truncate_to_repo = true        # inside a repo, start the path at the repo root
+
+[git_branch]
+style = "bold mauve"
+
+[git_status]
+style = "bold red"
+
+[cmd_duration]
+min_time = 2000                # only show for commands slower than 2s
+format = "took [$duration](yellow) "
+
+# Language versions: shown only inside matching projects, kept subtle
+[nodejs]
+format = "[ $version](green) "
+[golang]
+format = "[󰟓 $version](sapphire) "
+[rust]
+format = "[󱘗 $version](peach) "
+[python]
+format = "[ $version](yellow) "
+
+# Kubernetes context is hidden by default (noisy); flip to false when you
+# want to always see which cluster kubectl points at.
+[kubernetes]
+disabled = true
+
+[palettes.catppuccin_latte]
+rosewater = "#dc8a78"
+flamingo = "#dd7878"
+pink = "#ea76cb"
+mauve = "#8839ef"
+red = "#d20f39"
+maroon = "#e64553"
+peach = "#fe640b"
+yellow = "#df8e1d"
+green = "#40a02b"
+teal = "#179299"
+sky = "#04a5e5"
+sapphire = "#209fb5"
+blue = "#1e66f5"
+lavender = "#7287fd"
+text = "#4c4f69"
+subtext1 = "#5c5f77"
+subtext0 = "#6c6f85"
+overlay2 = "#7c7f93"
+overlay1 = "#8c8fa1"
+overlay0 = "#9ca0b0"
+surface2 = "#acb0be"
+surface1 = "#bcc0cc"
+surface0 = "#ccd0da"
+base = "#eff1f5"
+mantle = "#e6e9ef"
+crust = "#dce0e8"
