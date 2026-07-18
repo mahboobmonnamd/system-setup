@@ -4,26 +4,32 @@
 //
 // Docs: https://github.com/johnste/finicky/wiki/Configuration
 //
-// This starter routes everything to Brave, with two example rule types you
-// can copy. For machine-specific/private routing, add rules referencing your
-// own domains here on your machine, or keep them minimal for the public repo.
+// defaultBrowser is Browserino (manual picker). Browserino is personal-only
+// (Brewfile.personal) — trust the tap once, then `make brew`. On a work
+// machine without Browserino, change this to "Safari" (or your work browser).
 
 export default {
-  defaultBrowser: "Brave Browser",
+  defaultBrowser: "browserino",
+
+  options: {
+    hideIcon: false, // menu bar icon → open Finicky / logs / UI without clicking a link
+    keepRunning: true, // stay resident so the chooser opens quickly
+  },
 
   handlers: [
-    // Open links from chat/mail apps in the default browser (example of
-    // matching by the app that opened the link).
-    // {
-    //   match: ({ opener }) => ["Slack", "Mail"].includes(opener.name),
-    //   browser: "Brave Browser",
-    // },
+    {
+      match: /youtube.com/,
+      browser: () => {
+        // if (finicky.getModifierKeys().shift) return "Finicky"; // force chooser
+        return "Brave Browser";
+      }
+    },
 
-    // Send a specific set of sites to a different browser (example of matching
-    // by URL host — replace with your own).
-    // {
-    //   match: ["*.figma.com/*", "meet.google.com/*"],
-    //   browser: "Google Chrome",
-    // },
-  ],
+    {
+      match: () => true,
+      browser: () => {
+        return "browserino";
+      }
+    }
+  ]
 };

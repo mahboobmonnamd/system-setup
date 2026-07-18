@@ -8,3 +8,10 @@ cask "cursor"
 cask "appcleaner"
 cask "claude"
 cask "claude-code"
+
+# Manual per-click browser picker. Third-party PERSONAL tap — Homebrew won't
+# load it until trusted once (supply-chain opt-in):
+#   brew trust --cask alexstrnik/browserino/browserino
+# then `make brew` (or the lines below on a fresh personal bootstrap).
+tap "alexstrnik/browserino"
+cask "alexstrnik/browserino/browserino"

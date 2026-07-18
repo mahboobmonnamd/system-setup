@@ -126,16 +126,20 @@ and name/email. `scripts/git_setup.sh [profiles...]` or `--all` generates keys
 and identity files interactively (re-runnable — it shows current values and
 lets you confirm or change them). Real identities are gitignored; there's
 deliberately no global user.name — a repo matching no rule fails loudly instead
-of committing as the wrong author. Diffs use delta; `git lg` for graph log;
-`git undo` un-commits keeping changes.
+of committing as the wrong author. Identities bind to **SSH** remotes
+(`git@github.com-work:...`); HTTPS remotes won't match and commits fail until
+you switch the remote to the SSH alias. Diffs use delta; `git lg` for graph
+log; `git undo` un-commits keeping changes.
 
 ## Finicky (browser routing)
 
 Set Finicky as the default browser (System Settings > Desktop & Dock). It then
-routes each link to the right browser by rule — config in
-`stow/finicky/.config/finicky/finicky.js`. The committed file is a generic
-starter (defaults to Brave, example rules commented); add your own
-private-domain rules locally.
+routes each link by rule — config in `stow/finicky/.config/finicky/finicky.js`.
+The starter sends everything to **Browserino** (the per-click picker). Browserino
+is personal-only (`Brewfile.personal`); trust the tap once first — see that
+file. On a work machine without Browserino, set `defaultBrowser` to `"Safari"`
+(or your work browser) so links still open. Add private-domain rules locally;
+keep them out of the public repo.
 
 ## Machine-specific packages
 

@@ -4,11 +4,11 @@
 #
 # Mac App Store apps live here because their numeric IDs are account/region
 # specific and meaningless in a shared repo. Find an ID with:  mas search <name>
-# (mas itself is installed from base? -> add `brew "mas"` to your local file or
-#  base if you use the store regularly.)
+# Uncomment `brew "mas"` below first — mas is not in Brewfile.base.
 
-# brew "mas"                                   # Mac App Store CLI (needed for mas lines)
+# brew "mas"                                   # REQUIRED before any mas "..." lines
 # mas "WhatsApp",  id: 310633997
 # mas "Telegram",  id: 747648890
 # mas "Numbers",   id: 361304891
 # mas "Xcode",     id: 497799835
+# mas "Velja",     id: 1607635845              # paid browser picker (alt to Browserino)

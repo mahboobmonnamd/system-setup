@@ -94,15 +94,6 @@ cask "font-jetbrains-mono-nerd-font"  # icons for prompt/eza/nvim
 cask "loop"      # open-source window snapping (halves/thirds via keyboard)
 
 # --- Browser routing --------------------------------------------------------
-# Finicky auto-routes URLs by rule; Browserino shows a manual browser picker.
-cask "finicky"   # rule-based routing (config in stow/finicky)
-#
-# Browserino lives in a third-party PERSONAL tap. Homebrew refuses untrusted
-# taps by default (they run arbitrary install code) — a supply-chain decision
-# worth making consciously, especially on a work laptop. To opt in:
-#   brew tap alexstrnik/browserino
-#   brew trust --cask alexstrnik/browserino/browserino
-#   brew install --cask alexstrnik/browserino/browserino
-# then uncomment the two lines below so `make brew` keeps it installed:
-# tap "alexstrnik/browserino"
-# cask "alexstrnik/browserino/browserino"   # manual per-click browser picker
+# Finicky auto-routes URLs by rule (config in stow/finicky). Manual picker
+# (Browserino) is personal-only — see Brewfile.personal.
+cask "finicky"
