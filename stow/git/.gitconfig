@@ -15,6 +15,23 @@
 [merge]
 	conflictstyle = zdiff3   # show the common ancestor in conflict markers
 
+# --- Commit signing (SSH — reuses the identity keys, no GPG needed) ---------
+# Commits show "Verified" on GitHub once the PUBLIC key is uploaded there as a
+# "Signing Key" (git_setup.sh prints a reminder). Signing is turned ON in the
+# per-identity files (not here) so it only applies once that identity's key
+# actually exists — a fresh machine can still commit before git_setup.sh runs.
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	# Lets `git log --show-signature` verify locally (email -> key map)
+	allowedSignersFile = ~/.config/git/allowed_signers
+
+# --- New-repo template: installs the gitleaks pre-commit secret guard --------
+# Applies to `git clone` and `git init` (run `git init` once inside an
+# existing repo to adopt it).
+[init]
+	templateDir = ~/.config/git/template
+
 [push]
 	default = current        # `git push` pushes the current branch, no args
 	autoSetupRemote = true   # first push auto-creates the remote branch

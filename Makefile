@@ -12,12 +12,15 @@ PACKAGES ?= $(notdir $(wildcard stow/*))
 .PHONY: help brew stow unstow sync macos touchid bootstrap
 
 help:
-	@echo "make brew     install everything in brew/Brewfile.base + brew/Brewfile.$(PROFILE)"
-	@echo "make stow     symlink stow/* packages into \$$HOME  (currently: $(PACKAGES))"
-	@echo "make unstow   remove those symlinks"
-	@echo "make sync     brew + stow"
-	@echo "make macos    apply macOS defaults (keyboard/Finder/Dock) — run yourself"
-	@echo "make touchid  enable Touch ID for sudo — run yourself"
+	@echo "make bootstrap  full fresh-machine setup (scripts/bootstrap.sh)"
+	@echo "make brew       install brew/Brewfile.base + brew/Brewfile.\$$(PROFILE)"
+	@echo "make stow       symlink stow/* into \$$HOME  (currently: $(PACKAGES))"
+	@echo "make unstow     remove those symlinks"
+	@echo "make sync       brew + stow"
+	@echo "make macos      apply macOS defaults (keyboard/Finder/Dock) — run yourself"
+	@echo "make touchid    enable Touch ID for sudo — run yourself"
+	@echo ""
+	@echo "Variables: PROFILE=personal|work  (default: $(PROFILE))"
 
 brew:
 	brew bundle --file=brew/Brewfile.base

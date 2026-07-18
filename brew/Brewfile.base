@@ -37,6 +37,9 @@ brew "yazi"        # terminal file manager with previews (`yazi`)
 brew "gh"          # GitHub CLI (PRs, issues from the terminal)
 brew "git-delta"   # syntax-highlighted diffs (wired in .gitconfig)
 brew "lazygit"     # full git TUI (`lazygit` or `lg`)
+brew "gitleaks"    # secret scanner — wired as a pre-commit hook via the git
+                   # init template (~/.config/git/template); blocks committing
+                   # API keys/tokens. Bypass a false positive: --no-verify
 
 # --- Multiplexer / sessions -------------------------------------------------
 brew "tmux"        # terminal multiplexer — sessions survive disconnects
@@ -49,6 +52,7 @@ brew "neovim"      # the editor (LazyVim config in stow/nvim)
 brew "mise"        # ONE version manager: node, go, python (reads .nvmrc too)
 brew "rustup"      # rust toolchain manager (run: rustup default stable)
 brew "uv"          # fast python package/project manager
+brew "golangci-lint"  # Go meta-linter (same one CI runs)
 
 # --- Containers & Kubernetes ------------------------------------------------
 # LICENSE POLICY: base must contain ONLY open-source/free-for-commercial-use

@@ -12,6 +12,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 info() { printf '\n\033[34m==>\033[0m %s\n' "$*"; }
 
+[[ "$(uname -s)" == "Darwin" ]] || {
+  echo "This setup targets macOS only (Darwin). Refusing to run on $(uname -s)." >&2
+  exit 1
+}
+
 ensure_brew_shellenv() {
   if command -v brew >/dev/null 2>&1; then
     eval "$(brew shellenv)"

@@ -3,5 +3,11 @@
 [user]
 	name = Your Name
 	email = you@freelance.example
+	# Sign with the same key's PUBLIC half (upload to GitHub as a Signing Key)
+	signingkey = ~/.ssh/id_ed25519_freelance.pub
 [core]
 	sshCommand = ssh -i ~/.ssh/id_ed25519_freelance -o IdentitiesOnly=yes
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

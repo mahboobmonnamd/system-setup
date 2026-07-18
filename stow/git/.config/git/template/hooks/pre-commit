@@ -1,0 +1,7 @@
+#!/bin/sh
+# Secret guard — blocks commits containing API keys/tokens/passwords.
+# Installed into repos automatically via init.templateDir (new clones/inits).
+# For an EXISTING repo, run `git init` inside it once to pick this up.
+# Bypass for a false positive:  git commit --no-verify
+command -v gitleaks >/dev/null 2>&1 || exit 0
+exec gitleaks protect --staged --verbose

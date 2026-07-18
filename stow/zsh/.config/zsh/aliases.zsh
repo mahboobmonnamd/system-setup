@@ -31,20 +31,4 @@ compdef k=kubectl 2>/dev/null
 alias reload='exec zsh'                       # apply config edits
 alias zshconfig='$EDITOR ~/.zshrc'
 alias aliasconfig='$EDITOR ~/.config/zsh/aliases.zsh'
-
-# --- Functions -------------------------------------------------------------
-# mkdir + cd in one step
-mkcd() { mkdir -p "$@" && cd "$_"; }
-
-# kill whatever listens on a port:  kill_port 3000
-kill_port() { lsof -ti:"$@" | xargs kill -9; }
-
-# yazi file manager: exit with `q` and your shell cd's to where you browsed
-y() {
-  local tmp="$(mktemp -t yazi-cwd.XXXXXX)" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
+# Extra git helpers (gco-fzf, gbd-fzf, gpr, gundo, gstats) live in functions.zsh

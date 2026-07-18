@@ -11,9 +11,10 @@ nothing inherited blindly. Theme: **Catppuccin Latte (light)** across every tool
   its contents into place; live configs and the repo are the same files.
 
 ```sh
-make brew     # install packages   (PROFILE=work on the work machine)
-make stow     # link dotfiles into $HOME
-make sync     # both
+make bootstrap   # fresh Mac: CLT, Homebrew, packages, dotfiles, runtimes
+make brew        # install packages   (PROFILE=work on the work machine)
+make stow        # link dotfiles into $HOME
+make sync        # brew + stow
 ```
 
 **Rule:** no alias ever shadows a standard command (cat/ls/grep/find behave
@@ -25,14 +26,15 @@ Modern tools are used via their own names: `rg`, `fd`, `bat`, `eza`, `dust`,
 
 ```sh
 git clone <this-repo> ~/Developer/system-setup && cd ~/Developer/system-setup
-./scripts/bootstrap.sh                  # PROFILE=work on the work machine
+make bootstrap                          # or: ./scripts/bootstrap.sh
+                                        # PROFILE=work make bootstrap  on work
 ./scripts/git_setup.sh --all            # ssh keys + git identities (interactive)
 cp brew/Brewfile.local.example brew/Brewfile.local   # optional: add your mas apps
 ```
 
-`bootstrap.sh` handles: Xcode CLT, Homebrew, all packages, dotfiles, node/go
-via mise, rust via rustup, docker CLI plugins, nvim plugins, atuin import.
-Idempotent — rerun anytime.
+`make bootstrap` / `scripts/bootstrap.sh` handles: Xcode CLT, Homebrew, all
+packages, dotfiles, node/go via mise, rust via rustup, docker CLI plugins,
+nvim plugins, atuin import. Idempotent — rerun anytime.
 
 ## Daily drivers
 
@@ -49,6 +51,8 @@ Idempotent — rerun anytime.
 | `tldr <cmd>` | community cheatsheet for any command |
 | `reload` | apply shell config edits |
 | `Ctrl-G Ctrl-B / -H / -F` | fzf-pick git branches / hashes / changed files into the command line |
+| `gco-fzf` / `gbd-fzf` | checkout / delete branches via fzf |
+| `gpr` / `gundo` | create PR with gh / soft-undo last commit(s) |
 | `Esc Esc` | prepend sudo to the current/previous command |
 
 The shell also *trains* you: type a command that has an alias and

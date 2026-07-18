@@ -1,1 +1,26 @@
+# Global gitignore — applies to EVERY repo on this machine automatically
+# (git reads ~/.config/git/ignore by default; no config needed).
+# Keep this to machine/OS/editor junk only — project-specific ignores belong
+# in each project's own .gitignore so teammates get them too.
+
+# Claude Code local settings
 **/.claude/settings.local.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Editors / tools
+.idea/
+*.swp
+*.swo
+.vscode/settings.json
+
+# Env files that must never be committed anywhere
+.env.local
+.env.*.local
+
+# Direnv
+.envrc.local

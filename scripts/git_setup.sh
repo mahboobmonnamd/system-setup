@@ -88,12 +88,25 @@ setup_one() {
   [[ -f "$identity" ]] || { [[ -f "$template" ]] && cp "$template" "$identity"; }
   git config -f "$identity" user.name  "$name"
   git config -f "$identity" user.email "$email"
+  git config -f "$identity" user.signingkey "$key.pub"
   git config -f "$identity" core.sshCommand "ssh -i $key -o IdentitiesOnly=yes"
+  git config -f "$identity" commit.gpgsign true
+  git config -f "$identity" tag.gpgsign true
   ok "wrote $identity"
+
+  # 3b. allowed_signers: lets `git log --show-signature` verify locally.
+  local signers="$LIVE_DIR/allowed_signers"
+  touch "$signers"
+  if ! grep -qF "$(command cat "${key}.pub")" "$signers" 2>/dev/null; then
+    printf '%s %s\n' "$email" "$(command cat "${key}.pub")" >> "$signers"
+    ok "registered key in allowed_signers"
+  fi
 
   # 4. Agent + Keychain, then show the public key to register on GitHub.
   ssh-add --apple-use-keychain "$key" 2>/dev/null || warn "couldn't add $key to agent"
-  info "Add this key at https://github.com/settings/ssh/new ($profile account):"
+  info "On GitHub ($profile account) add this public key TWICE at"
+  info "https://github.com/settings/ssh/new — once as an 'Authentication Key'"
+  info "and once as a 'Signing Key' (so commits show Verified):"
   cat "${key}.pub"
   command -v pbcopy >/dev/null && { pbcopy < "${key}.pub"; ok "copied to clipboard"; }
   info "Clone $profile repos with:  git clone git@$(host_alias "$profile"):OWNER/REPO.git"

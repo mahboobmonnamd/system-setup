@@ -3,5 +3,11 @@
 [user]
 	name = Your Name
 	email = you@oss.example
+	# Sign with the same key's PUBLIC half (upload to GitHub as a Signing Key)
+	signingkey = ~/.ssh/id_ed25519_oss.pub
 [core]
 	sshCommand = ssh -i ~/.ssh/id_ed25519_oss -o IdentitiesOnly=yes
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
