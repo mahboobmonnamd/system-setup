@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Git identities — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="git">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Workflow</p>
+          <h1>Git identities</h1>
+          <p class="lede">The <strong>clone URL</strong> picks name, email, SSH key, and signing key — not the folder. Day-to-day staging lives in <a href="lazygit.html">lazygit</a>.</p>
+          <div class="launch">
+            <span class="launch-label">Check</span>
+            <code>git whoami</code>
+          </div>
+        </header>
+
+        <section>
+          <h2>Clone patterns (memorize)</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Remote URL</th><th>Identity</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><code>git@github.com:owner/repo.git</code></td><td>personal</td></tr>
+              <tr data-bind-row><td class="keys"><code>git@github.com-work:org/repo.git</code></td><td>work</td></tr>
+              <tr data-bind-row><td class="keys"><code>git@github.com-freelance:c/repo.git</code></td><td>freelance</td></tr>
+              <tr data-bind-row><td class="keys"><code>git@github.com-oss:proj/repo.git</code></td><td>open-source</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Commands &amp; safety</h2>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Command / fact</th><th>What</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><code>git whoami</code></td><td>Print active name + email</td></tr>
+              <tr data-bind-row><td class="keys"><code>git lg</code></td><td>Pretty graph log (alias)</td></tr>
+              <tr data-bind-row><td class="keys"><code>git undo</code></td><td>Soft-reset last commit (keep changes)</td></tr>
+              <tr data-bind-row><td class="keys"><code>gpr</code></td><td><code>gh pr create --fill</code></td></tr>
+              <tr data-bind-row><td class="keys">SSH signing</td><td><code>commit.gpgsign</code> + <code>user.signingkey</code> per identity</td></tr>
+              <tr data-bind-row><td class="keys">gitleaks hook</td><td>Blocks secrets on commit (templateDir)</td></tr>
+              <tr data-bind-row><td class="keys"><code>git init</code> in old repo</td><td>Adopts the secret-guard hook</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">HTTPS remotes won’t match includeIf rules — switch to the SSH host alias. Upload each public key twice on GitHub: Authentication <em>and</em> Signing.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Clone as the right person</strong>
+              <p class="steps">Use the host alias in the URL → <code>git whoami</code> before the first commit.</p>
+            </li>
+            <li>
+              <strong>Fix a wrong remote</strong>
+              <p class="steps"><code>git remote -v</code> → set URL to <code>git@github.com-work:…</code> → <code>git whoami</code> again.</p>
+            </li>
+            <li>
+              <strong>Daily commit (TUI)</strong>
+              <p class="steps"><code>lg</code> or <kbd>Space</kbd> <kbd>gg</kbd> — signing happens automatically when <code>user.signingkey</code> is set.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">One global user.email forever</span><span class="arrow">→</span><span class="new">clone URL picks identity</span></li>
+            <li><span class="old">Guess which key ssh uses</span><span class="arrow">→</span><span class="new">core.sshCommand per identity</span></li>
+            <li><span class="old">Hope no secrets landed</span><span class="arrow">→</span><span class="new">gitleaks pre-commit</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>In this repo, run <code>git whoami</code> and <code>git config --get user.signingkey</code>. <span class="hint">Both should resolve via includeIf + identity file.</span></li>
+            <li>Read <code>git remote -v</code> and say which identity rule matched — out loud. <span class="hint">If none match, commits fail by design.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/git/.gitconfig</code> · identities: <code>~/.config/git/identity-*.gitconfig</code> · setup: <code>scripts/git_setup.sh</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

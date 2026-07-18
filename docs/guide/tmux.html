@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tmux — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="tmux">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Core</p>
+          <h1>tmux</h1>
+          <p class="lede">Sessions that survive closing the window. Prefix is <kbd>Ctrl</kbd>+<kbd>a</kbd> — press it, release, then the next key.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>tmux</code> · <code>tmux attach</code> · <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> (sesh)
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>c</kbd></td><td>New window</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>1</kbd>…<kbd>9</kbd></td><td>Switch window by number</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd></td><td>Split pane right (keeps cwd)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split pane down (keeps cwd)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move across panes <em>and</em> nvim splits (no prefix)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>sesh picker — sessions + zoxide dirs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd></td><td>Detach (session keeps running)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>r</kbd></td><td>Reload tmux.conf</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>I</kbd></td><td>Install/update TPM plugins</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Enter</kbd></td><td>Copy mode (vi keys)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>v</kbd> / <kbd>y</kbd></td><td>In copy mode: begin selection / yank</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>a</kbd></td><td>Send a literal Ctrl-a</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">In sesh (<kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd>): <kbd>Ctrl</kbd>+<kbd>a</kbd> all · <kbd>Ctrl</kbd>+<kbd>t</kbd> tmux only · <kbd>Ctrl</kbd>+<kbd>x</kbd> zoxide · <kbd>Ctrl</kbd>+<kbd>d</kbd> kill session.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Start a project session</strong>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> → pick a zoxide dir → sesh creates/attaches a session there.</p>
+            </li>
+            <li>
+              <strong>Editor + shell side by side</strong>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd> → one pane <code>nvim</code>, other shell. Move with <kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>l</kbd>.</p>
+            </li>
+            <li>
+              <strong>Leave without killing work</strong>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> → close Ghostty. Later: <code>tmux attach</code> or sesh again. Continuum auto-saves every 15 min.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">Many Ghostty tabs</span><span class="arrow">→</span><span class="new">tmux windows (Ctrl-a c / 1..9)</span></li>
+            <li><span class="old">cd then reopen tools</span><span class="arrow">→</span><span class="new">Ctrl-a T (sesh)</span></li>
+            <li><span class="old">Mouse to switch nvim ↔ shell</span><span class="arrow">→</span><span class="new">Ctrl-h/j/k/l</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Create a window, split right, split down, then navigate every pane with only <kbd>Ctrl</kbd>+hjkl. <span class="hint">No mouse, no prefix for movement.</span></li>
+            <li>Detach, close the terminal, reopen, <code>tmux attach</code> — confirm panes are still there. <span class="hint">That’s the point of tmux.</span></li>
+            <li>Open sesh and jump into a project you haven’t typed a path for. <span class="hint"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> then filter by name.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/tmux/.config/tmux/tmux.conf</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

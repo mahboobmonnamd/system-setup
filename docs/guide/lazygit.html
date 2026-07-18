@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lazygit — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="lazygit">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">TUIs</p>
+          <h1>lazygit</h1>
+          <p class="lede">Full git workflow as a TUI — status, stage, commit, branches, remotes — without juggling flags.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>lg</code> · <code>lazygit</code> · in nvim: <kbd>Space</kbd> <kbd>g</kbd> <kbd>g</kbd>
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>1</kbd>–<kbd>5</kbd></td><td>Jump panels: status / files / branches / commits / stash</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>Next / previous panel</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>j</kbd> / <kbd>k</kbd></td><td>Move selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd></td><td>Toggle stage file / hunk</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>a</kbd></td><td>Stage all</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>c</kbd></td><td>Commit</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Shift</kbd>+<kbd>P</kbd></td><td>Push</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>p</kbd></td><td>Pull</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Enter</kbd></td><td>Enter file / view commit</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>d</kbd></td><td>Discard change (confirm)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>n</kbd></td><td>New branch (from branches panel)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd></td><td>Checkout branch (branches panel)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>/</kbd></td><td>Filter / search in panel</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>x</kbd></td><td>Menu of available actions for selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>?</kbd></td><td>Cheatsheet (built-in)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>q</kbd></td><td>Quit</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">Diffs use <code>delta</code> (Latte). Press <kbd>?</kbd> inside lazygit whenever you forget a key — then come back here to drill the core loop.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Stage hunk → commit → push</strong>
+              <p class="steps">Files panel → select file → <kbd>Enter</kbd> → <kbd>Space</kbd> on hunks → <kbd>Esc</kbd> → <kbd>c</kbd> message → <kbd>Shift</kbd>+<kbd>P</kbd>.</p>
+            </li>
+            <li>
+              <strong>Switch branch</strong>
+              <p class="steps"><kbd>3</kbd> (branches) → <kbd>/</kbd> filter → <kbd>Space</kbd> to checkout.</p>
+            </li>
+            <li>
+              <strong>Inspect recent history</strong>
+              <p class="steps"><kbd>4</kbd> (commits) → <kbd>j</kbd>/<kbd>k</kbd> → <kbd>Enter</kbd> for diff.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">git status && git add -p</span><span class="arrow">→</span><span class="new">lg → Space on hunks</span></li>
+            <li><span class="old">git log --oneline --graph</span><span class="arrow">→</span><span class="new">lg → panel 4</span></li>
+            <li><span class="old">git checkout -b …</span><span class="arrow">→</span><span class="new">lg → 3 → n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Make a tiny edit, open <code>lg</code>, stage with <kbd>Space</kbd>, commit with <kbd>c</kbd>, quit with <kbd>q</kbd> — under 30 seconds. <span class="hint">Don’t touch the mouse.</span></li>
+            <li>From the commits panel, open a commit and close it without quitting lazygit. <span class="hint"><kbd>4</kbd> → Enter → Esc.</span></li>
+            <li>Open lazygit from nvim via <kbd>Space</kbd> <kbd>gg</kbd>, push if needed, quit back to the buffer. <span class="hint">Same keys as shell <code>lg</code>.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/lazygit/.config/lazygit/config.yml</code> · alias: <code>stow/zsh/.config/zsh/aliases.zsh</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

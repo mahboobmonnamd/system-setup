@@ -38,6 +38,11 @@ nvim plugins, atuin import. Idempotent — rerun anytime.
 
 ## Daily drivers
 
+**Muscle-memory guide:** [live on GitHub Pages](https://mahboobmonnamd.github.io/system-setup/)
+· local: [`docs/guide/index.html`](docs/guide/index.html) (`make guide`).
+Separate pages for shell, tmux, nvim, lazygit, lazydocker, yazi, k9s, git, and
+Ghostty with keybinds and drills from *this* setup.
+
 | Command | What |
 |---|---|
 | `z <name>` | jump to any directory you've visited (zoxide) |
@@ -135,6 +140,47 @@ of committing as the wrong author. Identities bind to **SSH** remotes
 you switch the remote to the SSH alias. Diffs use delta; `git lg` for graph
 log; `git undo` un-commits keeping changes.
 
+### Always-on git safety (passive — nothing to remember)
+
+- **Secret guard**: every new clone/init gets a pre-commit hook (via
+  `init.templateDir`) that runs **gitleaks** on staged changes and blocks
+  commits containing API keys/tokens. Existing repo? Run `git init` inside it
+  once to adopt the hook. False positive? `git commit --no-verify`.
+- **Signed commits**: each identity signs with its SSH key (`gpg.format=ssh`)
+  — commits show **Verified** on GitHub. Upload each public key twice: as an
+  *Authentication Key* AND a *Signing Key* (git_setup.sh reminds you).
+  Signing turns on per-identity, so a fresh machine can commit before keys exist.
+- **Global gitignore** (`~/.config/git/ignore`): `.DS_Store`, `.env.local`,
+  editor junk excluded from every repo automatically.
+
+## Install when needed (deliberately NOT installed)
+
+Policy: tools get installed when a real need appears, not "just in case".
+Everything below is one command away and license-safe for work; move it into
+the Brewfile once it earns frequent use.
+
+| Need | Install |
+|---|---|
+| Terraform work | `brew install opentofu tflint` (MPL fork; license-safe) |
+| Scan image/IaC for CVEs & secrets | `brew install trivy` |
+| Dockerfile linting | `brew install hadolint` |
+| Validate k8s manifests offline | `brew install kubeconform` |
+| Cluster sanity audit | `brew install popeye` |
+| Encrypt secrets in a git repo (GitOps) | `brew install sops age` |
+| Shared per-project git hooks | `brew install lefthook` |
+| Large files in a repo | `brew install git-lfs && git lfs install` |
+| Release Go binaries | `brew install goreleaser` |
+| Rust watch-mode / faster tests | `brew install bacon cargo-nextest` |
+| Node package manager | `brew install pnpm` (or `bun`) |
+| Postman-style API TUI | `uv tool install posting` |
+| Database TUI | `brew install lazysql` |
+| gRPC / websocket testing | `brew install grpcurl websocat` |
+| Local HTTPS certs | `brew install mkcert` |
+| Quick tunnel to localhost | `brew install cloudflared` |
+
+(`delve` and `ruff` are absent on purpose — Mason inside Neovim installs its
+own copies for debugging/linting.)
+
 ## Finicky (browser routing)
 
 Set Finicky as the default browser (System Settings > Desktop & Dock). It then
@@ -192,10 +238,11 @@ Deliberately minimal: Spotlight stays as the launcher.
 ## Repo layout
 
 ```
-Makefile            brew / stow / sync entry points
+Makefile            brew / stow / sync / guide entry points
 brew/               Brewfile.base + Brewfile.{personal,work}
 stow/               one package per tool: zsh, starship, ghostty, git,
                     lazygit, tmux, nvim, atuin, ssh
+docs/guide/         HTML muscle-memory cheatsheets (make guide)
 scripts/git_setup.sh  interactive ssh-key + git-identity bootstrap
 ```
 

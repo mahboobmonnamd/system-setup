@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shell — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="shell">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Core</p>
+          <h1>Shell</h1>
+          <p class="lede">Jump, search history, pick files — without typing full paths or scrolling <code>history</code>.</p>
+          <div class="launch">
+            <span class="launch-label">Where</span>
+            <code>zsh</code> (Ghostty / any terminal)
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds &amp; commands</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys / command</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>z</kbd> <code>fragment</code></td><td>cd to a frecent directory (zoxide)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Fuzzy-search all shell history (atuin)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>T</kbd></td><td>Insert a file path (fzf + bat preview)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Alt</kbd>+<kbd>C</kbd></td><td>cd into a directory (fzf + eza tree)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>/</kbd></td><td>Toggle fzf preview pane</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Tab</kbd></td><td>fzf-tab completion picker</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>→</kbd></td><td>Accept autosuggestion (grey text)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Esc</kbd> <kbd>Esc</kbd></td><td>Prepend <code>sudo</code> to current/previous command</td></tr>
+              <tr data-bind-row><td class="keys"><code>ll</code></td><td>Long listing with icons + git (eza)</td></tr>
+              <tr data-bind-row><td class="keys"><code>lt</code></td><td>Tree, 2 levels (eza)</td></tr>
+              <tr data-bind-row><td class="keys"><code>..</code> / <code>...</code></td><td>Up one / two directories</td></tr>
+              <tr data-bind-row><td class="keys"><code>mkcd dir</code></td><td>mkdir -p + cd</td></tr>
+              <tr data-bind-row><td class="keys"><code>kill_port 3000</code></td><td>Kill process on a port</td></tr>
+              <tr data-bind-row><td class="keys"><code>reload</code></td><td><code>exec zsh</code> — apply config edits</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>B</kbd></td><td>Insert git branch (fzf-git)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>H</kbd></td><td>Insert commit hash</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Insert changed file path</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Insert stash</td></tr>
+              <tr data-bind-row><td class="keys"><code>gst</code> / <code>gco</code> / <code>glog</code></td><td>status / checkout / pretty log</td></tr>
+              <tr data-bind-row><td class="keys"><code>gco-fzf</code> / <code>gbd-fzf</code></td><td>Checkout / delete branches via fzf</td></tr>
+              <tr data-bind-row><td class="keys"><code>gpr</code> / <code>gundo</code></td><td>Create PR (gh) / soft-undo commit(s)</td></tr>
+              <tr data-bind-row><td class="keys"><code>lg</code> / <code>lzd</code> / <code>y</code> / <code>k</code></td><td>lazygit / lazydocker / yazi / kubecolor</td></tr>
+            </tbody>
+          </table>
+          <p class="tip"><code>you-should-use</code> prints the shorter alias when you type the long form — lean into that until it sticks.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Land in a project fast</strong>
+              <p class="steps"><kbd>z</kbd> + a unique fragment of the folder name → you’re there. No <code>cd ~/Developer/…</code>.</p>
+            </li>
+            <li>
+              <strong>Replay a past command</strong>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>R</kbd> → type a few words → Enter. Prefer this over arrowing through history.</p>
+            </li>
+            <li>
+              <strong>Build a command with paths</strong>
+              <p class="steps">Type the command, <kbd>Ctrl</kbd>+<kbd>T</kbd> to insert a file, or <kbd>Alt</kbd>+<kbd>C</kbd> to jump first.</p>
+            </li>
+            <li>
+              <strong>Checkout without remembering the branch</strong>
+              <p class="steps"><code>gco-fzf</code> → fuzzy pick → Enter.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">cd ~/Developer/foo/bar</span><span class="arrow">→</span><span class="new">z bar</span></li>
+            <li><span class="old">history | grep …</span><span class="arrow">→</span><span class="new">Ctrl-R</span></li>
+            <li><span class="old">ls -la</span><span class="arrow">→</span><span class="new">ll</span></li>
+            <li><span class="old">find . -name</span><span class="arrow">→</span><span class="new">fd / Ctrl-T</span></li>
+            <li><span class="old">git checkout &lt;branch&gt;</span><span class="arrow">→</span><span class="new">gco-fzf</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Jump to this repo with <code>z system-setup</code> (or a shorter fragment). <span class="hint">No tab-completing a long path.</span></li>
+            <li>Find any past <code>brew</code> or <code>make</code> command with <kbd>Ctrl</kbd>+<kbd>R</kbd> and re-run it. <span class="hint">Type 2–3 distinctive chars, not the whole line.</span></li>
+            <li>From anywhere, insert a nested file path into <code>bat </code> using only <kbd>Ctrl</kbd>+<kbd>T</kbd>. <span class="hint">Preview should show bat on the right.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/zsh/.config/zsh/{aliases,functions,fzf,plugins}.zsh</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>k9s — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="k9s">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">TUIs</p>
+          <h1>k9s</h1>
+          <p class="lede">The lazygit of Kubernetes — vim keys, logs, exec, port-forward. Shell alias <code>k</code> is kubecolor-wrapped kubectl for one-off commands.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>k9s</code> · context: <code>kubectx</code> · namespace: <code>kubens</code>
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>:</kbd> <code>pods</code></td><td>Jump to pods view (also <code>:deploy</code>, <code>:svc</code>, …)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>:</kbd> <code>ns</code></td><td>Namespaces</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>j</kbd> / <kbd>k</kbd></td><td>Move selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>/</kbd></td><td>Filter resources</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Enter</kbd></td><td>Describe / drill in</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>l</kbd></td><td>Logs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>s</kbd></td><td>Shell into container</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Shift</kbd>+<kbd>F</kbd></td><td>Port-forward</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>d</kbd></td><td>Describe</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>y</kbd></td><td>YAML</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>e</kbd></td><td>Edit resource</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>d</kbd></td><td>Delete (confirm)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Esc</kbd></td><td>Back / clear</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>?</kbd></td><td>Help</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>c</kbd> / <kbd>:q</kbd></td><td>Quit</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">Outside k9s: <code>k get pods</code>, <code>stern &lt;prefix&gt;</code> for multi-pod logs, <code>kubectx</code>/<code>kubens</code> to switch context/namespace before diving in.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Find a crashing pod</strong>
+              <p class="steps"><code>k9s</code> → <kbd>:</kbd><code>pods</code> → <kbd>/</kbd> filter by name → select → <kbd>l</kbd> logs → <kbd>d</kbd> if you need events.</p>
+            </li>
+            <li>
+              <strong>Exec and poke around</strong>
+              <p class="steps">Select pod → <kbd>s</kbd> → shell → exit → still in k9s.</p>
+            </li>
+            <li>
+              <strong>Port-forward a service locally</strong>
+              <p class="steps">Select pod/svc → <kbd>Shift</kbd>+<kbd>F</kbd> → set ports → test in browser → stop forward when done.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">kubectl get pods -A | grep</span><span class="arrow">→</span><span class="new">k9s → / filter</span></li>
+            <li><span class="old">kubectl logs -f …</span><span class="arrow">→</span><span class="new">k9s → l</span></li>
+            <li><span class="old">kubectl exec -it … -- sh</span><span class="arrow">→</span><span class="new">k9s → s</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Against kind/colima k3s: open k9s, switch to pods with <kbd>:</kbd><code>pods</code>, filter, open logs, go back. <span class="hint">No kubectl for this drill.</span></li>
+            <li>From the shell, use <code>k get ns</code> once, then do the same discovery only inside k9s. <span class="hint">Feel when TUI beats one-liners.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Alias <code>k</code> → kubecolor in <code>stow/zsh/.config/zsh/aliases.zsh</code> · cluster tools in README (kind, stern, krew)
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

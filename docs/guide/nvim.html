@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neovim — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="nvim">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Core</p>
+          <h1>Neovim (LazyVim)</h1>
+          <p class="lede"><kbd>Space</kbd> is the leader — press it and a menu shows everything. Learn the handful below first; discover the rest from which-key.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>nvim</code> · <code>nvim .</code> · <code>$EDITOR</code>
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds (yours + LazyVim essentials)</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd></td><td>Leader / which-key menu</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>Space</kbd></td><td>Fuzzy-find files</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>/</kbd></td><td>Grep across the project</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>e</kbd></td><td>File explorer</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>g</kbd> <kbd>g</kbd></td><td>lazygit inside nvim</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>w</kbd></td><td>Save file (custom)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>j</kbd> <kbd>k</kbd></td><td>Exit insert mode (custom)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Shift</kbd>+<kbd>H</kbd> / <kbd>L</kbd></td><td>Previous / next buffer</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>b</kbd> <kbd>d</kbd></td><td>Delete buffer (LazyVim)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>s</kbd> <kbd>s</kbd></td><td>Search symbols (buffer)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>g</kbd> <kbd>d</kbd></td><td>Go to definition (LSP)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>g</kbd> <kbd>r</kbd></td><td>References</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>K</kbd></td><td>Hover docs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>c</kbd> <kbd>a</kbd></td><td>Code action</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd> <kbd>c</kbd> <kbd>f</kbd></td><td>Format</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move across nvim splits ↔ tmux panes</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Open a file by name</strong>
+              <p class="steps"><kbd>Space</kbd> <kbd>Space</kbd> → type fragments → Enter. Prefer this over the explorer for known files.</p>
+            </li>
+            <li>
+              <strong>Find a string, jump, edit</strong>
+              <p class="steps"><kbd>Space</kbd> <kbd>/</kbd> → pick match → edit → <kbd>Space</kbd> <kbd>w</kbd> to save.</p>
+            </li>
+            <li>
+              <strong>Git without leaving the editor</strong>
+              <p class="steps"><kbd>Space</kbd> <kbd>g</kbd> <kbd>g</kbd> → lazygit overlay → stage/commit → quit back to nvim.</p>
+            </li>
+            <li>
+              <strong>Leave insert without stretching to Esc</strong>
+              <p class="steps">Type <kbd>j</kbd> <kbd>k</kbd> from home row.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">:e path/to/file</span><span class="arrow">→</span><span class="new">Space Space</span></li>
+            <li><span class="old">Esc (far key)</span><span class="arrow">→</span><span class="new">jk</span></li>
+            <li><span class="old">:w</span><span class="arrow">→</span><span class="new">Space w</span></li>
+            <li><span class="old">Mouse to click another pane</span><span class="arrow">→</span><span class="new">Ctrl-h/j/k/l</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Open nvim in this repo. Open three files with only <kbd>Space</kbd> <kbd>Space</kbd>, flip between them with <kbd>Shift</kbd>+<kbd>H</kbd>/<kbd>L</kbd>. <span class="hint">No mouse tabs.</span></li>
+            <li>Grep for a known string with <kbd>Space</kbd> <kbd>/</kbd>, jump, change one word, save with <kbd>Space</kbd> <kbd>w</kbd>. <span class="hint">Exit insert via <kbd>jk</kbd>.</span></li>
+            <li>Press <kbd>Space</kbd> and linger — read the which-key groups once. Open lazygit with <kbd>Space</kbd> <kbd>gg</kbd>, quit, back to editing. <span class="hint">Same <code>lg</code> muscle, inside the editor.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/nvim/.config/nvim/</code> · keymaps: <code>lua/config/keymaps.lua</code> · extras: <code>lazyvim.json</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>
