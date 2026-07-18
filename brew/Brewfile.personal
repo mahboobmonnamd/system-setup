@@ -1,5 +1,5 @@
 # Brewfile.personal — extras for personal machines only.
-brew "colima"               # container VM behind the docker CLI (work uses Rancher Desktop)
+# (colima and the k8s stack live in base — same tooling on work and personal)
 cask "brave-browser"
 cask "bitwarden"
 cask "obsidian"

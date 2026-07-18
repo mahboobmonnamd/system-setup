@@ -21,7 +21,10 @@ alias glog="git log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Cres
 alias gplr='git pull --rebase'
 
 # --- Kubernetes ------------------------------------------------------------
-alias k='kubectl'          # completions carry over via compdef below
+# `k` = kubecolor (colored kubectl wrapper, same args). Plain kubectl stays
+# untouched for scripts/pasted commands.
+alias k='kubecolor'
+compdef kubecolor=kubectl 2>/dev/null
 compdef k=kubectl 2>/dev/null
 
 # --- Config shortcuts ------------------------------------------------------

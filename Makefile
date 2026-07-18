@@ -9,7 +9,7 @@ PROFILE ?= personal
 # Override for a subset: make stow PACKAGES="zsh"
 PACKAGES ?= $(notdir $(wildcard stow/*))
 
-.PHONY: help brew stow unstow sync macos touchid
+.PHONY: help brew stow unstow sync macos touchid bootstrap
 
 help:
 	@echo "make brew     install everything in brew/Brewfile.base + brew/Brewfile.$(PROFILE)"
@@ -22,6 +22,8 @@ help:
 brew:
 	brew bundle --file=brew/Brewfile.base
 	brew bundle --file=brew/Brewfile.$(PROFILE)
+	@# Brewfile.local: optional, gitignored, machine-specific (e.g. mas apps)
+	@[ -f brew/Brewfile.local ] && brew bundle --file=brew/Brewfile.local || true
 
 # --restow = re-link (safe to run repeatedly; picks up new files)
 # --target  = where the symlinks land; --dir = where the packages live
@@ -35,6 +37,9 @@ unstow:
 	stow --dir=stow --target=$(HOME) --delete $(PACKAGES)
 
 sync: brew stow
+
+bootstrap:
+	bash scripts/bootstrap.sh
 
 macos:
 	bash scripts/macos.sh

@@ -8,3 +8,10 @@ stow/git/.config/git/identity-*.gitconfig
 
 # Scratch Brewfile dumps
 brew/Brewfile.dumped
+
+# Machine-specific brew entries (mas apps etc.) — keep the .example, ignore the real
+brew/Brewfile.local
+
+# tmux plugins (TPM clones them here through the ~/.config/tmux symlink;
+# they're installed by TPM, not tracked). tmux.conf auto-installs on first run.
+stow/tmux/.config/tmux/plugins/

@@ -59,3 +59,11 @@
 	path = ~/.config/git/identity-work.gitconfig
 [includeIf "hasconfig:remote.*.url:git@github.com-work:*/*"]
 	path = ~/.config/git/identity-work.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-freelance:*"]
+	path = ~/.config/git/identity-freelance.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-freelance:*/*"]
+	path = ~/.config/git/identity-freelance.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-oss:*"]
+	path = ~/.config/git/identity-oss.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com-oss:*/*"]
+	path = ~/.config/git/identity-oss.gitconfig

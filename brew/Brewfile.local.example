@@ -1,0 +1,14 @@
+# Brewfile.local — machine-specific entries that DON'T belong in a public repo.
+# Copy this to `Brewfile.local` (drop .example); the real file is gitignored.
+# `make brew` installs it automatically after base + profile if it exists.
+#
+# Mac App Store apps live here because their numeric IDs are account/region
+# specific and meaningless in a shared repo. Find an ID with:  mas search <name>
+# (mas itself is installed from base? -> add `brew "mas"` to your local file or
+#  base if you use the store regularly.)
+
+# brew "mas"                                   # Mac App Store CLI (needed for mas lines)
+# mas "WhatsApp",  id: 310633997
+# mas "Telegram",  id: 747648890
+# mas "Numbers",   id: 361304891
+# mas "Xcode",     id: 497799835

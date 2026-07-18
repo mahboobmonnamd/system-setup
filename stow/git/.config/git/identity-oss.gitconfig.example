@@ -1,0 +1,7 @@
+# Open-source identity — machine-local. scripts/git_setup.sh materializes this
+# (drops .example, fills in real values). The real file is gitignored.
+[user]
+	name = Your Name
+	email = you@oss.example
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519_oss -o IdentitiesOnly=yes
