@@ -45,7 +45,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 echo "==> Dock"
-defaults write com.apple.dock autohide -bool true          # reclaim screen space
+defaults write com.apple.dock autohide -bool false          # reclaim screen space
 defaults write com.apple.dock autohide-delay -float 0      # appears instantly
 defaults write com.apple.dock autohide-time-modifier -float 0.4
 defaults write com.apple.dock show-recents -bool false     # no recent-apps section
