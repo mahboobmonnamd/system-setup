@@ -17,7 +17,7 @@ TO ?= base
 help:
 	@echo "make bootstrap  full fresh-machine setup (scripts/bootstrap.sh)"
 	@echo "make brew       install brew/Brewfile.base + brew/Brewfile.\$$(PROFILE)"
-	@echo "make add        install a pkg AND record it: make add NAME=ripgrep [TO=personal] [CASK=1]"
+	@echo "make add        install + record in a Brewfile: make add NAME=ripgrep [TO=personal] [CASK=1]"
 	@echo "make stow       symlink stow/* into \$$HOME  (currently: $(PACKAGES))"
 	@echo "make unstow     remove those symlinks"
 	@echo "make sync       brew + stow"
@@ -25,7 +25,8 @@ help:
 	@echo "make macos      apply macOS defaults (keyboard/Finder/Dock) — run yourself"
 	@echo "make touchid    enable Touch ID for sudo — run yourself"
 	@echo ""
-	@echo "Variables: PROFILE=personal|work  (default: $(PROFILE))   TO=base|personal|work"
+	@echo "Variables: PROFILE=personal|work  (default: $(PROFILE))"
+	@echo "           TO=base|personal|work|local  (for make add; default: $(TO))"
 
 brew:
 	brew bundle --file=brew/Brewfile.base
@@ -52,7 +53,7 @@ sync: brew stow
 # step, so installed != tracked never happens. CASK=1 forces cask when a name
 # exists as both a formula and a cask.
 add:
-	@test -n "$(NAME)" || { echo "usage: make add NAME=<pkg> [TO=base|personal|work] [CASK=1]"; exit 1; }
+	@test -n "$(NAME)" || { echo "usage: make add NAME=<pkg> [TO=base|personal|work|local] [CASK=1]"; exit 1; }
 	@CASK="$(CASK)" bash scripts/brew_add.sh "$(NAME)" "$(TO)"
 
 bootstrap:

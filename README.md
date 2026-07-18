@@ -15,6 +15,9 @@ make bootstrap   # fresh Mac: CLT, Homebrew, packages, dotfiles, runtimes
 make brew        # install packages   (PROFILE=work on the work machine)
 make stow        # link dotfiles into $HOME
 make sync        # brew + stow
+make add NAME=fd              # install a formula AND append to Brewfile.base
+make add NAME=discord TO=personal   # or TO=work / TO=local
+make add NAME=SomeApp CASK=1 TO=personal   # force cask when name is ambiguous
 ```
 
 **Rule:** no alias ever shadows a standard command (cat/ls/grep/find behave
@@ -238,11 +241,12 @@ Deliberately minimal: Spotlight stays as the launcher.
 ## Repo layout
 
 ```
-Makefile            brew / stow / sync / guide entry points
+Makefile            brew / stow / sync / add / guide entry points
 brew/               Brewfile.base + Brewfile.{personal,work}
 stow/               one package per tool: zsh, starship, ghostty, git,
                     lazygit, tmux, nvim, atuin, ssh
 docs/guide/         HTML muscle-memory cheatsheets (make guide)
+scripts/brew_add.sh   make add — install a pkg and record it in a Brewfile
 scripts/git_setup.sh  interactive ssh-key + git-identity bootstrap
 ```
 
