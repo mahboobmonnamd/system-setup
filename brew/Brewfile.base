@@ -1,0 +1,6 @@
+# Brewfile.base — installed on EVERY machine (personal and work).
+# Grows phase by phase. `make brew` applies it.
+
+# Phase 0 — the automation itself
+brew "stow"   # symlink manager for dotfiles (see README)
+brew "git"    # newer than the Apple-bundled git, updated via brew
