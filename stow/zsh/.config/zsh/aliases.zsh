@@ -31,4 +31,5 @@ compdef k=kubectl 2>/dev/null
 alias reload='exec zsh'                       # apply config edits
 alias zshconfig='$EDITOR ~/.zshrc'
 alias aliasconfig='$EDITOR ~/.config/zsh/aliases.zsh'
+alias envConfig='$EDITOR ~/.config/zsh/env.local.zsh'
 # Extra git helpers (gco-fzf, gbd-fzf, gpr, gundo, gstats) live in functions.zsh

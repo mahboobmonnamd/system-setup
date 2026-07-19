@@ -70,3 +70,33 @@ y() {
   fi
   rm -f -- "$tmp"
 }
+
+# --- Obsidian Brain vault (override path in env.local.zsh) --------------------
+: "${OBSIDIAN_VAULT:=$HOME/Documents/Brain}"
+
+obs() {
+  open -a Obsidian "$OBSIDIAN_VAULT"
+}
+
+ocd() {
+  builtin cd -- "$OBSIDIAN_VAULT"
+}
+
+odaily() {
+  local day note
+  day="$(date +%Y-%m-%d)"
+  note="$OBSIDIAN_VAULT/06-Daily/${day}.md"
+  mkdir -p "$OBSIDIAN_VAULT/06-Daily"
+  [[ -f $note ]] || printf '%s\n' "# ${day}" "" >"$note"
+  open -a Obsidian "$note"
+}
+
+obsync() {
+  local setup="${SYSTEM_SETUP:-$HOME/Developer/system-setup}"
+  if [[ -x $setup/scripts/obsidian_vault_sync.sh ]]; then
+    OBSIDIAN_VAULT="$OBSIDIAN_VAULT" bash "$setup/scripts/obsidian_vault_sync.sh"
+  else
+    echo "obsidian_vault_sync.sh not found at $setup/scripts/" >&2
+    return 1
+  fi
+}

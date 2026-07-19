@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Obsidian — Brain vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="obsidian">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>quick reference</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+        <li><a href="obsidian.html" data-page="obsidian">Obsidian</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Notes</p>
+          <h1>Obsidian</h1>
+          <p class="lede">
+            Your notes live in a private vault at <code>~/Documents/Brain</code>
+            (not in this repo). Day-to-day how-to is in the vault’s
+            <code>GUIDE.md</code> — this page is the short shell + shortcut cheat sheet.
+          </p>
+          <div class="launch">
+            <span class="launch-label">Try</span>
+            <code>obs</code> · <code>odaily</code> · <code>ocd</code> · <code>obsync</code>
+          </div>
+        </header>
+
+        <section>
+          <h2>From the terminal</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Command</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><code>obs</code></td><td>Open the Brain vault in Obsidian</td></tr>
+              <tr data-bind-row><td class="keys"><code>odaily</code></td><td>Open today’s daily note (creates it if needed)</td></tr>
+              <tr data-bind-row><td class="keys"><code>ocd</code></td><td>Jump into the vault folder (handy before starting an agent)</td></tr>
+              <tr data-bind-row><td class="keys"><code>obsync</code></td><td>Save and push the vault to GitHub now</td></tr>
+              <tr data-bind-row><td class="keys"><code>make obsidian-sync</code></td><td>Same backup, run from this repo</td></tr>
+              <tr data-bind-row><td class="keys"><code>make obsidian-sync-install</code></td><td>Turn on automatic hourly backup</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">To use a different vault path, set <code>OBSIDIAN_VAULT</code> in <code>~/.config/zsh/env.local.zsh</code>.</p>
+        </section>
+
+        <section>
+          <h2>Useful shortcuts in Obsidian</h2>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>N</kbd></td><td>Create a note from a template</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td><td>Open today’s daily note</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd></td><td>Open this week’s note</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>P</kbd></td><td>Command palette</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Working with agents</h2>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Agent</th><th>Instruction files</th><th>Use for</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys">Claude</td><td><code>CLAUDE.md</code> + <code>AGENTS.md</code></td><td>Personal notes (<code>personal</code> / <code>shared</code>)</td></tr>
+              <tr data-bind-row><td class="keys">Bob</td><td><code>BOB.md</code> + <code>AGENTS.md</code></td><td>Work notes (<code>work</code> / <code>shared</code>)</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">Run <code>ocd</code> first so the agent opens inside the vault. Drafts land in <code>_agent/inbox</code> until you file them.</p>
+        </section>
+
+        <section>
+          <h2>Everyday flow</h2>
+          <ol class="flows">
+            <li>
+              <strong>Start the day</strong>
+              <p class="steps"><code>obs</code> → open Home → <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> for today → glance at Inbox.</p>
+            </li>
+            <li>
+              <strong>Ask Claude or Bob for help</strong>
+              <p class="steps"><code>ocd</code> → start the agent there → review <code>_agent/inbox</code> → move finished notes into the right folders.</p>
+            </li>
+            <li>
+              <strong>Backup before you leave</strong>
+              <p class="steps">Run <code>obsync</code>, or let the hourly backup handle it.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Prefer this</h2>
+          <ul class="instead">
+            <li><span class="old">Editing the old iCloud copy</span><span class="arrow">→</span><span class="new">only <code>~/Documents/Brain</code></span></li>
+            <li><span class="old">Keeping notes only on one Mac</span><span class="arrow">→</span><span class="new">private GitHub backup (<code>obsync</code>)</span></li>
+            <li><span class="old">Mixing personal and work for agents</span><span class="arrow">→</span><span class="new">set <code>domain</code> and follow CLAUDE / BOB</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Quick checks</h2>
+          <ul class="drills">
+            <li><code>ocd</code> then <code>pwd</code> should show <code>~/Documents/Brain</code>.</li>
+            <li>In Obsidian, <kbd>Cmd</kbd>+<kbd>N</kbd> → Decision template → file should appear under <code>09-Decisions</code>.</li>
+            <li><code>make obsidian-sync</code> should either say nothing to commit or push cleanly.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

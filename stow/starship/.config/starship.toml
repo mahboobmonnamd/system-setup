@@ -13,8 +13,9 @@ error_symbol = "[❯](red)"
 
 [directory]
 style = "bold blue"
-truncation_length = 4          # show at most 4 path segments
-truncate_to_repo = true        # inside a repo, start the path at the repo root
+truncation_length = 0          # 0 = never truncate — show the full path
+truncate_to_repo = false       # don't shorten to the repo root; show it all
+# Home still shows as ~ ; set home_symbol = "/Users/you" for a literal absolute path
 
 [git_branch]
 style = "bold mauve"
