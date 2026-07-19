@@ -18,3 +18,7 @@ brew/Brewfile.local
 # tmux plugins (TPM clones them here through the ~/.config/tmux symlink;
 # they're installed by TPM, not tracked). tmux.conf auto-installs on first run.
 stow/tmux/.config/tmux/plugins/
+
+
+# SSH allowed_signers (machine-local verify keys — not for the public repo)
+stow/git/.config/git/allowed_signers
