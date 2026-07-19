@@ -1,12 +1,12 @@
-# Work identity — machine-local. scripts/git_setup.sh materializes this
+# Open-source identity — machine-local. scripts/git_setup.sh materializes this
 # (drops .example, fills in real values). The real file is gitignored.
 [user]
 	name = Your Name
-	email = you@work.example
+	email = you@oss.example
 	# Sign with the same key's PUBLIC half (upload to GitHub as a Signing Key)
-	signingkey = ~/.ssh/id_ed25519_work.pub
+	signingkey = ~/.ssh/id_ed25519_oss.pub
 [core]
-	sshCommand = ssh -i ~/.ssh/id_ed25519_work -o IdentitiesOnly=yes
+	sshCommand = ssh -i ~/.ssh/id_ed25519_oss -o IdentitiesOnly=yes
 [commit]
 	gpgsign = true
 [tag]

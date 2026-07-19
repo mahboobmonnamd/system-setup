@@ -37,6 +37,9 @@ brew "yazi"        # terminal file manager with previews (`yazi`)
 brew "gh"          # GitHub CLI (PRs, issues from the terminal)
 brew "git-delta"   # syntax-highlighted diffs (wired in .gitconfig)
 brew "lazygit"     # full git TUI (`lazygit` or `lg`)
+brew "gitleaks"    # secret scanner — wired as a pre-commit hook via the git
+                   # init template (~/.config/git/template); blocks committing
+                   # API keys/tokens. Bypass a false positive: --no-verify
 
 # --- Multiplexer / sessions -------------------------------------------------
 brew "tmux"        # terminal multiplexer — sessions survive disconnects
@@ -49,15 +52,15 @@ brew "neovim"      # the editor (LazyVim config in stow/nvim)
 brew "mise"        # ONE version manager: node, go, python (reads .nvmrc too)
 brew "rustup"      # rust toolchain manager (run: rustup default stable)
 brew "uv"          # fast python package/project manager
+brew "golangci-lint"  # Go meta-linter (same one CI runs)
 
 # --- Containers & Kubernetes ------------------------------------------------
 # LICENSE POLICY: base must contain ONLY open-source/free-for-commercial-use
-# tools (this file is shared with the work machine). The docker CLI + plugins
-# are Apache-2.0 — the commercial product is Docker *Desktop*, which is not
-# used here. The VM behind the CLI differs per machine:
-#   personal -> colima (in Brewfile.personal)
-#   work     -> Rancher Desktop (installed per company policy)
-brew "docker"                    # docker CLI (talks to colima or Rancher)
+# tools (this file is shared with the work machine). Colima (MIT) is the VM
+# on BOTH machines — no Docker Desktop, no Rancher Desktop needed. The docker
+# CLI + plugins are Apache-2.0; only Docker *Desktop* is commercial.
+brew "colima"                    # container VM:  colima start
+brew "docker"                    # docker CLI (talks to colima)
 brew "docker-compose"            # compose v2 plugin
 brew "docker-buildx"             # buildkit plugin
 brew "lazydocker"                # docker TUI
@@ -68,6 +71,24 @@ brew "helm"                      # k8s package manager
 brew "kind"                      # local k8s clusters in docker
 brew "stern"                     # multi-pod log tailing
 brew "dive"                      # inspect image layers
+brew "kustomize"                 # overlay-based k8s manifests
+brew "kubecolor"                 # colored kubectl output (the `k` alias uses it)
+brew "krew"                      # kubectl plugin manager (kubectl krew install ...)
+# cask "freelens"                # optional k8s GUI (MIT, open-source Lens fork).
+                                 # Off by default — k9s covers this in-terminal.
+                                 # Uncomment for a GUI on both machines.
+
+# --- Power layer ------------------------------------------------------------
+brew "xh"          # HTTP client, httpie syntax:  xh :3000/api  |  xh POST url k=v
+brew "fx"          # interactive JSON explorer:  curl ... | fx  (pairs with jq)
+brew "glow"        # render markdown in the terminal:  glow README.md
+brew "difftastic"  # structural diff (understands syntax):  difft a.go b.go
+brew "hyperfine"   # benchmark commands:  hyperfine 'npm run build'
+brew "watchexec"   # rerun on file change:  watchexec -e go -- go test ./...
+brew "tokei"       # code statistics by language
+brew "procs"       # modern process viewer (own name; ps untouched)
+brew "gping"       # ping with a live graph
+brew "git-absorb"  # auto-target fixup commits:  git absorb  then rebase
 
 # --- Terminal & font --------------------------------------------------------
 cask "ghostty"                        # the terminal (config in stow/ghostty)
@@ -75,3 +96,8 @@ cask "font-jetbrains-mono-nerd-font"  # icons for prompt/eza/nvim
 
 # --- Window management (Spotlight stays as the launcher) --------------------
 cask "loop"      # open-source window snapping (halves/thirds via keyboard)
+
+# --- Browser routing --------------------------------------------------------
+# Finicky auto-routes URLs by rule (config in stow/finicky). Manual picker
+# (Browserino) is personal-only — see Brewfile.personal.
+cask "finicky"

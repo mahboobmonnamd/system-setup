@@ -37,6 +37,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true    # folders on t
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"  # search current dir
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # New windows open in ~/Developer
+mkdir -p "${HOME}/Developer"
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Developer/"
 # Don't litter .DS_Store on network shares / USB drives
@@ -44,7 +45,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 echo "==> Dock"
-defaults write com.apple.dock autohide -bool true          # reclaim screen space
+defaults write com.apple.dock autohide -bool false          # reclaim screen space
 defaults write com.apple.dock autohide-delay -float 0      # appears instantly
 defaults write com.apple.dock autohide-time-modifier -float 0.4
 defaults write com.apple.dock show-recents -bool false     # no recent-apps section

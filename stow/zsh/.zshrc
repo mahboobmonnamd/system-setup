@@ -3,8 +3,11 @@
 
 # --- Homebrew --------------------------------------------------------------
 # Puts brew's tools on PATH and sets HOMEBREW_PREFIX. Must come first.
+# Apple Silicon: /opt/homebrew — Intel: /usr/local
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # --- Basics ----------------------------------------------------------------
@@ -51,6 +54,7 @@ bindkey '^[[1;3D' backward-word  # Option+Left
 
 # --- Aliases & functions ---------------------------------------------------
 source "$HOME/.config/zsh/aliases.zsh"
+source "$HOME/.config/zsh/functions.zsh"
 
 # --- fzf configuration (theme, previews, defaults) -------------------------
 source "$HOME/.config/zsh/fzf.zsh"

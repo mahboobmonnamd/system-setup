@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ghostty — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="ghostty">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">Core</p>
+          <h1>Ghostty</h1>
+          <p class="lede">Your terminal: Catppuccin Latte, JetBrains Mono, Option-as-Alt for fzf. Quake dropdown from anywhere.</p>
+          <div class="launch">
+            <span class="launch-label">Open</span>
+            Ghostty app · quake: <kbd>Cmd</kbd>+<kbd>`</kbd>
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>`</kbd></td><td>Toggle quake-style quick terminal (global)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>↑</kbd></td><td>Jump to previous prompt (shell integration)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>↓</kbd></td><td>Jump to next prompt</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Option</kbd> = Alt</td><td>Needed for <kbd>Alt</kbd>+<kbd>C</kbd> fzf directory jump</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">Long-lived work belongs in <a href="tmux.html">tmux</a>. Use Ghostty quake for one-off commands without leaving the browser/IDE.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Quick command without context-switching</strong>
+              <p class="steps">From any app: <kbd>Cmd</kbd>+<kbd>`</kbd> → run command → same key to hide.</p>
+            </li>
+            <li>
+              <strong>Scroll to the last command’s output</strong>
+              <p class="steps"><kbd>Cmd</kbd>+<kbd>↑</kbd> jumps prompt-to-prompt — faster than hunting scrollback.</p>
+            </li>
+            <li>
+              <strong>Deep work session</strong>
+              <p class="steps">Full Ghostty window → <code>tmux</code> / sesh → leave quake for interruptions.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">Cmd-Tab to terminal for one command</span><span class="arrow">→</span><span class="new">Cmd+`</span></li>
+            <li><span class="old">Scroll forever to find output</span><span class="arrow">→</span><span class="new">Cmd+↑ prompt jump</span></li>
+            <li><span class="old">Many bare terminal windows</span><span class="arrow">→</span><span class="new">one Ghostty + tmux</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>From Safari (or any app), open quake, run <code>pwd</code>, hide it — without Cmd-Tab. <span class="hint"><kbd>Cmd</kbd>+<kbd>`</kbd> both ways.</span></li>
+            <li>Run three commands in a row, then <kbd>Cmd</kbd>+<kbd>↑</kbd> until you’re at the first. <span class="hint">Feel prompt boundaries.</span></li>
+            <li>Confirm <kbd>Alt</kbd>+<kbd>C</kbd> opens fzf directories (Option-as-Alt). <span class="hint">If it types ç instead, Option isn’t Alt.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Config: <code>stow/ghostty/.config/ghostty/config</code> · validate: <code>ghostty +show-config</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

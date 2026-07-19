@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terminal muscle memory — system-setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="index">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">system-setup</p>
+          <h1>Terminal muscle memory</h1>
+          <p class="lede">
+            Keybinds and flows from <em>your</em> configs — open a page, drill the sequences,
+            keep the terminal under your fingers.
+          </p>
+        </header>
+
+        <section>
+          <h2>Pick a tool</h2>
+          <div class="hub-grid">
+            <a class="hub-card" href="shell.html">
+              <h3>Shell</h3>
+              <p>zoxide, atuin, fzf, aliases</p>
+              <span class="cmd">z · Ctrl-R · ll</span>
+            </a>
+            <a class="hub-card" href="tmux.html">
+              <h3>tmux</h3>
+              <p>Sessions, splits, sesh picker</p>
+              <span class="cmd">Ctrl-a · Ctrl-a T</span>
+            </a>
+            <a class="hub-card" href="nvim.html">
+              <h3>Neovim</h3>
+              <p>LazyVim leader + your keys</p>
+              <span class="cmd">&lt;Space&gt; · jk</span>
+            </a>
+            <a class="hub-card" href="lazygit.html">
+              <h3>lazygit</h3>
+              <p>Stage, commit, branch TUI</p>
+              <span class="cmd">lg</span>
+            </a>
+            <a class="hub-card" href="lazydocker.html">
+              <h3>lazydocker</h3>
+              <p>Containers, logs, images</p>
+              <span class="cmd">lzd</span>
+            </a>
+            <a class="hub-card" href="yazi.html">
+              <h3>yazi</h3>
+              <p>File manager that cds on quit</p>
+              <span class="cmd">y</span>
+            </a>
+            <a class="hub-card" href="k9s.html">
+              <h3>k9s</h3>
+              <p>Kubernetes cluster TUI</p>
+              <span class="cmd">k9s</span>
+            </a>
+            <a class="hub-card" href="git.html">
+              <h3>Git identities</h3>
+              <p>Multi-account SSH + signing</p>
+              <span class="cmd">git whoami</span>
+            </a>
+            <a class="hub-card" href="ghostty.html">
+              <h3>Ghostty</h3>
+              <p>Quake terminal + prompt jump</p>
+              <span class="cmd">Cmd+`</span>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h2>Daily drivers (memorize first)</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter keybinds…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys / command</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>z</kbd> <code>name</code></td><td>Jump to a directory you’ve visited (zoxide)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Fuzzy-search shell history (atuin)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>T</kbd></td><td>Fuzzy-pick a file into the command line (fzf)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Alt</kbd>+<kbd>C</kbd></td><td>Fuzzy-cd into a directory (fzf)</td></tr>
+              <tr data-bind-row><td class="keys"><code>ll</code> / <code>lt</code></td><td>Rich listing / tree (eza)</td></tr>
+              <tr data-bind-row><td class="keys"><code>lg</code></td><td>lazygit</td></tr>
+              <tr data-bind-row><td class="keys"><code>lzd</code></td><td>lazydocker</td></tr>
+              <tr data-bind-row><td class="keys"><code>y</code></td><td>yazi (quit into browsed dir)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> then <kbd>T</kbd></td><td>tmux sesh session picker</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd><kbd>Space</kbd></td><td>nvim: fuzzy-find files</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>`</kbd></td><td>Ghostty quake dropdown (anywhere)</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>How to practice</h2>
+          <ol class="flows">
+            <li>
+              <strong>One page per session</strong>
+              <p class="steps">Open a tool page. Run the drills without looking at the mouse. Close the page and repeat from memory.</p>
+            </li>
+            <li>
+              <strong>Replace old habits</strong>
+              <p class="steps">Each page has “reach for this instead” pairs — force the new path for a week.</p>
+            </li>
+            <li>
+              <strong>Print if it helps</strong>
+              <p class="steps">Pages are print-friendly. Park a keybind sheet next to the keyboard for the first few days.</p>
+            </li>
+          </ol>
+        </section>
+
+        <p class="config-ptr">
+          Install / bootstrap stays in the repo <a href="../../README.md">README</a>.
+          This guide only covers what you type every day.
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

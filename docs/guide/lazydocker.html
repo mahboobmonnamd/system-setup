@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lazydocker — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="lazydocker">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">TUIs</p>
+          <h1>lazydocker</h1>
+          <p class="lede">Containers, images, volumes, and logs in one TUI. Docker CLI talks to Colima on this setup.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>lzd</code> · <code>lazydocker</code> · first: <code>colima start</code>
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>Tab</kbd></td><td>Cycle panels (containers / images / volumes…)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>j</kbd> / <kbd>k</kbd></td><td>Move selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Enter</kbd></td><td>Select / expand</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>d</kbd></td><td>Remove container/image (confirm)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>s</kbd></td><td>Stop container</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>r</kbd></td><td>Restart container</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>a</kbd></td><td>Attach / exec into container (context menu)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>l</kbd></td><td>View logs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>e</kbd></td><td>Exec shell in container</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>[</kbd> / <kbd>]</kbd></td><td>Previous / next tab in side views</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>x</kbd></td><td>Menu of actions</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>?</kbd></td><td>Help</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>q</kbd></td><td>Quit</td></tr>
+            </tbody>
+          </table>
+          <p class="tip">If the UI is empty: <code>colima start</code> then <code>docker ps</code> to confirm the daemon, then <code>lzd</code> again.</p>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Tail logs for a misbehaving container</strong>
+              <p class="steps"><code>lzd</code> → select container → <kbd>l</kbd> (or logs pane) → watch → <kbd>q</kbd> when done.</p>
+            </li>
+            <li>
+              <strong>Shell into a container</strong>
+              <p class="steps">Select → <kbd>e</kbd> / attach action → work → exit shell → still in lazydocker.</p>
+            </li>
+            <li>
+              <strong>Prune junk images</strong>
+              <p class="steps">Images panel → select dangling/unused → <kbd>d</kbd> carefully.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">docker ps && docker logs -f</span><span class="arrow">→</span><span class="new">lzd → select → l</span></li>
+            <li><span class="old">docker exec -it … sh</span><span class="arrow">→</span><span class="new">lzd → e</span></li>
+            <li><span class="old">docker system df / prune guesswork</span><span class="arrow">→</span><span class="new">lzd images/volumes panels</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>Start Colima, run any container (<code>docker run -d nginx</code>), open <code>lzd</code>, find it, open logs, stop it. <span class="hint">All from the TUI.</span></li>
+            <li>Without looking at <kbd>?</kbd>, cycle panels with <kbd>Tab</kbd> and land back on containers. <span class="hint">Muscle for panel awareness.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Alias: <code>lzd</code> in <code>stow/zsh/.config/zsh/aliases.zsh</code> · runtime: Colima + docker CLI (see README)
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>

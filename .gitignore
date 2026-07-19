@@ -6,5 +6,15 @@ stow/zsh/.config/zsh/env.local.zsh
 stow/git/.config/git/identity-*.gitconfig
 !stow/git/.config/git/identity-*.gitconfig.example
 
+# Local-only SSH overrides (kept out of the public repo).
+stow/ssh/.ssh/config.local
+
 # Scratch Brewfile dumps
 brew/Brewfile.dumped
+
+# Machine-specific brew entries (mas apps etc.) — keep the .example, ignore the real
+brew/Brewfile.local
+
+# tmux plugins (TPM clones them here through the ~/.config/tmux symlink;
+# they're installed by TPM, not tracked). tmux.conf auto-installs on first run.
+stow/tmux/.config/tmux/plugins/

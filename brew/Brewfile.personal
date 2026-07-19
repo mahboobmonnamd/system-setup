@@ -1,5 +1,5 @@
 # Brewfile.personal — extras for personal machines only.
-brew "colima"               # container VM behind the docker CLI (work uses Rancher Desktop)
+# (colima and the k8s stack live in base — same tooling on work and personal)
 cask "brave-browser"
 cask "bitwarden"
 cask "obsidian"
@@ -8,3 +8,13 @@ cask "cursor"
 cask "appcleaner"
 cask "claude"
 cask "claude-code"
+cask "discord"
+cask "google-drive"
+cask "utm"          # virtual machines (QEMU frontend)
+
+# Manual per-click browser picker. Third-party PERSONAL tap — Homebrew won't
+# load it until trusted once (supply-chain opt-in):
+#   brew trust --cask alexstrnik/browserino/browserino
+# then `make brew` (or the lines below on a fresh personal bootstrap).
+tap "alexstrnik/browserino"
+cask "alexstrnik/browserino/browserino"

@@ -1,0 +1,13 @@
+# Freelance identity — machine-local. scripts/git_setup.sh materializes this
+# (drops .example, fills in real values). The real file is gitignored.
+[user]
+	name = Your Name
+	email = you@freelance.example
+	# Sign with the same key's PUBLIC half (upload to GitHub as a Signing Key)
+	signingkey = ~/.ssh/id_ed25519_freelance.pub
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519_freelance -o IdentitiesOnly=yes
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

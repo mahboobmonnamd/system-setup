@@ -23,6 +23,6 @@ gui:
     searchingActiveBorderColor:
       - '#df8e1d'
 git:
-  paging:
-    colorArg: always
-    pager: delta --light --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --light --paging=never

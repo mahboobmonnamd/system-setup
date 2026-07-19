@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>yazi — muscle memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/guide.css" />
+</head>
+<body data-page="yazi">
+  <div class="layout">
+    <nav class="nav" aria-label="Guide">
+      <a class="nav-brand" href="index.html">system-setup<span>muscle-memory guide</span></a>
+      <p class="nav-label">Start</p>
+      <ul>
+        <li><a href="index.html" data-page="index">Hub</a></li>
+      </ul>
+      <p class="nav-label">Core</p>
+      <ul>
+        <li><a href="shell.html" data-page="shell">Shell</a></li>
+        <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
+        <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
+      </ul>
+      <p class="nav-label">TUIs</p>
+      <ul>
+        <li><a href="lazygit.html" data-page="lazygit">lazygit</a></li>
+        <li><a href="lazydocker.html" data-page="lazydocker">lazydocker</a></li>
+        <li><a href="yazi.html" data-page="yazi">yazi</a></li>
+        <li><a href="k9s.html" data-page="k9s">k9s</a></li>
+      </ul>
+      <p class="nav-label">Workflow</p>
+      <ul>
+        <li><a href="git.html" data-page="git">Git identities</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <button type="button" class="mobile-nav-toggle" aria-label="Open navigation">Menu</button>
+      <div class="content">
+        <header class="page-header">
+          <p class="eyebrow">TUIs</p>
+          <h1>yazi</h1>
+          <p class="lede">Terminal file manager. The <code>y</code> wrapper cds your shell into the directory you browsed when you quit.</p>
+          <div class="launch">
+            <span class="launch-label">Launch</span>
+            <code>y</code> (preferred) · <code>yazi</code> (no cd-on-quit)
+          </div>
+        </header>
+
+        <section>
+          <h2>Keybinds</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Keys</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><kbd>h</kbd> / <kbd>l</kbd></td><td>Up directory / enter directory or open</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>j</kbd> / <kbd>k</kbd></td><td>Down / up in list</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Enter</kbd></td><td>Open file / enter dir</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Space</kbd></td><td>Toggle select</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>v</kbd></td><td>Visual / select mode</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>y</kbd></td><td>Yank (copy) selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>x</kbd></td><td>Cut selection</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>p</kbd></td><td>Paste</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>d</kbd></td><td>Trash / delete</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>r</kbd></td><td>Rename</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>.</kbd></td><td>Toggle hidden files</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>z</kbd></td><td>zoxide jump (if enabled)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>~</kbd></td><td>Go home</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>/</kbd></td><td>Find / filter</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>q</kbd></td><td>Quit — shell cds here when launched via <code>y</code></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Common flows</h2>
+          <ol class="flows">
+            <li>
+              <strong>Browse then work in that folder</strong>
+              <p class="steps"><code>y</code> → navigate with hjkl → <kbd>q</kbd> → prompt is now in that directory.</p>
+            </li>
+            <li>
+              <strong>Peek then open in nvim</strong>
+              <p class="steps">Navigate onto a file → <kbd>Enter</kbd> (opens with configured opener) or quit and <code>nvim</code> the path.</p>
+            </li>
+            <li>
+              <strong>Bulk move</strong>
+              <p class="steps"><kbd>Space</kbd> select files → <kbd>x</kbd> cut → navigate to dest → <kbd>p</kbd> paste.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reach for this instead</h2>
+          <ul class="instead">
+            <li><span class="old">cd; ls; cd; ls…</span><span class="arrow">→</span><span class="new">y → q</span></li>
+            <li><span class="old">open Finder for one rename</span><span class="arrow">→</span><span class="new">y → r</span></li>
+            <li><span class="old">mv a/b c/d with long paths</span><span class="arrow">→</span><span class="new">y → x → p</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Drills</h2>
+          <ul class="drills">
+            <li>From home, <code>y</code> into <code>Developer/system-setup</code>, quit with <kbd>q</kbd>, confirm <code>pwd</code>. <span class="hint">Must use the <code>y</code> function, not raw <code>yazi</code>.</span></li>
+            <li>Toggle hidden files with <kbd>.</kbd>, find a dotfile, toggle back. <span class="hint">Same key both ways.</span></li>
+          </ul>
+        </section>
+
+        <p class="config-ptr">
+          Wrapper: <code>y()</code> in <code>stow/zsh/.config/zsh/functions.zsh</code>
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="assets/guide.js"></script>
+</body>
+</html>
