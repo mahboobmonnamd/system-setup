@@ -11,6 +11,7 @@ cask "claude-code"
 cask "discord"
 cask "google-drive"
 cask "utm"          # virtual machines (QEMU frontend)
+cask "chatgpt"
 
 # Manual per-click browser picker. Third-party PERSONAL tap — Homebrew won't
 # load it until trusted once (supply-chain opt-in):

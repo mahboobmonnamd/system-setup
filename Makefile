@@ -12,18 +12,23 @@ PACKAGES ?= $(notdir $(wildcard stow/*))
 # Where `make add` records a package. Override: make add NAME=foo TO=personal
 TO ?= base
 
-.PHONY: help brew stow unstow sync macos touchid bootstrap guide add
+.PHONY: help brew stow unstow sync macos touchid bootstrap guide add check \
+	obsidian-sync obsidian-sync-install obsidian-sync-uninstall
 
 help:
 	@echo "make bootstrap  full fresh-machine setup (scripts/bootstrap.sh)"
 	@echo "make brew       install brew/Brewfile.base + brew/Brewfile.\$$(PROFILE)"
 	@echo "make add        install + record in a Brewfile: make add NAME=ripgrep [TO=personal] [CASK=1]"
+	@echo "make check      list installed pkgs NOT tracked in any Brewfile (read-only)"
 	@echo "make stow       symlink stow/* into \$$HOME  (currently: $(PACKAGES))"
 	@echo "make unstow     remove those symlinks"
 	@echo "make sync       brew + stow"
 	@echo "make guide      open the terminal muscle-memory HTML guide"
 	@echo "make macos      apply macOS defaults (keyboard/Finder/Dock) — run yourself"
 	@echo "make touchid    enable Touch ID for sudo — run yourself"
+	@echo "make obsidian-sync            backup Brain vault to GitHub now"
+	@echo "make obsidian-sync-install    enable hourly vault backup"
+	@echo "make obsidian-sync-uninstall  disable hourly vault backup"
 	@echo ""
 	@echo "Variables: PROFILE=personal|work  (default: $(PROFILE))"
 	@echo "           TO=base|personal|work|local  (for make add; default: $(TO))"
@@ -49,6 +54,9 @@ unstow:
 
 sync: brew stow
 
+check:
+	@PROFILE="$(PROFILE)" bash scripts/brew_check.sh
+
 # Install a formula/cask and append it to a Brewfile (default: base) in one
 # step, so installed != tracked never happens. CASK=1 forces cask when a name
 # exists as both a formula and a cask.
@@ -67,3 +75,12 @@ touchid:
 
 guide:
 	open docs/guide/index.html
+
+obsidian-sync:
+	bash scripts/obsidian_vault_sync.sh
+
+obsidian-sync-install:
+	bash scripts/obsidian_sync_install.sh install
+
+obsidian-sync-uninstall:
+	bash scripts/obsidian_sync_install.sh uninstall

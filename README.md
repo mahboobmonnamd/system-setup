@@ -62,9 +62,28 @@ Ghostty with keybinds and drills from *this* setup.
 | `gco-fzf` / `gbd-fzf` | checkout / delete branches via fzf |
 | `gpr` / `gundo` | create PR with gh / soft-undo last commit(s) |
 | `Esc Esc` | prepend sudo to the current/previous command |
+| `obs` / `odaily` / `ocd` / `obsync` | open vault / today’s note / jump to vault / backup vault |
 
 The shell also *trains* you: type a command that has an alias and
 `you-should-use` prints the shorter form until it sticks.
+
+## Obsidian (personal)
+
+Your notes vault is **`~/Documents/Brain`** — a private git repo, kept outside
+this tree. The app is installed via `cask "obsidian"` in `Brewfile.personal`.
+
+After `make stow`:
+
+| Command | What it does |
+|---|---|
+| `obs` | Open the vault in Obsidian |
+| `odaily` | Open today’s daily note |
+| `ocd` | cd into the vault |
+| `obsync` | Commit and push the vault to GitHub |
+
+Turn on hourly backup with `make obsidian-sync-install`. How to use the vault
+day to day (templates, Claude vs Bob) lives in the vault’s `GUIDE.md`. Short
+cheat sheet: [`docs/guide/obsidian.html`](docs/guide/obsidian.html).
 
 ## Power tools (own names, no shadowing)
 

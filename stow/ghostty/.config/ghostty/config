@@ -13,6 +13,9 @@ background-opacity = 0.95
 background-blur-radius = 20
 
 # --- Behavior ---------------------------------------------------------------
+# New windows/tabs open here. `inherit` (default) would reuse the parent's dir;
+# a fixed path makes every fresh window start in ~/Developer.
+working-directory = ~/Developer
 # Option acts as Alt (needed for Alt-C fzf directory search and word-jumps)
 macos-option-as-alt = true
 mouse-hide-while-typing = true
