@@ -51,7 +51,8 @@ Ghostty with keybinds and drills from *this* setup.
 | `z <name>` | jump to any directory you've visited (zoxide) |
 | `Ctrl-R` | fuzzy-search all shell history (atuin) |
 | `Ctrl-T` / `Alt-C` | fuzzy-pick files / cd into dirs with preview (fzf) |
-| `ll` / `lt` | rich file listing / tree (eza) |
+| `tn` / `ta` / `tl` / `tk` / `tm` | tmux new / attach / list / kill / sesh picker |
+| `ll` / `la` / `lt` | rich file listing / all / tree (eza) |
 | `lg` | lazygit — full git TUI |
 | `lzd` | lazydocker |
 | `y` | yazi file manager (exits into the browsed dir) |
@@ -110,16 +111,25 @@ terminal. Cmd+Up/Down jumps between past prompts (shell integration).
 
 ## tmux — prefix is `Ctrl-a`
 
-| Key | Action |
+Sessions from the shell: `tn name` / `ta name` / `tl` / `tk name`, or `tm`
+for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
+
+| Key / command | Action |
 |---|---|
+| `tn work` / `ta work` / `tl` / `tk work` | new / attach / list / kill session |
+| `tm` | sesh picker from the shell |
 | `Ctrl-a c` / `Ctrl-a 1..9` | new window / switch window |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down (keeps current dir) |
 | `Ctrl-h/j/k/l` | move across panes AND nvim splits (no prefix) |
+| `Ctrl-a H/J/K/L` | resize pane by 5 |
 | `Ctrl-a T` | **sesh session picker** — fzf over sessions + zoxide dirs |
-| `Ctrl-a d` | detach; `tmux attach` to return |
+| `Ctrl-a o` | jump to last sesh session |
+| `Ctrl-a s` / `(`/`)` | session tree / prev / next session |
+| `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
 
 Sessions auto-save every 15 min and restore on restart (resurrect+continuum).
+Pane contents and nvim sessions are restored too.
 
 ## Neovim — LazyVim
 
