@@ -72,7 +72,7 @@ y() {
 }
 
 # Fuzzy tmux session picker from the shell (sesh + fzf).
-# Inside tmux, prefer Ctrl-a T — same picker, popup layout.
+# Inside tmux, prefer Ctrl-b T — same picker, popup layout.
 tm() {
   if ! command -v sesh >/dev/null 2>&1; then
     echo "sesh not installed — brew install sesh (or make brew)" >&2

@@ -109,24 +109,28 @@ Config: `stow/ghostty/.config/ghostty/config`. JetBrains Mono Nerd Font,
 Latte light theme, slight blur. **Cmd+`** from anywhere = quake-style dropdown
 terminal. Cmd+Up/Down jumps between past prompts (shell integration).
 
-## tmux — prefix is `Ctrl-a`
+## tmux — prefix is `Ctrl-b`
+
+Pane movement is **WASD** (not hjkl): `Ctrl-a` left · `Ctrl-w` up · `Ctrl-s`
+down · `Ctrl-d` right — works across tmux panes and nvim splits. Prefix is
+`Ctrl-b` so `Ctrl-a` can mean left.
 
 Sessions from the shell: `tn name` / `ta name` / `tl` / `tk name`, or `tm`
-for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
+for the sesh fuzzy picker. Inside tmux, `Ctrl-b T` is the same picker.
 
 | Key / command | Action |
 |---|---|
 | `tn work` / `ta work` / `tl` / `tk work` | new / attach / list / kill session |
 | `tm` | sesh picker from the shell |
-| `Ctrl-a c` / `Ctrl-a 1..9` | new window / switch window |
-| `Ctrl-a \|` / `Ctrl-a -` | split right / down (keeps current dir) |
-| `Ctrl-h/j/k/l` | move across panes AND nvim splits (no prefix) |
-| `Ctrl-a H/J/K/L` | resize pane by 5 |
-| `Ctrl-a T` | **sesh session picker** — fzf over sessions + zoxide dirs |
-| `Ctrl-a o` | jump to last sesh session |
-| `Ctrl-a s` / `(`/`)` | session tree / prev / next session |
-| `Ctrl-a d` | detach; `ta <name>` to return |
-| `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
+| `Ctrl-b c` / `Ctrl-b 1..9` | new window / switch window |
+| `Ctrl-b \|` / `Ctrl-b -` | split right / down (keeps current dir) |
+| `Ctrl-a/w/s/d` | move across panes AND nvim splits (WASD, no prefix) |
+| `Ctrl-b` then `Alt-a/w/s/d` | resize pane by 5 |
+| `Ctrl-b T` | **sesh session picker** — fzf over sessions + zoxide dirs |
+| `Ctrl-b o` | jump to last sesh session |
+| `Ctrl-b S` / `(`/`)` | session tree / prev / next session |
+| `Ctrl-b Ctrl-d` | detach; `ta <name>` to return |
+| `Ctrl-b r` / `Ctrl-b I` | reload config / install plugins |
 
 Sessions auto-save every 15 min and restore on restart (resurrect+continuum).
 Pane contents and nvim sessions are restored too.
@@ -144,6 +148,7 @@ Pane contents and nvim sessions are restored too.
 | `jk` | exit insert mode |
 | `<Space>w` | save |
 | `Shift-h/l` | previous / next buffer |
+| `Ctrl-a/w/s/d` | move across nvim splits ↔ tmux panes (WASD) |
 
 Language support (LSP, formatting, debugging) comes from LazyVim extras —
 TypeScript, Go, Rust, Python, YAML, Docker, JSON, Markdown — configured in

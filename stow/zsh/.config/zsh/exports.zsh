@@ -45,5 +45,8 @@ if command -v go >/dev/null 2>&1; then
   unset _gopath
 fi
 
+# Disable Ctrl-S terminal XOFF so Ctrl-s can navigate tmux/nvim panes
+[[ -t 0 ]] && stty -ixon 2>/dev/null
+
 typeset -U path PATH
 export PATH
