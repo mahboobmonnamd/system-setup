@@ -71,6 +71,28 @@ y() {
   rm -f -- "$tmp"
 }
 
+# Fuzzy tmux session picker from the shell (sesh + fzf).
+# Inside tmux, prefer Ctrl-a T — same picker, popup layout.
+tm() {
+  if ! command -v sesh >/dev/null 2>&1; then
+    echo "sesh not installed — brew install sesh (or make brew)" >&2
+    return 1
+  fi
+  local session
+  session="$(
+    sesh list --icons | fzf --ansi \
+      --no-sort --prompt='⚡ ' \
+      --header '  ^a all  ^t tmux  ^x zoxide  ^d kill' \
+      --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
+      --bind 'ctrl-t:change-prompt(🪟 )+reload(sesh list -t --icons)' \
+      --bind 'ctrl-x:change-prompt(📁 )+reload(sesh list -z --icons)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+reload(sesh list --icons)' \
+      --preview 'sesh preview {}' \
+      --preview-window 'right:55%'
+  )" || return
+  [[ -n "$session" ]] && sesh connect "$session"
+}
+
 # --- Obsidian Brain vault (override path in env.local.zsh) --------------------
 : "${OBSIDIAN_VAULT:=$HOME/Documents/Brain}"
 

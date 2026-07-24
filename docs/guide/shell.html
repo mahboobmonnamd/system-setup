@@ -69,12 +69,17 @@
               <tr data-bind-row><td class="keys"><kbd>Tab</kbd></td><td>fzf-tab completion picker</td></tr>
               <tr data-bind-row><td class="keys"><kbd>→</kbd></td><td>Accept autosuggestion (grey text)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Esc</kbd> <kbd>Esc</kbd></td><td>Prepend <code>sudo</code> to current/previous command</td></tr>
-              <tr data-bind-row><td class="keys"><code>ll</code></td><td>Long listing with icons + git (eza)</td></tr>
-              <tr data-bind-row><td class="keys"><code>lt</code></td><td>Tree, 2 levels (eza)</td></tr>
-              <tr data-bind-row><td class="keys"><code>..</code> / <code>...</code></td><td>Up one / two directories</td></tr>
+              <tr data-bind-row><td class="keys"><code>ll</code> / <code>la</code> / <code>lt</code></td><td>eza long / all / tree</td></tr>
+              <tr data-bind-row><td class="keys"><code>..</code> / <code>...</code> / <code>....</code></td><td>Up one / two / three directories</td></tr>
+              <tr data-bind-row><td class="keys"><code>tn</code> / <code>ta</code> / <code>tl</code> / <code>tk</code></td><td>tmux new / attach / list / kill session</td></tr>
+              <tr data-bind-row><td class="keys"><code>tm</code></td><td>sesh fuzzy session picker (from the shell)</td></tr>
+              <tr data-bind-row><td class="keys"><code>json</code> / <code>yaml</code></td><td>Pretty-print with jq / yq</td></tr>
               <tr data-bind-row><td class="keys"><code>mkcd dir</code></td><td>mkdir -p + cd</td></tr>
               <tr data-bind-row><td class="keys"><code>kill_port 3000</code></td><td>Kill process on a port</td></tr>
               <tr data-bind-row><td class="keys"><code>reload</code></td><td><code>exec zsh</code> — apply config edits</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>X</kbd> <kbd>Ctrl</kbd>+<kbd>E</kbd></td><td>Edit current line in <code>$EDITOR</code></td></tr>
+              <tr data-bind-row><td class="keys"><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Prefix-aware history (only cycles matching prefix)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>P</kbd> / <kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Same prefix-aware history backward / forward</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>B</kbd></td><td>Insert git branch (fzf-git)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>H</kbd></td><td>Insert commit hash</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Insert changed file path</td></tr>
@@ -83,6 +88,8 @@
               <tr data-bind-row><td class="keys"><code>gco-fzf</code> / <code>gbd-fzf</code></td><td>Checkout / delete branches via fzf</td></tr>
               <tr data-bind-row><td class="keys"><code>gpr</code> / <code>gundo</code></td><td>Create PR (gh) / soft-undo commit(s)</td></tr>
               <tr data-bind-row><td class="keys"><code>lg</code> / <code>lzd</code> / <code>y</code> / <code>k</code></td><td>lazygit / lazydocker / yazi / kubecolor</td></tr>
+              <tr data-bind-row><td class="keys"><code>kcc</code> / <code>kgctx</code> / <code>kuc</code> / <code>kns</code></td><td>kubectl current-context / list / use-context / set ns</td></tr>
+              <tr data-bind-row><td class="keys"><code>kgp</code> / <code>kgpa</code> / <code>kl</code> / <code>klf</code></td><td>get pods / all-ns / logs / follow</td></tr>
             </tbody>
           </table>
           <p class="tip"><code>you-should-use</code> prints the shorter alias when you type the long form — lean into that until it sticks.</p>
@@ -131,7 +138,7 @@
         </section>
 
         <p class="config-ptr">
-          Config: <code>stow/zsh/.config/zsh/{aliases,functions,fzf,plugins}.zsh</code>
+          Config: <code>stow/zsh/.config/zsh/{aliases,exports,functions,fzf,plugins}.zsh</code> · local: <code>env.local.zsh</code>
         </p>
       </div>
     </main>

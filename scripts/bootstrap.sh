@@ -52,6 +52,13 @@ info "Packages (base + $PROFILE)"
 make -C "$REPO_ROOT" brew PROFILE="$PROFILE"
 
 info "Dotfiles"
+# Machine-local zsh overrides (gitignored) — seed from example before stow.
+mkdir -p "$HOME/.config/zsh"
+if [[ ! -f "$HOME/.config/zsh/env.local.zsh" ]]; then
+  cp "$REPO_ROOT/stow/zsh/.config/zsh/env.local.zsh.example" \
+    "$HOME/.config/zsh/env.local.zsh"
+  info "Created ~/.config/zsh/env.local.zsh (edit for secrets / machine overrides)"
+fi
 make -C "$REPO_ROOT" stow
 # SSH Include ~/.ssh/config.local — create empty file so missing Include never fails
 # on older OpenSSH; put machine-local hosts here (gitignored in the stow tree).

@@ -44,15 +44,36 @@
         <header class="page-header">
           <p class="eyebrow">Core</p>
           <h1>tmux</h1>
-          <p class="lede">Sessions that survive closing the window. Prefix is <kbd>Ctrl</kbd>+<kbd>a</kbd> — press it, release, then the next key.</p>
+          <p class="lede">Sessions that survive closing the window. Prefix is <kbd>Ctrl</kbd>+<kbd>a</kbd> — press it, release, then the next key. Manage sessions from the shell with <code>tn</code>/<code>ta</code>/<code>tl</code>/<code>tk</code> or <code>tm</code> (sesh).</p>
           <div class="launch">
             <span class="launch-label">Launch</span>
-            <code>tmux</code> · <code>tmux attach</code> · <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> (sesh)
+            <code>tn work</code> · <code>ta work</code> · <code>tm</code> · <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd>
           </div>
         </header>
 
         <section>
-          <h2>Keybinds</h2>
+          <h2>Sessions (shell)</h2>
+          <div class="toolbar">
+            <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
+          </div>
+          <table class="bind-table">
+            <thead>
+              <tr><th>Command</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-bind-row><td class="keys"><code>tn &lt;name&gt;</code></td><td>New named session (<code>tmux new -s</code>)</td></tr>
+              <tr data-bind-row><td class="keys"><code>ta &lt;name&gt;</code></td><td>Attach to session (<code>tmux attach -t</code>)</td></tr>
+              <tr data-bind-row><td class="keys"><code>tl</code></td><td>List sessions</td></tr>
+              <tr data-bind-row><td class="keys"><code>tk &lt;name&gt;</code></td><td>Kill session by name</td></tr>
+              <tr data-bind-row><td class="keys"><code>tksv</code></td><td>Kill the tmux server (all sessions)</td></tr>
+              <tr data-bind-row><td class="keys"><code>tm</code></td><td>sesh fuzzy picker from the shell (sessions + zoxide)</td></tr>
+              <tr data-bind-row><td class="keys"><code>tmuxconf</code></td><td>Edit <code>~/.config/tmux/tmux.conf</code></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Keybinds (inside tmux)</h2>
           <div class="toolbar">
             <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter keybinds" />
           </div>
@@ -61,12 +82,22 @@
               <tr><th>Keys</th><th>Action</th></tr>
             </thead>
             <tbody>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>c</kbd></td><td>New window</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>c</kbd></td><td>New window (keeps cwd)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>1</kbd>…<kbd>9</kbd></td><td>Switch window by number</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>n</kbd> / <kbd>p</kbd></td><td>Next / previous window</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>,</kbd></td><td>Rename window</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd></td><td>Split pane right (keeps cwd)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split pane down (keeps cwd)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move across panes <em>and</em> nvim splits (no prefix)</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>sesh picker — sessions + zoxide dirs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move panes with prefix</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane by 5 cells</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Kill pane (no confirm)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>sesh picker — sessions + zoxide + configs</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>o</kbd></td><td>Jump to last sesh session</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>s</kbd></td><td>Built-in session tree</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>(</kbd> / <kbd>)</kbd></td><td>Previous / next session</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>$</kbd></td><td>Rename session</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd></td><td>Detach (session keeps running)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>r</kbd></td><td>Reload tmux.conf</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>I</kbd></td><td>Install/update TPM plugins</td></tr>
@@ -75,23 +106,23 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>a</kbd></td><td>Send a literal Ctrl-a</td></tr>
             </tbody>
           </table>
-          <p class="tip">In sesh (<kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd>): <kbd>Ctrl</kbd>+<kbd>a</kbd> all · <kbd>Ctrl</kbd>+<kbd>t</kbd> tmux only · <kbd>Ctrl</kbd>+<kbd>x</kbd> zoxide · <kbd>Ctrl</kbd>+<kbd>d</kbd> kill session.</p>
+          <p class="tip">In sesh (<kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> or <code>tm</code>): <kbd>Ctrl</kbd>+<kbd>a</kbd> all · <kbd>Ctrl</kbd>+<kbd>t</kbd> tmux · <kbd>Ctrl</kbd>+<kbd>g</kbd> configs · <kbd>Ctrl</kbd>+<kbd>x</kbd> zoxide · <kbd>Ctrl</kbd>+<kbd>f</kbd> find · <kbd>Ctrl</kbd>+<kbd>d</kbd> kill.</p>
         </section>
 
         <section>
           <h2>Common flows</h2>
           <ol class="flows">
             <li>
-              <strong>Start a project session</strong>
-              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> → pick a zoxide dir → sesh creates/attaches a session there.</p>
+              <strong>Start a named project session</strong>
+              <p class="steps"><code>tn api</code> (or <code>tm</code> / <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> → pick a zoxide dir). Detach with <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd>, return with <code>ta api</code>.</p>
             </li>
             <li>
               <strong>Editor + shell side by side</strong>
-              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd> → one pane <code>nvim</code>, other shell. Move with <kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>l</kbd>.</p>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd> → one pane <code>nvim</code>, other shell. Move with <kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>l</kbd>. Resize with <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>L</kbd>.</p>
             </li>
             <li>
               <strong>Leave without killing work</strong>
-              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> → close Ghostty. Later: <code>tmux attach</code> or sesh again. Continuum auto-saves every 15 min.</p>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> → close Ghostty. Later: <code>ta &lt;name&gt;</code>, <code>tm</code>, or <code>tmux attach</code>. Continuum auto-saves every 15 min and restores on start.</p>
             </li>
           </ol>
         </section>
@@ -100,7 +131,8 @@
           <h2>Reach for this instead</h2>
           <ul class="instead">
             <li><span class="old">Many Ghostty tabs</span><span class="arrow">→</span><span class="new">tmux windows (Ctrl-a c / 1..9)</span></li>
-            <li><span class="old">cd then reopen tools</span><span class="arrow">→</span><span class="new">Ctrl-a T (sesh)</span></li>
+            <li><span class="old">tmux new -s … / attach -t …</span><span class="arrow">→</span><span class="new">tn / ta / tm</span></li>
+            <li><span class="old">cd then reopen tools</span><span class="arrow">→</span><span class="new">Ctrl-a T or tm (sesh)</span></li>
             <li><span class="old">Mouse to switch nvim ↔ shell</span><span class="arrow">→</span><span class="new">Ctrl-h/j/k/l</span></li>
           </ul>
         </section>
@@ -108,14 +140,14 @@
         <section>
           <h2>Drills</h2>
           <ul class="drills">
-            <li>Create a window, split right, split down, then navigate every pane with only <kbd>Ctrl</kbd>+hjkl. <span class="hint">No mouse, no prefix for movement.</span></li>
-            <li>Detach, close the terminal, reopen, <code>tmux attach</code> — confirm panes are still there. <span class="hint">That’s the point of tmux.</span></li>
-            <li>Open sesh and jump into a project you haven’t typed a path for. <span class="hint"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> then filter by name.</span></li>
+            <li>Create <code>tn drill</code>, split right, split down, navigate every pane with only <kbd>Ctrl</kbd>+hjkl. <span class="hint">No mouse, no prefix for movement.</span></li>
+            <li>Detach, close the terminal, reopen, <code>ta drill</code> — confirm panes are still there. <span class="hint">That’s the point of tmux.</span></li>
+            <li>From a bare shell, run <code>tm</code> and jump into a project you haven’t typed a path for. <span class="hint">Same picker as <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd>.</span></li>
           </ul>
         </section>
 
         <p class="config-ptr">
-          Config: <code>stow/tmux/.config/tmux/tmux.conf</code>
+          Config: <code>stow/tmux/.config/tmux/tmux.conf</code> · aliases: <code>stow/zsh/.config/zsh/aliases.zsh</code>
         </p>
       </div>
     </main>

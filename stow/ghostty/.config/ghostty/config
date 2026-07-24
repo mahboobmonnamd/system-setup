@@ -4,7 +4,9 @@
 # --- Look & feel ------------------------------------------------------------
 theme = Catppuccin Latte
 font-family = JetBrainsMono Nerd Font
-font-size = 14
+font-size = 16
+# Overlay1 from Catppuccin Latte — visible split lines on the light theme
+split-divider-color = #5c5f77
 window-padding-x = 8
 window-padding-y = 8
 
