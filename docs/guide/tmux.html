@@ -88,10 +88,14 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>,</kbd></td><td>Rename window</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd></td><td>Split pane right (keeps cwd)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split pane down (keeps cwd)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>←</kbd>/<kbd>→</kbd>/<kbd>↑</kbd>/<kbd>↓</kbd></td><td>Resize pane (hold Ctrl, tap arrows)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Alt</kbd>+<kbd>1</kbd></td><td>Equal widths (even-horizontal)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Alt</kbd>+<kbd>2</kbd></td><td>Equal heights (even-vertical)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Alt</kbd>+<kbd>5</kbd></td><td>Tiled grid (as even as possible)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move across panes <em>and</em> nvim splits (no prefix)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move panes with prefix</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane by 5 cells</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Kill pane (no confirm)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>sesh picker — sessions + zoxide + configs</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>o</kbd></td><td>Jump to last sesh session</td></tr>
@@ -106,6 +110,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>a</kbd></td><td>Send a literal Ctrl-a</td></tr>
             </tbody>
           </table>
+          <p class="tip">Mouse is on — drag a pane border to resize. Or <kbd>Ctrl</kbd>+<kbd>a</kbd> then <kbd>Ctrl</kbd>+arrows to nudge; <kbd>Alt</kbd>+<kbd>5</kbd> after prefix tiles everything evenly.</p>
           <p class="tip">In sesh (<kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> or <code>tm</code>): <kbd>Ctrl</kbd>+<kbd>a</kbd> all · <kbd>Ctrl</kbd>+<kbd>t</kbd> tmux · <kbd>Ctrl</kbd>+<kbd>g</kbd> configs · <kbd>Ctrl</kbd>+<kbd>x</kbd> zoxide · <kbd>Ctrl</kbd>+<kbd>f</kbd> find · <kbd>Ctrl</kbd>+<kbd>d</kbd> kill.</p>
         </section>
 
@@ -122,7 +127,7 @@
             </li>
             <li>
               <strong>Leave without killing work</strong>
-              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> → close Ghostty. Later: <code>ta &lt;name&gt;</code>, <code>tm</code>, or <code>tmux attach</code>. Continuum auto-saves every 15 min and restores on start.</p>
+              <p class="steps"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> → close Ghostty. Later: <code>ta &lt;name&gt;</code>, <code>tm</code>, or <code>tmux attach</code>. Continuum auto-saves every 15 min; restore manually with <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd>.</p>
             </li>
           </ol>
         </section>

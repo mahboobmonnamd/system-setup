@@ -89,6 +89,7 @@ brew "tokei"       # code statistics by language
 brew "procs"       # modern process viewer (own name; ps untouched)
 brew "gping"       # ping with a live graph
 brew "git-absorb"  # auto-target fixup commits:  git absorb  then rebase
+brew "beads"       # agent issue memory (`bd`) — graph tracker with deps
 
 # --- Terminal & font --------------------------------------------------------
 cask "ghostty"                        # the terminal (config in stow/ghostty)
@@ -101,3 +102,4 @@ cask "loop"      # open-source window snapping (halves/thirds via keyboard)
 # Finicky auto-routes URLs by rule (config in stow/finicky). Manual picker
 # (Browserino) is personal-only — see Brewfile.personal.
 cask "finicky"
+brew "llmfit"

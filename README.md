@@ -106,8 +106,9 @@ After `gh auth login`, install the PR dashboard: `gh extension install dlvhdr/gh
 ## Ghostty (terminal)
 
 Config: `stow/ghostty/.config/ghostty/config`. JetBrains Mono Nerd Font,
-Latte light theme, slight blur. **Cmd+`** from anywhere = quake-style dropdown
-terminal. Cmd+Up/Down jumps between past prompts (shell integration).
+Latte light theme, slight blur. **Cmd+Opt+`** from anywhere = quake-style
+dropdown terminal (Cmd+` stays as macOS same-app window switch). Cmd+Up/Down
+jumps between past prompts (shell integration).
 
 ## tmux — prefix is `Ctrl-a`
 
@@ -128,8 +129,8 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
 
-Sessions auto-save every 15 min and restore on restart (resurrect+continuum).
-Pane contents and nvim sessions are restored too.
+Sessions auto-save every 15 min (resurrect+continuum). Auto-restore is off
+to avoid a bare `tmux` race; restore manually with `Ctrl-a Ctrl-r`.
 
 ## Neovim — LazyVim
 

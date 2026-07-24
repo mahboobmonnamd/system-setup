@@ -29,6 +29,7 @@ scrollback-limit = 100000
 shell-integration = zsh
 
 # --- Quake-style dropdown terminal ------------------------------------------
-# Cmd+` from ANYWHERE (any app) slides a terminal down from the top of the
-# screen. Same key hides it. Great for quick one-off commands.
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+# Cmd+Opt+` from ANYWHERE slides a terminal down from the top of the screen.
+# Same key hides it. (Plain Cmd+` is left alone — macOS uses it to cycle
+# windows of the frontmost app.)
+keybind = global:cmd+alt+grave_accent=toggle_quick_terminal
