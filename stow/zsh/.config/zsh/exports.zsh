@@ -29,21 +29,19 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=247'
 # Optional ripgrep config (create ~/.config/ripgrep/config if you want one)
 [[ -f "$HOME/.config/ripgrep/config" ]] && export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
-# --- PATH (idempotent appends) ----------------------------------------------
-# User-local bins
-[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
-# Rust: brew's rustup is keg-only — proxies live here
-[[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/rustup/bin" ]] && path+=("$HOMEBREW_PREFIX/opt/rustup/bin")
-# cargo install binaries
-[[ -d "$HOME/.cargo/bin" ]] && path+=("$HOME/.cargo/bin")
+# --- PATH --------------------------------------------------------------------
+# Rust: brew's rustup is keg-only — its rustc/cargo proxies live here
+[[ -d "$HOMEBREW_PREFIX/opt/rustup/bin" ]] && export PATH="$PATH:$HOMEBREW_PREFIX/opt/rustup/bin"
+# `cargo install` binaries land here
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
 # libpq client tools (psql) when installed via brew
-[[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/libpq/bin" ]] && path+=("$HOMEBREW_PREFIX/opt/libpq/bin")
+[[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/libpq/bin" ]] && export PATH="$PATH:$HOMEBREW_PREFIX/opt/libpq/bin"
+
 # Go binaries (mise or system go)
 if command -v go >/dev/null 2>&1; then
   _gopath="$(go env GOPATH 2>/dev/null)"
-  [[ -n "$_gopath" && -d "$_gopath/bin" ]] && path+=("$_gopath/bin")
+  [[ -n "$_gopath" && -d "$_gopath/bin" ]] && export PATH="$PATH:$_gopath/bin"
   unset _gopath
 fi
-
-typeset -U path PATH
-export PATH

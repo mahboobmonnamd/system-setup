@@ -78,7 +78,8 @@
               <tr data-bind-row><td class="keys"><code>kill_port 3000</code></td><td>Kill process on a port</td></tr>
               <tr data-bind-row><td class="keys"><code>reload</code></td><td><code>exec zsh</code> — apply config edits</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>X</kbd> <kbd>Ctrl</kbd>+<kbd>E</kbd></td><td>Edit current line in <code>$EDITOR</code></td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>P</kbd> / <kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>History search backward / forward</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Prefix-aware history (only cycles matching prefix)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>P</kbd> / <kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>Same prefix-aware history backward / forward</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>B</kbd></td><td>Insert git branch (fzf-git)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>H</kbd></td><td>Insert commit hash</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>G</kbd> then <kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Insert changed file path</td></tr>
@@ -135,7 +136,7 @@
         </section>
 
         <p class="config-ptr">
-          Config: <code>stow/zsh/.config/zsh/{aliases,exports,functions,fzf,plugins}.zsh</code>
+          Config: <code>stow/zsh/.config/zsh/{aliases,exports,functions,fzf,plugins}.zsh</code> · local: <code>env.local.zsh</code>
         </p>
       </div>
     </main>

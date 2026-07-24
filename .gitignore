@@ -3,6 +3,7 @@
 
 # Machine-local files that must never be committed (secrets, identities)
 stow/zsh/.config/zsh/env.local.zsh
+!stow/zsh/.config/zsh/env.local.zsh.example
 stow/git/.config/git/identity-*.gitconfig
 !stow/git/.config/git/identity-*.gitconfig.example
 

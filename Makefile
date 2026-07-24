@@ -45,8 +45,12 @@ brew:
 # into the repo — only the config file inside it gets linked.
 # Touch config.local so `Include ~/.ssh/config.local` always resolves.
 stow:
-	@mkdir -p $(HOME)/.config $(HOME)/.ssh && chmod 700 $(HOME)/.ssh
+	@mkdir -p $(HOME)/.config $(HOME)/.config/zsh $(HOME)/.ssh && chmod 700 $(HOME)/.ssh
 	@touch $(HOME)/.ssh/config.local
+	@# Seed machine-local env overrides (gitignored) from the example once
+	@if [ ! -f $(HOME)/.config/zsh/env.local.zsh ]; then \
+		cp stow/zsh/.config/zsh/env.local.zsh.example $(HOME)/.config/zsh/env.local.zsh; \
+	fi
 	stow --dir=stow --target=$(HOME) --restow $(PACKAGES)
 
 unstow:
