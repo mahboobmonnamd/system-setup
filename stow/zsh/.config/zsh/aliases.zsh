@@ -21,7 +21,7 @@ alias yaml='yq .'
 alias lg='lazygit'
 alias lzd='lazydocker'
 
-# --- tmux sessions (CLI; inside tmux use Ctrl-b T for sesh) ----------------
+# --- tmux sessions (CLI; inside tmux use Ctrl-a T for sesh) ----------------
 # Matches the session card from the terminal reference cheat sheet.
 alias tn='tmux new -s'              # tn work          → new named session
 alias ta='tmux attach -t'           # ta work          → attach by name
