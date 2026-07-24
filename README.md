@@ -56,7 +56,7 @@ Ghostty with keybinds and drills from *this* setup.
 | `lg` | lazygit — full git TUI |
 | `lzd` | lazydocker |
 | `y` | yazi file manager (exits into the browsed dir) |
-| `k` | kubectl (with completions) |
+| `k` / `kcc` / `kgp` | kubecolor kubectl / current-context / get pods |
 | `tldr <cmd>` | community cheatsheet for any command |
 | `reload` | apply shell config edits |
 | `Ctrl-G Ctrl-B / -H / -F` | fzf-pick git branches / hashes / changed files into the command line |

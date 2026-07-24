@@ -46,6 +46,29 @@ alias k='kubecolor'
 compdef kubecolor=kubectl 2>/dev/null
 compdef k=kubectl 2>/dev/null
 
+# Config / context (who am I talking to?)
+alias kcc='k config current-context'                         # current context name
+alias kgctx='k config get-contexts'                          # list contexts
+alias kuc='k config use-context'                             # kuc my-cluster
+alias kns='k config set-context --current --namespace'       # kns default
+alias kgns='k config view --minify -o jsonpath="{..namespace}"'  # current ns
+alias kgc='k config view --minify'                           # active kubeconfig slice
+
+# Common get / describe / logs / apply
+alias kg='k get'
+alias kgp='k get pods'
+alias kgpa='k get pods -A'
+alias kgs='k get svc'
+alias kgd='k get deploy'
+alias kgn='k get nodes'
+alias kd='k describe'
+alias kdp='k describe pod'
+alias kl='k logs'
+alias klf='k logs -f'
+alias kaf='k apply -f'
+alias kdel='k delete'
+alias kex='k exec -it'
+
 # --- Config shortcuts ------------------------------------------------------
 alias reload='exec zsh'                       # apply config edits
 alias zshconfig='$EDITOR ~/.zshrc'
