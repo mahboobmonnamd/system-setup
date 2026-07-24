@@ -113,7 +113,6 @@ terminal. Cmd+Up/Down jumps between past prompts (shell integration).
 
 Sessions from the shell: `tn name` / `ta name` / `tl` / `tk name`, or `tm`
 for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
-Pane movement stays on **hjkl** (WASD conflicted with prefix / vim / shell keys).
 
 | Key / command | Action |
 |---|---|
