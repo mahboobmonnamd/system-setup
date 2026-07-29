@@ -1,5 +1,10 @@
 # Brewfile.personal — extras for personal machines only.
-# (colima and the k8s stack live in base — same tooling on work and personal)
+#
+# PDP compute runtime (ADR-105): OrbStack is the authorized Platform Runtime on
+# the personal/home primary compute host. Work machines use Colima instead
+# (see Brewfile.work) because base/work must stay open-source / enterprise-safe.
+cask "orbstack"     # container VM + Docker-compatible engine (PDP ADR-105 / ADR-106)
+
 cask "brave-browser"
 cask "bitwarden"
 cask "obsidian"
@@ -12,6 +17,10 @@ cask "discord"
 cask "google-drive"
 cask "utm"          # virtual machines (QEMU frontend)
 cask "chatgpt"
+cask "google-chrome"
+cask "android-studio"
+cask "ollama-app"   # local LLM runner (Ollama.app)
+cask "openclaw"     # personal AI assistant (menu bar companion)
 
 # Manual per-click browser picker. Third-party PERSONAL tap — Homebrew won't
 # load it until trusted once (supply-chain opt-in):

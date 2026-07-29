@@ -1,2 +1,7 @@
 # Brewfile.work — extras for the work machine only.
+#
+# Enterprise-safe open-source alternatives when personal/PDP tooling is not
+# appropriate for commercial use. Docker CLI stays in Brewfile.base.
+brew "colima"       # MIT container VM (OSS alternative to OrbStack on work)
+
 cask "slack"

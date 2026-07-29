@@ -62,11 +62,12 @@ brew "pkgconf"     # pkg-config implementation (native build flags)
 
 # --- Containers & Kubernetes ------------------------------------------------
 # LICENSE POLICY: base must contain ONLY open-source/free-for-commercial-use
-# tools (this file is shared with the work machine). Colima (MIT) is the VM
-# on BOTH machines — no Docker Desktop, no Rancher Desktop needed. The docker
-# CLI + plugins are Apache-2.0; only Docker *Desktop* is commercial.
-brew "colima"                    # container VM:  colima start
-brew "docker"                    # docker CLI (talks to colima)
+# tools (this file is shared with the work machine).
+# Container *VM* is profile-specific (not in base):
+#   personal → OrbStack (PDP ADR-105) in Brewfile.personal
+#   work     → Colima (MIT OSS alternative) in Brewfile.work
+# Docker CLI + plugins are Apache-2.0; Docker *Desktop* is commercial — do not add it.
+brew "docker"                    # docker CLI (talks to OrbStack or Colima)
 brew "docker-compose"            # compose v2 plugin
 brew "docker-buildx"             # buildkit plugin
 brew "lazydocker"                # docker TUI

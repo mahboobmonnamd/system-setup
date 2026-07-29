@@ -86,13 +86,19 @@ nvim --headless "+Lazy! sync" +qa || true
 info "Shell history import into atuin"
 atuin import auto || true
 
-cat <<'EOF'
+if [[ "$PROFILE" == "work" ]]; then
+  CONTAINER_HINT="  colima start                           # work OSS container VM (when you need docker)"
+else
+  CONTAINER_HINT="  open -a OrbStack                       # personal PDP runtime (ADR-105); or: orbctl start"
+fi
+
+cat <<EOF
 
 Done. Remaining (interactive, run yourself):
   ./scripts/git_setup.sh --all           # ssh keys + git identities (or list profiles)
   make macos                             # macOS defaults (log out/in after)
   make touchid                           # Touch ID for sudo
-  colima start                           # when you first need docker
+${CONTAINER_HINT}
   gh auth login                          # then optionally: gh extension install dlvhdr/gh-dash
 Open Ghostty — everything is themed and ready.
 EOF

@@ -241,14 +241,26 @@ python packaging via uv.
 ## Containers & k8s
 
 **License policy:** `Brewfile.base` contains only open-source / free-for-
-commercial-use tools (it's shared with the work machine). **Colima (MIT) is
-the container VM on both machines** — no Docker Desktop, no Rancher Desktop.
-The docker CLI + compose + buildx are Apache-2.0; only Docker *Desktop* is
-the commercial product.
+commercial-use tools (shared with the work machine). Container **VMs** are
+profile-specific:
+
+| Profile | VM | Why |
+|---------|----|-----|
+| **personal** | **OrbStack** (`Brewfile.personal`) | PDP [ADR-105](https://github.com/mahboobmonnamd/home-infrastructure/blob/main/docs/03-adr/ADR-105-Compute-Runtime-Platform.md) authorized Platform Runtime |
+| **work** | **Colima** (`Brewfile.work`) | MIT open-source alternative for enterprise-safe machines |
+
+Docker CLI + compose + buildx stay in base (Apache-2.0). Do **not** add Docker
+Desktop or Rancher Desktop.
 
 ```sh
+# personal (PDP)
+open -a OrbStack                # or: orbctl start
+docker ps                       # docker CLI talks to OrbStack; lazydocker for the TUI
+
+# work (OSS alternative)
 colima start                    # start the VM (add --kubernetes for k3s)
-docker ps                       # docker CLI talks to colima; lazydocker for the TUI
+docker ps                       # docker CLI talks to colima
+
 kind create cluster             # local k8s in docker
 k9s                             # cluster TUI — the lazygit of k8s (vim keys,
                                 #   logs, exec, port-forward; `:pods`, `?` help)
