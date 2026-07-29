@@ -42,6 +42,11 @@ brew "gitleaks"    # secret scanner — wired as a pre-commit hook via the git
                    # API keys/tokens. Bypass a false positive: --no-verify
 brew "age"         # encryption for SOPS (PDP ADR-118 secrets posture)
 brew "sops"        # encrypt/decrypt secret files (PDP ADR-118; values never in git)
+brew "shellcheck"  # shell script static analysis (PDP Epic 2 lint)
+brew "shfmt"       # shell formatter
+brew "yamllint"    # YAML linter (compose/metadata)
+brew "markdownlint-cli2"  # Markdown lint (docs)
+brew "pre-commit"  # local git hooks runner (PDP Epic 2)
 
 # --- Multiplexer / sessions -------------------------------------------------
 brew "tmux"        # terminal multiplexer — sessions survive disconnects
