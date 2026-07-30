@@ -220,10 +220,10 @@ own copies for debugging/linting.)
 Set Finicky as the default browser (System Settings > Desktop & Dock). It then
 routes each link by rule — config in `stow/finicky/.config/finicky/finicky.js`.
 The starter sends everything to **Browserino** (the per-click picker). Browserino
-is personal-only (`Brewfile.personal`); trust the tap once first — see that
-file. On a work machine without Browserino, set `defaultBrowser` to `"Safari"`
-(or your work browser) so links still open. Add private-domain rules locally;
-keep them out of the public repo.
+is personal-only (`Brewfile.personal`, trusted via Brewfile for Homebrew 6). On a
+work machine without Browserino, set `defaultBrowser` to `"Safari"` (or your work
+browser) so links still open. Add private-domain rules locally; keep them out of
+the public repo.
 
 ## Machine-specific packages
 

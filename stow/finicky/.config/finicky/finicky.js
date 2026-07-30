@@ -5,8 +5,8 @@
 // Docs: https://github.com/johnste/finicky/wiki/Configuration
 //
 // defaultBrowser is Browserino (manual picker). Browserino is personal-only
-// (Brewfile.personal) — trust the tap once, then `make brew`. On a work
-// machine without Browserino, change this to "Safari" (or your work browser).
+// (Brewfile.personal, trusted: true). On a work machine without Browserino,
+// change this to "Safari" (or your work browser).
 
 export default {
   defaultBrowser: "browserino",

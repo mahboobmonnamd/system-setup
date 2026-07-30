@@ -44,10 +44,10 @@
         <header class="page-header">
           <p class="eyebrow">TUIs</p>
           <h1>lazydocker</h1>
-          <p class="lede">Containers, images, volumes, and logs in one TUI. Docker CLI talks to Colima on this setup.</p>
+          <p class="lede">Containers, images, volumes, and logs in one TUI. Docker CLI talks to OrbStack on personal (Colima on work).</p>
           <div class="launch">
             <span class="launch-label">Launch</span>
-            <code>lzd</code> · <code>lazydocker</code> · first: <code>colima start</code>
+            <code>lzd</code> · <code>lazydocker</code> · first: <code>open -a OrbStack</code>
           </div>
         </header>
 
@@ -76,7 +76,7 @@
               <tr data-bind-row><td class="keys"><kbd>q</kbd></td><td>Quit</td></tr>
             </tbody>
           </table>
-          <p class="tip">If the UI is empty: <code>colima start</code> then <code>docker ps</code> to confirm the daemon, then <code>lzd</code> again.</p>
+          <p class="tip">If the UI is empty: open OrbStack (or <code>colima start</code> on work), then <code>docker ps</code> to confirm the daemon, then <code>lzd</code> again.</p>
         </section>
 
         <section>
@@ -109,13 +109,13 @@
         <section>
           <h2>Drills</h2>
           <ul class="drills">
-            <li>Start Colima, run any container (<code>docker run -d nginx</code>), open <code>lzd</code>, find it, open logs, stop it. <span class="hint">All from the TUI.</span></li>
+            <li>Open OrbStack, run any container (<code>docker run -d nginx</code>), open <code>lzd</code>, find it, open logs, stop it. <span class="hint">All from the TUI.</span></li>
             <li>Without looking at <kbd>?</kbd>, cycle panels with <kbd>Tab</kbd> and land back on containers. <span class="hint">Muscle for panel awareness.</span></li>
           </ul>
         </section>
 
         <p class="config-ptr">
-          Alias: <code>lzd</code> in <code>stow/zsh/.config/zsh/aliases.zsh</code> · runtime: Colima + docker CLI (see README)
+          Alias: <code>lzd</code> in <code>stow/zsh/.config/zsh/aliases.zsh</code> · runtime: OrbStack (personal) / Colima (work) + docker CLI (see README)
         </p>
       </div>
     </main>

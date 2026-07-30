@@ -22,9 +22,7 @@ cask "android-studio"
 cask "ollama-app"   # local LLM runner (Ollama.app)
 cask "openclaw"     # personal AI assistant (menu bar companion)
 
-# Manual per-click browser picker. Third-party PERSONAL tap — Homebrew won't
-# load it until trusted once (supply-chain opt-in):
-#   brew trust --cask alexstrnik/browserino/browserino
-# then `make brew` (or the lines below on a fresh personal bootstrap).
+# Manual per-click browser picker. Third-party PERSONAL tap — `trusted: true`
+# opts into Homebrew 6 tap-trust for this cask only (not the whole tap).
 tap "alexstrnik/browserino"
-cask "alexstrnik/browserino/browserino"
+cask "alexstrnik/browserino/browserino", trusted: true

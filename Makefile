@@ -51,6 +51,13 @@ stow:
 	@if [ ! -f $(HOME)/.config/zsh/env.local.zsh ]; then \
 		cp stow/zsh/.config/zsh/env.local.zsh.example $(HOME)/.config/zsh/env.local.zsh; \
 	fi
+	@# OrbStack (installed during `make brew`) may write a real ~/.ssh/config
+	@# before stow runs. This package owns that path — back up and replace.
+	@if [ -e $(HOME)/.ssh/config ] && [ ! -L $(HOME)/.ssh/config ]; then \
+		bak="$(HOME)/.ssh/config.pre-stow.$$(date +%Y%m%d%H%M%S).bak"; \
+		mv $(HOME)/.ssh/config "$$bak"; \
+		echo "Moved existing ~/.ssh/config -> $$bak (merge into ~/.ssh/config.local if needed)"; \
+	fi
 	stow --dir=stow --target=$(HOME) --restow $(PACKAGES)
 
 unstow:
