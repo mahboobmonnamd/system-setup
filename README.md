@@ -110,6 +110,13 @@ Latte light theme, slight blur. **Cmd+Opt+`** from anywhere = quake-style
 dropdown terminal (Cmd+` stays as macOS same-app window switch). Cmd+Up/Down
 jumps between past prompts (shell integration).
 
+## cmux (Ghostty-based agent terminal)
+
+Native macOS terminal on libghostty — vertical tabs, agent notifications,
+right sidebar. Reuses `~/.config/ghostty/config` for theme/font. Install:
+`brew install --cask cmux`. After install, open cmux and (for agent status)
+run `cmux hooks setup` for agents on your PATH. Right sidebar: **Opt+Cmd+B**.
+
 ## tmux — prefix is `Ctrl-a`
 
 Sessions from the shell: `tn name` / `ta name` / `tl` / `tk name`, or `tm`
