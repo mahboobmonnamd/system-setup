@@ -43,7 +43,7 @@ nvim plugins, atuin import. Idempotent — rerun anytime.
 
 **Muscle-memory guide:** [live on GitHub Pages](https://mahboobmonnamd.github.io/system-setup/)
 · local: [`docs/guide/index.html`](docs/guide/index.html) (`make guide`).
-Separate pages for shell, tmux, nvim, lazygit, lazydocker, yazi, k9s, git, and
+Separate pages for shell, tmux, herdr/cmux, nvim, lazygit, lazydocker, yazi, k9s, git, and
 Ghostty with keybinds and drills from *this* setup.
 
 | Command | What |
@@ -52,6 +52,7 @@ Ghostty with keybinds and drills from *this* setup.
 | `Ctrl-R` | fuzzy-search all shell history (atuin) |
 | `Ctrl-T` / `Alt-C` | fuzzy-pick files / cd into dirs with preview (fzf) |
 | `tn` / `ta` / `tl` / `tk` / `tm` | tmux new / attach / list / kill / sesh picker |
+| `hr` / `hrr` | Herdr attach / reload config |
 | `ll` / `la` / `lt` | rich file listing / all / tree (eza) |
 | `lg` | lazygit — full git TUI |
 | `lzd` | lazydocker |
@@ -110,14 +111,37 @@ Latte light theme, slight blur. **Cmd+Opt+`** from anywhere = quake-style
 dropdown terminal (Cmd+` stays as macOS same-app window switch). Cmd+Up/Down
 jumps between past prompts (shell integration).
 
-## cmux (Ghostty-based agent terminal)
+## cmux + Herdr (agent-first)
 
-Native macOS terminal on libghostty — vertical tabs, agent notifications,
-right sidebar. Reuses `~/.config/ghostty/config` for theme/font. Install:
-`brew install --cask cmux`. After install, open cmux and (for agent status)
-run `cmux hooks setup` for agents on your PATH. Right sidebar: **Opt+Cmd+B**.
+**cmux** is the terminal (libghostty: agent tabs, notifications, sidebar).
+**Herdr** is the multiplexer (persistent agent panes, blocked/working/idle).
+Install: `brew install --cask cmux` and `brew install herdr`, then `make stow`.
 
-## tmux — prefix is `Ctrl-a`
+| Layer | Tool | Config |
+|---|---|---|
+| Terminal | cmux (or Ghostty) | `stow/cmux` · theme from `stow/ghostty` |
+| Multiplexer | Herdr | `stow/herdr` — prefix **Ctrl-a** (same as tmux) |
+
+After install: open cmux → `cmux hooks setup` for agents on PATH. Right
+sidebar: **Opt+Cmd+B**. Launch Herdr with `hr` / `herdr`, or **Cmd+Shift+H**
+in cmux (custom action). Reload Herdr keys after edits: `hrr`.
+
+| Key / command | Action |
+|---|---|
+| `hr` / `herdr` | attach / launch Herdr |
+| `hrr` | reload Herdr config |
+| `Ctrl-a c` / `1..9` | new tab / switch tab |
+| `Ctrl-a \|` / `Ctrl-a -` | split right / down |
+| `Ctrl-a h/j/k/l` | focus pane (also `Ctrl-Alt-h/j/k/l`) |
+| `Ctrl-a T` | goto picker (sesh-like) |
+| `Ctrl-a s` | workspace picker |
+| `Ctrl-a d` | detach |
+| `Ctrl-a r` | reload config |
+| `Cmd+I` / `Cmd+Shift+U` | cmux notifications / jump to unread |
+
+Use **Ghostty + tmux** only for classic non-agent shell work (`tn` / `ta` / `tm`).
+
+## tmux — prefix is `Ctrl-a` (classic / non-agent)
 
 Sessions from the shell: `tn name` / `ta name` / `tl` / `tk name`, or `tm`
 for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
@@ -293,8 +317,8 @@ Deliberately minimal: Spotlight stays as the launcher.
 ```
 Makefile            brew / stow / sync / add / guide entry points
 brew/               Brewfile.base + Brewfile.{personal,work}
-stow/               one package per tool: zsh, starship, ghostty, git,
-                    lazygit, tmux, nvim, atuin, ssh
+stow/               one package per tool: zsh, starship, ghostty, cmux,
+                    herdr, git, lazygit, tmux, nvim, atuin, ssh
 docs/guide/         HTML muscle-memory cheatsheets (make guide)
 scripts/brew_add.sh   make add — install a pkg and record it in a Brewfile
 scripts/git_setup.sh  interactive ssh-key + git-identity bootstrap

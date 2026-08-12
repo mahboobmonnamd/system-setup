@@ -21,6 +21,7 @@
       <ul>
         <li><a href="shell.html" data-page="shell">Shell</a></li>
         <li><a href="tmux.html" data-page="tmux">tmux</a></li>
+        <li><a href="herdr.html" data-page="herdr">Herdr</a></li>
         <li><a href="nvim.html" data-page="nvim">Neovim</a></li>
         <li><a href="ghostty.html" data-page="ghostty">Ghostty</a></li>
       </ul>
@@ -67,7 +68,7 @@
               <tr data-bind-row><td class="keys"><kbd>Option</kbd> = Alt</td><td>Needed for <kbd>Alt</kbd>+<kbd>C</kbd> fzf directory jump</td></tr>
             </tbody>
           </table>
-          <p class="tip">Long-lived work belongs in <a href="tmux.html">tmux</a>. Use Ghostty quake for one-off commands without leaving the browser/IDE.</p>
+          <p class="tip">Agent-first work: <a href="herdr.html">cmux + Herdr</a>. Classic long-lived shell: <a href="tmux.html">tmux</a>. Use Ghostty quake for one-off commands without leaving the browser/IDE.</p>
         </section>
 
         <section>
@@ -83,7 +84,7 @@
             </li>
             <li>
               <strong>Deep work session</strong>
-              <p class="steps">Full Ghostty window → <code>tmux</code> / sesh → leave quake for interruptions.</p>
+              <p class="steps">Full Ghostty window → <code>tmux</code> / sesh for classic work, or cmux → <code>hr</code> for agents → leave quake for interruptions.</p>
             </li>
           </ol>
         </section>
@@ -93,7 +94,7 @@
           <ul class="instead">
             <li><span class="old">Cmd-Tab to terminal for one command</span><span class="arrow">→</span><span class="new">Cmd+Opt+`</span></li>
             <li><span class="old">Scroll forever to find output</span><span class="arrow">→</span><span class="new">Cmd+↑ prompt jump</span></li>
-            <li><span class="old">Many bare terminal windows</span><span class="arrow">→</span><span class="new">one Ghostty + tmux</span></li>
+            <li><span class="old">Many bare terminal windows</span><span class="arrow">→</span><span class="new">cmux + Herdr (agents) or Ghostty + tmux</span></li>
           </ul>
         </section>
 
