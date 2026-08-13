@@ -21,6 +21,10 @@ brew/Brewfile.local
 # they're installed by TPM, not tracked). tmux.conf auto-installs on first run.
 stow/tmux/.config/tmux/plugins/
 
+# Python bytecode from local Herdr plugins
+**/__pycache__/
+*.py[cod]
+
 
 # SSH allowed_signers (machine-local verify keys — not for the public repo)
 stow/git/.config/git/allowed_signers

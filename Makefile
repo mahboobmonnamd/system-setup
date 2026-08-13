@@ -23,7 +23,7 @@ help:
 	@echo "make stow       symlink stow/* into \$$HOME  (currently: $(PACKAGES))"
 	@echo "make unstow     remove those symlinks"
 	@echo "make sync       brew + stow"
-	@echo "make herdr-plugins  install Herdr plugins (vim-herdr-navigation for Ctrl-hjkl)"
+	@echo "make herdr-plugins  install Herdr plugins (Ctrl-hjkl + Ctrl-a q pane numbers)"
 	@echo "make guide      open the terminal muscle-memory HTML guide"
 	@echo "make macos      apply macOS defaults (keyboard/Finder/Dock) — run yourself"
 	@echo "make touchid    enable Touch ID for sudo — run yourself"

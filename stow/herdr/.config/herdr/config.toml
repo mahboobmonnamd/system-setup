@@ -4,7 +4,7 @@
 #
 # One-time plugins:  make herdr-plugins
 #   - paulbkim-dev/vim-herdr-navigation  (Ctrl-hjkl ↔ nvim)
-#   - ugurtarlig/herdr-pane-picker       (Ctrl-a q → on-pane hints)
+#   - ~/.config/herdr/plugins/pane-numbers  (Ctrl-a q → 1–9 on panes)
 
 onboarding = false
 
@@ -30,6 +30,8 @@ resume_agents_on_restore = true
 prefix = "ctrl+a"
 
 # --- Tabs (tmux windows) ----------------------------------------------------
+# Ctrl-a 1..9 = switch TAB. Pane jump is a different chord: Ctrl-a q, then a
+# bare digit (no second Ctrl-a) — the popup captures 1–9, so tabs stay free.
 new_tab = "prefix+c"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
@@ -170,15 +172,16 @@ description = "scratch terminal"
 width = "80%"
 height = "80%"
 
-# Pane picker — flash a/s/d/f hints on panes, type one to focus
-# (tmux display-panes twin; needs make herdr-plugins + kitty_graphics).
+# Pane numbers — Ctrl-a q, then bare 1–9 (NOT Ctrl-a 1..9; that switches tabs).
+# Popup owns digit keys until Esc / pick; switch_tab stays prefix+1..9 only.
+# Needs make herdr-plugins + kitty_graphics.
 [[keys.command]]
 key = "prefix+q"
 type = "plugin_action"
-command = "ugurtarlig.pane-picker.open"
-description = "pick pane by on-pane hint (tmux q)"
+command = "system-setup.pane-numbers.open"
+description = "pick pane by bare 1-9 after q (tabs stay Ctrl-a 1-9)"
 
-# Kitty graphics required by pane-picker badges (Ghostty / cmux OK).
+# Kitty graphics required by pane-number badges (Ghostty / cmux OK).
 # If enabled after Herdr is already open: detach (Ctrl-a d) and `hr` again.
 [experimental]
 kitty_graphics = true

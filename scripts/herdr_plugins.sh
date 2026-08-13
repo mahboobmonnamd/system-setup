@@ -12,11 +12,18 @@ fi
 # christoomey/vim-tmux-navigator). Bound in stow/herdr/.../config.toml.
 herdr plugin install paulbkim-dev/vim-herdr-navigation --yes
 
-# On-pane a/s/d/f hints → focus (tmux display-panes twin). Needs
-# [experimental] kitty_graphics = true (already in our config.toml).
-# Pin a reviewed release; after first install, detach + reattach Herdr once
-# so the client picks up pixel geometry for the badges.
-herdr plugin install ugurtarlig/herdr-pane-picker --ref v0.1.1 --yes
+# Ctrl-a q → on-pane 1–9 badges (tmux display-panes twin). Local plugin
+# stowed at ~/.config/herdr/plugins/pane-numbers. Needs kitty_graphics.
+# Replace the old letter-hint picker if it was installed earlier.
+herdr plugin uninstall ugurtarlig.pane-picker --yes >/dev/null 2>&1 || true
+herdr plugin unlink ugurtarlig.pane-picker >/dev/null 2>&1 || true
+herdr plugin unlink system-setup.pane-numbers >/dev/null 2>&1 || true
+PANE_NUMBERS="${HOME}/.config/herdr/plugins/pane-numbers"
+if [[ ! -f "${PANE_NUMBERS}/herdr-plugin.toml" ]]; then
+  echo "herdr pane-numbers plugin missing — run: make stow" >&2
+  exit 1
+fi
+herdr plugin link "${PANE_NUMBERS}" --yes 2>/dev/null || herdr plugin link "${PANE_NUMBERS}"
 
 echo "Herdr plugins installed. Reload keys with: hrr   (or Ctrl-a r inside Herdr)"
-echo "If pane-picker badges are blank: Ctrl-a d, then hr  (relaunch client for kitty graphics)"
+echo "If pane-number badges are blank: Ctrl-a d, then hr  (relaunch client for kitty graphics)"

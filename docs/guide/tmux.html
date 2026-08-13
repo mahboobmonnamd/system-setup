@@ -97,7 +97,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move across panes <em>and</em> nvim splits (no prefix)</td><td>vim-herdr-navigation</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Move panes with prefix</td><td>same</td></tr>
-              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd></td><td>Show pane <em>numbers</em> → type a number to focus <span class="diff">diff</span></td><td>letter hints (<kbd>a</kbd>/<kbd>s</kbd>/…)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> then <kbd>1</kbd>…<kbd>9</kbd></td><td>Show pane numbers → type a <em>bare</em> digit (no second Ctrl-a; does not change windows)</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane by 5 cells</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Kill pane (no confirm)</td><td>close pane</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>sesh picker — sessions + zoxide + configs</td><td>goto picker</td></tr>
@@ -116,7 +116,7 @@
               <tr data-bind-row class="bind-diff"><td class="keys"><em>(no key)</em> activity / bell</td><td>Background windows highlight on output or bell <span class="diff">diff</span></td><td>cmux <kbd>Cmd</kbd>+<kbd>I</kbd> / <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td></tr>
             </tbody>
           </table>
-          <p class="tip">Active pane border is <strong>peach</strong>; press <kbd>Ctrl</kbd>+<kbd>a</kbd> for a peach <strong>PREFIX</strong> pill (same cues as Herdr). <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> flashes pane numbers — type one to jump. Mouse is on — drag a border to resize.</p>
+          <p class="tip">Active pane border is <strong>peach</strong>; press <kbd>Ctrl</kbd>+<kbd>a</kbd> for a peach <strong>PREFIX</strong> pill (same cues as Herdr). <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>1</kbd>…<kbd>9</kbd> switches <em>windows</em>. Pane jump is separate: <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd>, then a bare digit (display-panes eats that key — windows stay put). Mouse is on — drag a border to resize.</p>
           <p class="tip"><strong>Claude Code / Codex:</strong> <kbd>Shift</kbd>+<kbd>Enter</kbd> for newline needs tmux <code>extended-keys</code> (already in this repo). After stow: <code>tmux kill-server</code> then <code>tn …</code> again — a plain <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>r</kbd> is not enough. Fallback anytime: <kbd>Ctrl</kbd>+<kbd>J</kbd> or <code>\</code> then Enter.</p>
           <p class="tip">In sesh (<kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd> or <code>tm</code>): <kbd>Ctrl</kbd>+<kbd>a</kbd> all · <kbd>Ctrl</kbd>+<kbd>t</kbd> tmux · <kbd>Ctrl</kbd>+<kbd>g</kbd> configs · <kbd>Ctrl</kbd>+<kbd>x</kbd> zoxide · <kbd>Ctrl</kbd>+<kbd>f</kbd> find · <kbd>Ctrl</kbd>+<kbd>d</kbd> kill.</p>
         </section>
