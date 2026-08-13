@@ -124,6 +124,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>W</kbd></td><td>Rename workspace</td><td>rename session <kbd>$</kbd></td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>D</kbd></td><td>Close workspace (not the Herdr session)</td><td>—</td></tr>
               <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>o</kbd></td><td>Last focused pane <span class="diff">diff</span></td><td>last sesh session</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>u</kbd></td><td>Jump to blocked / needs-input agent <span class="diff">diff</span></td><td>activity / bell (no key)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd></td><td>Detach (session keeps running)</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>r</kbd></td><td>Reload config</td><td>same</td></tr>
               <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd></td><td>Resize mode <span class="diff">diff</span></td><td>continuum restore</td></tr>
@@ -132,7 +133,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>b</kbd></td><td>Toggle Herdr sidebar</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>?</kbd></td><td>Show all bindings</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>t</kbd></td><td>Scratch shell popup</td><td>—</td></tr>
-              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Cmd</kbd>+<kbd>I</kbd> / <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>cmux notifications / unread jump <span class="diff">diff</span></td><td>activity / bell status highlights (no key)</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Cmd</kbd>+<kbd>I</kbd> / <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>cmux notifications / unread jump (outer tab) <span class="diff">diff</span></td><td>activity / bell status highlights (no key)</td></tr>
             </tbody>
           </table>
           <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>1</kbd>…<kbd>9</kbd> switches <em>tabs</em>. Pane jump is separate: <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd>, then a bare <kbd>1</kbd>…<kbd>9</kbd> (no second Ctrl-a; needs <code>make herdr-plugins</code>). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
@@ -153,7 +154,7 @@
               <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>B</kbd></td><td>Toggle left sidebar</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Opt</kbd>+<kbd>Cmd</kbd>+<kbd>B</kbd></td><td>Toggle right sidebar (files / agents)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>I</kbd></td><td>Notifications</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>Jump to latest unread agent prompt</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>Jump to latest unread agent prompt (cmux tabs — use <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>u</kbd> inside Herdr)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Opt</kbd>+<kbd>Cmd</kbd>+arrows</td><td>Focus cmux panes (not Herdr panes)</td></tr>
             </tbody>
           </table>
@@ -168,7 +169,7 @@
             </li>
             <li>
               <strong>Jump when an agent needs you</strong>
-              <p class="steps"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd> in cmux, or scan Herdr sidebar for <em>blocked</em>.</p>
+              <p class="steps">Inside Herdr: <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>u</kbd> (blocked / needs-input pane). Across cmux tabs: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>. Or scan the Herdr sidebar for <em>blocked</em>.</p>
             </li>
             <li>
               <strong>After editing config</strong>
@@ -181,9 +182,14 @@
           <h2>Reach for this instead</h2>
           <ul class="instead">
             <li><span class="old">tmux inside cmux for agents</span><span class="arrow">→</span><span class="new">Herdr inside cmux</span></li>
+<<<<<<< HEAD
             <li><span class="old">Switch tabs hunting for a waiting agent</span><span class="arrow">→</span><span class="new">Cmd+Shift+U / Herdr sidebar</span></li>
             <li><span class="old">Quit the terminal and lose agents</span><span class="arrow">→</span><span class="new">Ctrl-a d, reopen, hn &lt;name&gt; / hr</span></li>
             <li><span class="old">Ctrl-a Shift+D thinking it kills Herdr</span><span class="arrow">→</span><span class="new">hk &lt;name&gt; / hksv (Shift+D only closes a workspace)</span></li>
+=======
+            <li><span class="old">Switch tabs hunting for a waiting agent</span><span class="arrow">→</span><span class="new">Ctrl-a u (Herdr) / Cmd+Shift+U (cmux) / sidebar</span></li>
+            <li><span class="old">Quit the terminal and lose agents</span><span class="arrow">→</span><span class="new">Ctrl-a d, reopen, hr</span></li>
+>>>>>>> origin/cursor/herdr-notification-jump-a660
           </ul>
         </section>
 
@@ -192,7 +198,7 @@
           <ul class="drills">
             <li>From cmux, start Herdr, split right + down, move with only <kbd>Ctrl</kbd>+hjkl (no prefix). <span class="hint">Same chord as tmux + nvim.</span></li>
             <li>Detach, quit cmux, reopen, <code>hr</code> — agents still there. <span class="hint">That’s the point of Herdr.</span></li>
-            <li>Trigger an agent notification, jump with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>. <span class="hint">Terminal chrome, not multiplexer.</span></li>
+            <li>Trigger an agent notification, jump with <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>u</kbd> inside Herdr. <span class="hint">Use Cmd+Shift+U only when jumping across cmux tabs.</span></li>
           </ul>
         </section>
 
