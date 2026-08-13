@@ -76,14 +76,21 @@ copy_mode = ["prefix+enter", "prefix+["]
 
 # --- UI (visual parity with tmux status on top + mouse) ----------------------
 [ui]
+# Needed for click-to-focus panes (false = tmux-style pass-through only).
 mouse_capture = true
+# Full redraw on outer focus feels like a flash/lag when clicking back into
+# cmux/Ghostty or hopping panes that trigger focus reports. Safer default is
+# true; we prefer snappy mouse focus.
+redraw_on_focus_gained = false
 tab_bar_position = "top"
 # tmux always shows its status line — keep a tab bar even with one tab.
 hide_tab_bar_when_single_tab = false
 prompt_new_tab_name = false
 pane_borders = true
-pane_gaps = true
-show_agent_labels_on_pane_borders = true
+# Shared dividers (tmux-like) — less chrome to redraw on every focus change.
+pane_gaps = false
+# Agent names live in the sidebar; border labels re-paint on focus and feel slow.
+show_agent_labels_on_pane_borders = false
 agent_panel_sort = "priority"
 # Latte mauve again at the UI accent layer (borders / focus chrome).
 accent = "#8839ef"
