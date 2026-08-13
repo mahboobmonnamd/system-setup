@@ -163,7 +163,7 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a H/J/K/L` | resize pane by 5 |
 | `Ctrl-a T` | **sesh session picker** — fzf over sessions + zoxide dirs |
 | `Ctrl-a o` | jump to last sesh session |
-| `Ctrl-a s` / `(`/`)` | session tree / prev / next session |
+| `Ctrl-a s` / `N` / `(`/`)` | session tree / window tree / prev / next session |
 | `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
 
