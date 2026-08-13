@@ -86,10 +86,11 @@
 
         <section>
           <h2>Keybinds (inside Herdr) — match tmux</h2>
+          <p class="tip">Same chords as <a href="tmux.html">tmux</a> where possible. Peach-highlighted rows (<span class="diff">diff</span>) share a key but <em>not</em> the same action.</p>
           <div class="toolbar">
             <input type="search" data-bind-filter placeholder="Filter…" aria-label="Filter Herdr keybinds" />
           </div>
-          <table class="bind-table">
+          <table class="bind-table cols-3">
             <thead>
               <tr><th>Keys</th><th>Action</th><th>tmux twin</th></tr>
             </thead>
@@ -98,28 +99,35 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>1</kbd>…<kbd>9</kbd></td><td>Switch tab</td><td>switch window</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>n</kbd> / <kbd>p</kbd></td><td>Next / previous tab</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>,</kbd></td><td>Rename tab</td><td>rename window</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>X</kbd></td><td>Close tab</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>|</kbd></td><td>Split right</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split down</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Focus pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Panes ↔ nvim (no prefix)</td><td>vim-tmux-navigator</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd></td><td>Show on-pane hints (<kbd>a</kbd>/<kbd>s</kbd>/<kbd>d</kbd>/<kbd>f</kbd>…) → type to focus</td><td>display-panes</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd></td><td>On-pane letter hints (<kbd>a</kbd>/<kbd>s</kbd>/<kbd>d</kbd>/<kbd>f</kbd>…) → type to focus <span class="diff">diff</span></td><td>pane <em>numbers</em> (display-panes)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane</td><td>same</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Alt</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Swap pane</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom pane</td><td>same</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Close pane</td><td>kill pane</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Close pane</td><td>kill pane (no confirm)</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>T</kbd></td><td>Goto picker</td><td>sesh</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>s</kbd></td><td>Workspace picker</td><td>session tree</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>N</kbd></td><td>New workspace <span class="diff">diff</span></td><td>window / pane tree</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>(</kbd> / <kbd>)</kbd></td><td>Prev / next workspace</td><td>sessions</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>o</kbd></td><td>Last focused pane</td><td>last sesh</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>W</kbd></td><td>Rename workspace</td><td>rename session <kbd>$</kbd></td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>D</kbd></td><td>Close workspace</td><td>—</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>o</kbd></td><td>Last focused pane <span class="diff">diff</span></td><td>last sesh session</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd></td><td>Detach</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>r</kbd></td><td>Reload config</td><td>same</td></tr>
-              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd></td><td>Resize mode</td><td>—</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd></td><td>Resize mode <span class="diff">diff</span></td><td>continuum restore</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Enter</kbd> / <kbd>[</kbd></td><td>Copy mode</td><td>Enter</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>S</kbd></td><td>Settings</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>b</kbd></td><td>Toggle Herdr sidebar</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>?</kbd></td><td>Show all bindings</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>t</kbd></td><td>Scratch shell popup</td><td>—</td></tr>
+              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Cmd</kbd>+<kbd>I</kbd> / <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>cmux notifications / unread jump <span class="diff">diff</span></td><td>activity / bell status highlights (no key)</td></tr>
             </tbody>
           </table>
-          <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> paints hints on every pane — type the letter to jump (needs <code>make herdr-plugins</code>; if badges are blank, detach and <code>hr</code> again). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
+          <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> paints letter hints — type to jump (needs <code>make herdr-plugins</code>; if badges are blank, detach and <code>hr</code> again). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
         </section>
 
         <section>
