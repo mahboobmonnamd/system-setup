@@ -5,6 +5,11 @@
 theme = Catppuccin Latte
 font-family = JetBrainsMono Nerd Font
 font-size = 16
+# cmux chrome (read by cmux from this Ghostty config; capped at 14pt for the
+# surface tab bar). Stock Ghostty ignores unknown keys on some builds — if
+# `ghostty +show-config` errors, comment these two lines out for plain Ghostty.
+surface-tab-bar-font-size = 14
+sidebar-font-size = 14
 # Overlay1 from Catppuccin Latte — visible split lines on the light theme
 split-divider-color = #5c5f77
 window-padding-x = 8

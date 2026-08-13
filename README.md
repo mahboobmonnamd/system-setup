@@ -109,13 +109,16 @@ After `gh auth login`, install the PR dashboard: `gh extension install dlvhdr/gh
 Config: `stow/ghostty/.config/ghostty/config`. JetBrains Mono Nerd Font,
 Latte light theme, slight blur. **Cmd+Opt+`** from anywhere = quake-style
 dropdown terminal (Cmd+` stays as macOS same-app window switch). Cmd+Up/Down
-jumps between past prompts (shell integration).
+jumps between past prompts (shell integration). cmux also reads this file for
+`surface-tab-bar-font-size` / `sidebar-font-size` (14pt).
 
 ## cmux + Herdr (agent-first)
 
 **cmux** is the terminal (libghostty: agent tabs, notifications, sidebar).
 **Herdr** is the multiplexer (persistent agent panes, blocked/working/idle).
 Install: `brew install --cask cmux` and `brew install herdr`, then `make stow`.
+After Ghostty config edits that affect cmux chrome: **Cmd+Shift+,** or
+`cmux reload-config`.
 
 | Layer | Tool | Config |
 |---|---|---|
