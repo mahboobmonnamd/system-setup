@@ -82,8 +82,10 @@ mouse_capture = true
 # cmux/Ghostty or hopping panes that trigger focus reports. Safer default is
 # true; we prefer snappy mouse focus.
 redraw_on_focus_gained = false
-tab_bar_position = "top"
-# tmux always shows its status line — keep a tab bar even with one tab.
+# Bottom tab row so Ctrl-a PREFIX mode can replace it with a clear
+# "PREFIX …" hint bar (hard to miss). Top tabs leave the hint easy to overlook.
+tab_bar_position = "bottom"
+# Always keep the tab/mode row (PREFIX bar needs a home even with one tab).
 hide_tab_bar_when_single_tab = false
 prompt_new_tab_name = false
 pane_borders = true
