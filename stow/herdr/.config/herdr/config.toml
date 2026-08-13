@@ -68,7 +68,10 @@ new_workspace = "prefix+shift+n"
 rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+shift+d"
 last_pane = "prefix+o"               # tmux: sesh last
-open_notification_target = ""        # use cmux Cmd+I / Cmd+Shift+U instead
+# Jump to the blocked/needs-input agent (Herdr default was prefix+o; we keep
+# o for last_pane). Twin of cmux Cmd+Shift+U, but inside the multiplexer:
+# cmux chord jumps terminal tabs; this focuses the pane within Herdr.
+open_notification_target = "prefix+u"
 
 # --- Session lifecycle ------------------------------------------------------
 detach = "prefix+d"
