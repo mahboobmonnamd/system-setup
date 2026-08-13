@@ -102,6 +102,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split down</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Focus pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Panes ↔ nvim (no prefix)</td><td>vim-tmux-navigator</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd></td><td>Show on-pane hints (<kbd>a</kbd>/<kbd>s</kbd>/<kbd>d</kbd>/<kbd>f</kbd>…) → type to focus</td><td>display-panes</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>x</kbd></td><td>Close pane</td><td>kill pane</td></tr>
@@ -118,7 +119,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>t</kbd></td><td>Scratch shell popup</td><td>—</td></tr>
             </tbody>
           </table>
-          <p class="tip">Theme is Catppuccin Latte (mauve accent). Tab bar sits at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> replaces it with a <strong>PREFIX</strong> hint bar — then press the action key (or <kbd>?</kbd> for all bindings). Once: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim. Mouse focus is tuned for speed; prefer <kbd>Ctrl</kbd>+hjkl when hopping often.</p>
+          <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> paints hints on every pane — type the letter to jump (needs <code>make herdr-plugins</code>; if badges are blank, detach and <code>hr</code> again). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
         </section>
 
         <section>

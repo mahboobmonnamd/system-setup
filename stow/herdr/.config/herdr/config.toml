@@ -2,8 +2,9 @@
 # Keys + Latte theme intentionally mirror stow/tmux/.config/tmux/tmux.conf.
 # Docs: https://herdr.dev/docs/configuration/ · in-app: prefix+?
 #
-# One-time (Ctrl-hjkl ↔ nvim):  make herdr-plugins
-#   installs paulbkim-dev/vim-herdr-navigation
+# One-time plugins:  make herdr-plugins
+#   - paulbkim-dev/vim-herdr-navigation  (Ctrl-hjkl ↔ nvim)
+#   - ugurtarlig/herdr-pane-picker       (Ctrl-a q → on-pane hints)
 
 onboarding = false
 
@@ -12,8 +13,8 @@ onboarding = false
 name = "catppuccin-latte"
 
 [theme.custom]
-# Latte mauve — matches catppuccin/tmux accent feel on the status/tab chrome.
-accent = "#8839ef"
+# Latte peach — high-contrast active pane border / focus chrome on cream.
+accent = "#fe640b"
 
 [terminal]
 # New panes inherit focused pane/workspace cwd (tmux -c "#{pane_current_path}").
@@ -89,13 +90,13 @@ tab_bar_position = "bottom"
 hide_tab_bar_when_single_tab = false
 prompt_new_tab_name = false
 pane_borders = true
-# Shared dividers (tmux-like) — less chrome to redraw on every focus change.
-pane_gaps = false
+# Gap + peach accent makes the focused pane frame obvious at a glance.
+pane_gaps = true
 # Agent names live in the sidebar; border labels re-paint on focus and feel slow.
 show_agent_labels_on_pane_borders = false
 agent_panel_sort = "priority"
-# Latte mauve again at the UI accent layer (borders / focus chrome).
-accent = "#8839ef"
+# Active pane border / focus chrome (must match theme.custom.accent).
+accent = "#fe640b"
 
 [ui.toast]
 delivery = "terminal"
@@ -168,3 +169,16 @@ command = "exec \"${SHELL:-zsh}\""
 description = "scratch terminal"
 width = "80%"
 height = "80%"
+
+# Pane picker — flash a/s/d/f hints on panes, type one to focus
+# (tmux display-panes twin; needs make herdr-plugins + kitty_graphics).
+[[keys.command]]
+key = "prefix+q"
+type = "plugin_action"
+command = "ugurtarlig.pane-picker.open"
+description = "pick pane by on-pane hint (tmux q)"
+
+# Kitty graphics required by pane-picker badges (Ghostty / cmux OK).
+# If enabled after Herdr is already open: detach (Ctrl-a d) and `hr` again.
+[experimental]
+kitty_graphics = true

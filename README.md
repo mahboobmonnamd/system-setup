@@ -127,8 +127,8 @@ sidebar: **Opt+Cmd+B**. Launch Herdr with `hr` / `herdr`, or **Cmd+Shift+H**
 in cmux (custom action). Then `make herdr-plugins` once (Ctrl-h/j/k/l ↔ nvim).
 Reload Herdr keys after edits: `hrr`.
 
-Theme: **Catppuccin Latte** (same as tmux/Ghostty/starship), mauve accent,
-status/tab bar on top. Keys match tmux:
+Theme: **Catppuccin Latte**, peach active-pane border (`#fe640b`), bottom
+tab bar so `Ctrl-a` shows a **PREFIX** hint. Keys match tmux:
 
 | Key / command | Action |
 |---|---|
@@ -138,6 +138,7 @@ status/tab bar on top. Keys match tmux:
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
 | `Ctrl-a h/j/k/l` | focus pane |
 | `Ctrl-h/j/k/l` | panes ↔ nvim (same as tmux) |
+| `Ctrl-a q` | on-pane hints → type letter to focus |
 | `Ctrl-a H/J/K/L` | resize pane |
 | `Ctrl-a T` | goto picker (sesh-like) |
 | `Ctrl-a s` | workspace picker |

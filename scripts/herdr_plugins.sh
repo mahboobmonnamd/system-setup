@@ -12,4 +12,11 @@ fi
 # christoomey/vim-tmux-navigator). Bound in stow/herdr/.../config.toml.
 herdr plugin install paulbkim-dev/vim-herdr-navigation --yes
 
+# On-pane a/s/d/f hints → focus (tmux display-panes twin). Needs
+# [experimental] kitty_graphics = true (already in our config.toml).
+# Pin a reviewed release; after first install, detach + reattach Herdr once
+# so the client picks up pixel geometry for the badges.
+herdr plugin install ugurtarlig/herdr-pane-picker --ref v0.1.1 --yes
+
 echo "Herdr plugins installed. Reload keys with: hrr   (or Ctrl-a r inside Herdr)"
+echo "If pane-picker badges are blank: Ctrl-a d, then hr  (relaunch client for kitty graphics)"
