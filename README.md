@@ -172,6 +172,7 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
 | *(no key)* activity / bell | background windows highlight (**diff:** cmux `Cmd+I`) |
+| `Shift+Enter` in Claude/Codex | newline (needs `extended-keys`; after stow run `tmux kill-server`) |
 
 Sessions auto-save every 15 min (resurrect+continuum). Auto-restore is off
 to avoid a bare `tmux` race; restore manually with `Ctrl-a Ctrl-r`.

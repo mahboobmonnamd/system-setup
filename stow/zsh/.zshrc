@@ -70,6 +70,12 @@ bindkey '^[\b' backward-kill-word      # Option+Delete (ESC+Backspace)
 bindkey '^[[3;3~' kill-word            # Option+Fn+Delete (forward word)
 bindkey '^X^E' edit-command-line       # Ctrl-X Ctrl-E → edit line in $EDITOR
 
+# tmux extended-keys always → Shift+Enter arrives as CSI-u / xterm sequences
+# in every pane (including plain zsh). Treat them as Enter so the shell stays
+# usable; Claude Code / Codex interpret the same sequences as newline.
+bindkey '\e[13;2u' accept-line         # CSI-u Shift+Enter
+bindkey '\e[27;2;13~' accept-line      # xterm modifyOtherKeys Shift+Enter
+
 # VSCode/Cursor terminal sends ^W for Ctrl+Backspace instead of ESC+DEL.
 # Re-bind so it stops at word boundaries, not the whole line.
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
