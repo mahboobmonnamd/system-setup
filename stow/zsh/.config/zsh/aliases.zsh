@@ -35,7 +35,8 @@ alias tmuxconf='$EDITOR ~/.config/tmux/tmux.conf'
 #   hn work  → herdr --session work   (create or attach)
 #   ha work  → herdr session attach work
 #   hl       → list · hk work → stop · hksv → stop server
-alias hr='herdr'                        # default session attach / launch
+#   hr       → default attach, or fzf picker when multiple sessions exist
+# hr is a function in functions.zsh (picker); other shortcuts stay aliases.
 alias hn='herdr --session'              # hn agents       → create/attach named
 alias ha='herdr session attach'         # ha agents       → attach by name
 alias hl='herdr session list'           # list named sessions

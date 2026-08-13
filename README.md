@@ -137,7 +137,7 @@ out below and in `docs/guide/herdr.html` / `tmux.html`):
 
 | Key / command | Action |
 |---|---|
-| `hr` / `herdr` | attach / launch default Herdr session |
+| `hr` / `herdr` | attach default, or fzf-pick when multiple sessions exist |
 | `hn agents` / `ha agents` | create-or-attach / attach named session (`--session`) |
 | `hl` / `hk agents` / `hksv` | list / stop named session / stop server |
 | `hrr` | reload Herdr config |

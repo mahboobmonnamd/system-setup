@@ -76,7 +76,7 @@
               <tr><th>Command</th><th>Action</th><th>tmux twin</th></tr>
             </thead>
             <tbody>
-              <tr data-bind-row><td class="keys"><code>hr</code></td><td>Attach / launch default Herdr session</td><td><code>tmux</code></td></tr>
+              <tr data-bind-row><td class="keys"><code>hr</code></td><td>Attach default, or <em>fzf-pick</em> when multiple sessions exist</td><td><code>tm</code> / <code>tmux</code></td></tr>
               <tr data-bind-row><td class="keys"><code>hn &lt;name&gt;</code></td><td>Create or attach named session (<code>herdr --session</code>)</td><td><code>tn</code></td></tr>
               <tr data-bind-row><td class="keys"><code>ha &lt;name&gt;</code></td><td>Attach named session</td><td><code>ta</code></td></tr>
               <tr data-bind-row><td class="keys"><code>hl</code></td><td>List named sessions</td><td><code>tl</code></td></tr>
@@ -88,6 +88,7 @@
               <tr data-bind-row><td class="keys"><code>cmuxconf</code></td><td>Edit cmux shortcuts / actions</td><td>—</td></tr>
             </tbody>
           </table>
+          <p class="tip"><code>hr</code> with several named sessions opens an fzf list (running first). Pick one to attach; <kbd>Ctrl</kbd>+<kbd>d</kbd> in the picker stops a session. One session (or none named) → attaches the default. Create with <code>hn &lt;name&gt;</code>.</p>
           <p class="tip"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>d</kbd> <em>detaches</em> (leaves panes running). <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Shift</kbd>+<kbd>D</kbd> only closes one <em>workspace</em>. To kill a named session from the shell use <code>hk &lt;name&gt;</code>; to stop the whole server use <code>hksv</code>.</p>
         </section>
 

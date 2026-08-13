@@ -93,6 +93,77 @@ tm() {
   [[ -n "$session" ]] && sesh connect "$session"
 }
 
+# Herdr attach with optional session picker (tmux `tm` twin).
+#   hr                 → attach default, or fzf-pick when multiple sessions exist
+#   hr --session work  → pass through to herdr (any args)
+#   hn work / ha work  → create-or-attach / attach by name (aliases)
+hr() {
+  if ! command -v herdr >/dev/null 2>&1; then
+    echo "herdr not installed — brew install herdr (or make brew)" >&2
+    return 1
+  fi
+
+  # Any args → normal herdr CLI (flags, --session, --remote, …).
+  if (( $# > 0 )); then
+    command herdr "$@"
+    return $?
+  fi
+
+  local json rows count selected name
+  json="$(command herdr session list --json 2>/dev/null)" || {
+    command herdr
+    return $?
+  }
+
+  if command -v jq >/dev/null 2>&1; then
+    rows="$(
+      printf '%s\n' "$json" | jq -r '
+        .sessions
+        | sort_by((.running | not), .name)
+        | .[]
+        | [
+            .name,
+            (if .running then "running" else "stopped" end),
+            (if .default then "*" else "" end)
+          ]
+        | @tsv
+      '
+    )"
+  else
+    # No jq: fall back to default attach (hl still lists sessions).
+    command herdr
+    return $?
+  fi
+
+  count="$(printf '%s\n' "$rows" | awk 'NF {n++} END {print n+0}')"
+  if (( count <= 1 )); then
+    command herdr
+    return $?
+  fi
+
+  if ! command -v fzf >/dev/null 2>&1; then
+    echo "Multiple Herdr sessions — install fzf, or: ha <name> / hl" >&2
+    command herdr session list
+    return 1
+  fi
+
+  selected="$(
+    printf '%s\n' "$rows" | fzf --delimiter=$'\t' --with-nth=1,2,3 \
+      --nth=1 \
+      --prompt='herdr ❯ ' \
+      --header 'enter attach · ctrl-d stop · esc cancel' \
+      --bind 'ctrl-d:execute-silent(herdr session stop {1})+reload(herdr session list --json | jq -r ".sessions | sort_by((.running | not), .name) | .[] | [.name, (if .running then \"running\" else \"stopped\" end), (if .default then \"*\" else \"\" end)] | @tsv")'
+  )" || return
+
+  name="${selected%%$'\t'*}"
+  [[ -z "$name" ]] && return 1
+  if [[ "$name" == "default" ]]; then
+    command herdr
+  else
+    command herdr --session "$name"
+  fi
+}
+
 # --- Obsidian Brain vault (override path in env.local.zsh) --------------------
 : "${OBSIDIAN_VAULT:=$HOME/Documents/Brain}"
 
