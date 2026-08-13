@@ -30,9 +30,19 @@ alias tk='tmux kill-session -t'     # tk work          → kill by name
 alias tksv='tmux kill-server'       # kill all sessions
 alias tmuxconf='$EDITOR ~/.config/tmux/tmux.conf'
 
-# --- Herdr (agent multiplexer; inside Herdr use Ctrl-a like tmux) ----------
-alias hr='herdr'                    # attach / launch Herdr
-alias hrs='herdr server'            # server subcommands
+# --- Herdr sessions (CLI; inside Herdr use Ctrl-a like tmux) ----------
+# Agent multiplexer. Named sessions mirror tn/ta/tl/tk:
+#   hn work  → herdr --session work   (create or attach)
+#   ha work  → herdr session attach work
+#   hl       → list · hk work → stop · hksv → stop server
+alias hr='herdr'                        # default session attach / launch
+alias hn='herdr --session'              # hn agents       → create/attach named
+alias ha='herdr session attach'         # ha agents       → attach by name
+alias hl='herdr session list'           # list named sessions
+alias hk='herdr session stop'           # hk agents       → stop session (panes quit)
+alias hkd='herdr session delete'        # hkd agents      → delete session state
+alias hksv='herdr server stop'          # stop server (all panes; ≈ tksv)
+alias hrs='herdr server'                # server subcommands
 alias hrr='herdr server reload-config'  # after editing ~/.config/herdr/config.toml
 alias herdrconf='$EDITOR ~/.config/herdr/config.toml'
 alias cmuxconf='$EDITOR ~/.config/cmux/cmux.json'

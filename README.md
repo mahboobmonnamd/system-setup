@@ -52,7 +52,8 @@ Ghostty with keybinds and drills from *this* setup.
 | `Ctrl-R` | fuzzy-search all shell history (atuin) |
 | `Ctrl-T` / `Alt-C` | fuzzy-pick files / cd into dirs with preview (fzf) |
 | `tn` / `ta` / `tl` / `tk` / `tm` | tmux new / attach / list / kill / sesh picker |
-| `hr` / `hrr` | Herdr attach / reload config |
+| `hn` / `ha` / `hl` / `hk` / `hksv` | Herdr session new-or-attach / attach / list / stop / stop server |
+| `hr` / `hrr` | Herdr default attach / reload config |
 | `ll` / `la` / `lt` | rich file listing / all / tree (eza) |
 | `lg` | lazygit — full git TUI |
 | `lzd` | lazydocker |
@@ -136,7 +137,9 @@ out below and in `docs/guide/herdr.html` / `tmux.html`):
 
 | Key / command | Action |
 |---|---|
-| `hr` / `herdr` | attach / launch Herdr |
+| `hr` / `herdr` | attach / launch default Herdr session |
+| `hn agents` / `ha agents` | create-or-attach / attach named session (`--session`) |
+| `hl` / `hk agents` / `hksv` | list / stop named session / stop server |
 | `hrr` | reload Herdr config |
 | `Ctrl-a c` / `1..9` | new tab / switch tab (not panes) |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
