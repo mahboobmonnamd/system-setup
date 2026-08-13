@@ -178,7 +178,7 @@ type = "plugin_action"
 command = "system-setup.pane-numbers.open"
 description = "pick pane by number 1-9 (tmux q)"
 
-# Kitty graphics required by pane-picker badges (Ghostty / cmux OK).
+# Kitty graphics required by pane-number badges (Ghostty / cmux OK).
 # If enabled after Herdr is already open: detach (Ctrl-a d) and `hr` again.
 [experimental]
 kitty_graphics = true
