@@ -1,0 +1,20 @@
+id = "system-setup.pane-numbers"
+name = "Pane numbers"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Ctrl-a q: show 1–9 on panes, type a number to focus (tmux display-panes twin)"
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "open"
+title = "Show pane numbers"
+contexts = ["workspace"]
+command = ["python3", "pane_numbers.py", "open"]
+
+[[panes]]
+id = "picker"
+title = "Pane numbers"
+placement = "popup"
+width = 52
+height = 4
+command = ["python3", "pane_numbers.py", "pick"]

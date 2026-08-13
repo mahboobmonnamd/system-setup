@@ -142,7 +142,7 @@ out below and in `docs/guide/herdr.html` / `tmux.html`):
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
 | `Ctrl-a h/j/k/l` | focus pane |
 | `Ctrl-h/j/k/l` | panes ↔ nvim (same as tmux) |
-| `Ctrl-a q` | on-pane **letter** hints → type to focus (**diff:** tmux uses numbers) |
+| `Ctrl-a q` then `1..9` | on-pane numbers → type to focus (same as tmux) |
 | `Ctrl-a H/J/K/L` | resize pane |
 | `Ctrl-a T` | goto picker (sesh-like) |
 | `Ctrl-a s` | workspace picker |
@@ -166,7 +166,7 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a c` / `Ctrl-a 1..9` | new window / switch window |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down (keeps current dir) |
 | `Ctrl-h/j/k/l` | move across panes AND nvim splits (no prefix) |
-| `Ctrl-a q` | pane **numbers** → type to focus (**diff:** Herdr uses letters) |
+| `Ctrl-a q` then `1..9` | pane numbers stay until you type one to focus |
 | `Ctrl-a H/J/K/L` | resize pane by 5 |
 | `Ctrl-a T` | **sesh session picker** — fzf over sessions + zoxide dirs |
 | `Ctrl-a o` | jump to last sesh session (**diff:** Herdr = last pane) |

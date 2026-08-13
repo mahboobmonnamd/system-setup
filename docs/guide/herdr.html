@@ -104,7 +104,7 @@
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>-</kbd></td><td>Split down</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Focus pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Panes ↔ nvim (no prefix)</td><td>vim-tmux-navigator</td></tr>
-              <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd></td><td>On-pane letter hints (<kbd>a</kbd>/<kbd>s</kbd>/<kbd>d</kbd>/<kbd>f</kbd>…) → type to focus <span class="diff">diff</span></td><td>pane <em>numbers</em> (display-panes)</td></tr>
+              <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> then <kbd>1</kbd>…<kbd>9</kbd></td><td>Show pane numbers → type one to focus</td><td>display-panes</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>H</kbd>/<kbd>J</kbd>/<kbd>K</kbd>/<kbd>L</kbd></td><td>Resize pane</td><td>same</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>Alt</kbd>+<kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd></td><td>Swap pane</td><td>—</td></tr>
               <tr data-bind-row><td class="keys"><kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>z</kbd></td><td>Zoom pane</td><td>same</td></tr>
@@ -127,7 +127,7 @@
               <tr data-bind-row class="bind-diff"><td class="keys"><kbd>Cmd</kbd>+<kbd>I</kbd> / <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd></td><td>cmux notifications / unread jump <span class="diff">diff</span></td><td>activity / bell status highlights (no key)</td></tr>
             </tbody>
           </table>
-          <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> paints letter hints — type to jump (needs <code>make herdr-plugins</code>; if badges are blank, detach and <code>hr</code> again). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
+          <p class="tip">Active pane uses a <strong>peach</strong> border (<code>#fe640b</code>). Tab bar is at the <em>bottom</em> so <kbd>Ctrl</kbd>+<kbd>a</kbd> shows a <strong>PREFIX</strong> bar. <kbd>Ctrl</kbd>+<kbd>a</kbd> <kbd>q</kbd> paints <strong>1–9</strong> on panes — type a number to jump (needs <code>make herdr-plugins</code>; if badges are blank, detach and <code>hr</code> again). Also: <code>make herdr-plugins</code> for <kbd>Ctrl</kbd>+hjkl ↔ nvim.</p>
           <p class="tip"><strong>Claude Code / Codex newline:</strong> prefer running agents in Herdr (not tmux). If <kbd>Shift</kbd>+<kbd>Enter</kbd> submits instead of a newline, use <kbd>Ctrl</kbd>+<kbd>J</kbd> (or <code>\</code> then Enter). Do <em>not</em> add a Ghostty <code>shift+enter=text:\n</code> remap — it breaks Herdr’s keyboard passthrough.</p>
         </section>
 

@@ -4,7 +4,7 @@
 #
 # One-time plugins:  make herdr-plugins
 #   - paulbkim-dev/vim-herdr-navigation  (Ctrl-hjkl ↔ nvim)
-#   - ugurtarlig/herdr-pane-picker       (Ctrl-a q → on-pane hints)
+#   - ~/.config/herdr/plugins/pane-numbers  (Ctrl-a q → 1–9 on panes)
 
 onboarding = false
 
@@ -170,13 +170,13 @@ description = "scratch terminal"
 width = "80%"
 height = "80%"
 
-# Pane picker — flash a/s/d/f hints on panes, type one to focus
+# Pane numbers — flash 1–9 on panes, type one to focus
 # (tmux display-panes twin; needs make herdr-plugins + kitty_graphics).
 [[keys.command]]
 key = "prefix+q"
 type = "plugin_action"
-command = "ugurtarlig.pane-picker.open"
-description = "pick pane by on-pane hint (tmux q)"
+command = "system-setup.pane-numbers.open"
+description = "pick pane by number 1-9 (tmux q)"
 
 # Kitty graphics required by pane-picker badges (Ghostty / cmux OK).
 # If enabled after Herdr is already open: detach (Ctrl-a d) and `hr` again.
