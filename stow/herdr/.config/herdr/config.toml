@@ -30,6 +30,8 @@ resume_agents_on_restore = true
 prefix = "ctrl+a"
 
 # --- Tabs (tmux windows) ----------------------------------------------------
+# Ctrl-a 1..9 = switch TAB. Pane jump is a different chord: Ctrl-a q, then a
+# bare digit (no second Ctrl-a) — the popup captures 1–9, so tabs stay free.
 new_tab = "prefix+c"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
@@ -170,13 +172,14 @@ description = "scratch terminal"
 width = "80%"
 height = "80%"
 
-# Pane numbers — flash 1–9 on panes, type one to focus
-# (tmux display-panes twin; needs make herdr-plugins + kitty_graphics).
+# Pane numbers — Ctrl-a q, then bare 1–9 (NOT Ctrl-a 1..9; that switches tabs).
+# Popup owns digit keys until Esc / pick; switch_tab stays prefix+1..9 only.
+# Needs make herdr-plugins + kitty_graphics.
 [[keys.command]]
 key = "prefix+q"
 type = "plugin_action"
 command = "system-setup.pane-numbers.open"
-description = "pick pane by number 1-9 (tmux q)"
+description = "pick pane by bare 1-9 after q (tabs stay Ctrl-a 1-9)"
 
 # Kitty graphics required by pane-number badges (Ghostty / cmux OK).
 # If enabled after Herdr is already open: detach (Ctrl-a d) and `hr` again.

@@ -228,6 +228,7 @@ def show_hints(assignments: Sequence[Tuple[str, Mapping[str, Any]]]) -> List[str
 
 
 def read_selection(valid: Mapping[str, str]) -> Optional[str]:
+    """Read a bare digit (1–9). Ignores Ctrl-a so tab-switch chords stay free."""
     if not sys.stdin.isatty():
         return None
     descriptor = sys.stdin.fileno()
@@ -238,6 +239,12 @@ def read_selection(valid: Mapping[str, str]) -> Optional[str]:
             raw = os.read(descriptor, 1)
             if not raw or raw in {b"\x03", b"\x07", b"\x1b"}:
                 return None
+            # Ctrl-a (SOH) starts a tab/window chord — ignore so user can Esc
+            # or type a bare digit; never treat prefix+digit as a pane jump.
+            if raw == b"\x01":
+                sys.stdout.write("\a")
+                sys.stdout.flush()
+                continue
             try:
                 key = raw.decode("ascii")
             except UnicodeDecodeError:
@@ -252,7 +259,9 @@ def read_selection(valid: Mapping[str, str]) -> Optional[str]:
 
 def popup_header() -> None:
     sys.stdout.write("\x1b[2J\x1b[H\x1b[?25l")
-    sys.stdout.write("\x1b[1mPane numbers\x1b[0m type 1–9 · Esc cancels")
+    sys.stdout.write(
+        "\x1b[1mPane numbers\x1b[0m type \x1b[1m1–9\x1b[0m (no Ctrl-a) · Esc cancels"
+    )
     sys.stdout.flush()
 
 
