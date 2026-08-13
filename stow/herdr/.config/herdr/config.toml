@@ -1,14 +1,22 @@
 # Herdr — agent multiplexer (runs inside cmux or Ghostty).
-# Prefix matches tmux: Ctrl-a, release, then the action key.
-# Docs: https://herdr.dev/docs/configuration/ · keys: prefix+?
+# Keys + Latte theme intentionally mirror stow/tmux/.config/tmux/tmux.conf.
+# Docs: https://herdr.dev/docs/configuration/ · in-app: prefix+?
+#
+# One-time (Ctrl-hjkl ↔ nvim):  make herdr-plugins
+#   installs paulbkim-dev/vim-herdr-navigation
 
 onboarding = false
 
+# --- Theme (Catppuccin Latte — same as tmux / Ghostty / starship) ------------
 [theme]
 name = "catppuccin-latte"
 
+[theme.custom]
+# Latte mauve — matches catppuccin/tmux accent feel on the status/tab chrome.
+accent = "#8839ef"
+
 [terminal]
-# New panes inherit the focused pane/workspace cwd (like tmux -c "#{pane_current_path}").
+# New panes inherit focused pane/workspace cwd (tmux -c "#{pane_current_path}").
 new_cwd = "follow"
 # macOS: login shell so Homebrew / path_helper apply in new panes.
 shell_mode = "auto"
@@ -17,7 +25,7 @@ shell_mode = "auto"
 resume_agents_on_restore = true
 
 [keys]
-# Same prefix as stow/tmux/.config/tmux/tmux.conf
+# Same prefix as tmux.conf
 prefix = "ctrl+a"
 
 # --- Tabs (tmux windows) ----------------------------------------------------
@@ -25,70 +33,125 @@ new_tab = "prefix+c"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
 switch_tab = "prefix+1..9"
-# tmux: prefix+, renames window
-rename_tab = "prefix+comma"
+rename_tab = "prefix+comma"          # tmux: prefix+,
 close_tab = "prefix+shift+x"
 
 # --- Splits (tmux panes) ----------------------------------------------------
-# Literal | — terminal delivers composed |, not shift+backslash (see herdr docs).
+# Literal | — terminal delivers composed |, not shift+backslash.
 split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
 close_pane = "prefix+x"
 zoom = "prefix+z"
-# Prefix+hjkl matches tmux; ctrl+alt+hjkl is the safe no-prefix chord
-# (bare Ctrl-h/j/k/l would steal from nvim / agent TUIs).
-focus_pane_left = ["prefix+h", "ctrl+alt+h"]
-focus_pane_down = ["prefix+j", "ctrl+alt+j"]
-focus_pane_up = ["prefix+k", "ctrl+alt+k"]
-focus_pane_right = ["prefix+l", "ctrl+alt+l"]
-# tmux uses prefix+H/J/K/L to resize; Herdr uses a resize mode instead.
-# prefix+r is reload in our tmux.conf — keep that muscle memory, put resize on R.
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+# Free Shift-H/J/K/L for resize (tmux bind -r H/J/K/L). Swap moves to Alt.
+swap_pane_left = "prefix+alt+h"
+swap_pane_down = "prefix+alt+j"
+swap_pane_up = "prefix+alt+k"
+swap_pane_right = "prefix+alt+l"
+# tmux: prefix+r reloads config. Resize mode stays available as prefix+Ctrl-r.
 reload_config = "prefix+r"
-resize_mode = "prefix+shift+r"
+resize_mode = "prefix+ctrl+r"
 
 # --- Workspaces (tmux sessions) ---------------------------------------------
-# prefix+s = session tree in tmux → workspace picker here (settings moves to S).
-workspace_picker = "prefix+s"
+workspace_picker = "prefix+s"        # tmux: session tree
 settings = "prefix+shift+s"
-# prefix+T = sesh in tmux → goto picker (rename_tab is on comma, so Shift-T is free).
-goto = "prefix+shift+t"
+goto = "prefix+shift+t"              # tmux: sesh (Ctrl-a T)
 previous_workspace = "prefix+("
 next_workspace = "prefix+)"
 new_workspace = "prefix+shift+n"
 rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+shift+d"
-# tmux: prefix+o = last sesh session. Clear herdr's default notification jump on o.
-last_pane = "prefix+o"
-open_notification_target = ""
-# Notifications: use cmux Cmd+I / Cmd+Shift+U.
+last_pane = "prefix+o"               # tmux: sesh last
+open_notification_target = ""        # use cmux Cmd+I / Cmd+Shift+U instead
 
 # --- Session lifecycle ------------------------------------------------------
-# tmux: prefix+d detaches
 detach = "prefix+d"
 toggle_sidebar = "prefix+b"
 
 # --- Copy mode --------------------------------------------------------------
-# tmux: prefix+Enter (also keep herdr default [)
 copy_mode = ["prefix+enter", "prefix+["]
 
+# --- UI (visual parity with tmux status on top + mouse) ----------------------
 [ui]
-show_agent_labels_on_pane_borders = true
-hide_tab_bar_when_single_tab = true
-# Agent-first: blocked/working agents float to the top of the sidebar.
-agent_panel_sort = "priority"
+mouse_capture = true
 tab_bar_position = "top"
+# tmux always shows its status line — keep a tab bar even with one tab.
+hide_tab_bar_when_single_tab = false
+prompt_new_tab_name = false
+pane_borders = true
+pane_gaps = true
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "priority"
+# Latte mauve again at the UI accent layer (borders / focus chrome).
+accent = "#8839ef"
 
 [ui.toast]
-# Outer-terminal notifications work well under cmux/Ghostty and over SSH.
 delivery = "terminal"
 delay_seconds = 1
 
-# Prefer task title over a repeated "claude" label when every pane is an agent.
 [ui.sidebar.agents.rows_by_agent]
 claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
 codex = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
 
-# Scratch shell without adding a tiled split (tmux-adjacent "popup" habit).
+[advanced]
+# ~same ballpark as tmux history-limit 100000 / Ghostty scrollback-limit.
+scrollback_limit_bytes = 10000000
+
+# --- Resize: prefix+H/J/K/L (tmux resize-pane -L/-D/-U/-R 5) -----------------
+# Amount is a layout ratio (~5%), not cells — closest Herdr equivalent.
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = "herdr pane resize --direction left --amount 0.05 --current"
+description = "resize pane left (tmux H)"
+
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = "herdr pane resize --direction down --amount 0.05 --current"
+description = "resize pane down (tmux J)"
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = "herdr pane resize --direction up --amount 0.05 --current"
+description = "resize pane up (tmux K)"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = "herdr pane resize --direction right --amount 0.05 --current"
+description = "resize pane right (tmux L)"
+
+# --- Ctrl-h/j/k/l: same as vim-tmux-navigator (needs make herdr-plugins) ----
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
+# Scratch shell popup (Herdr-only; tmux has no twin).
 [[keys.command]]
 key = "prefix+t"
 type = "popup"

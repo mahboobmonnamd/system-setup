@@ -124,7 +124,11 @@ Install: `brew install --cask cmux` and `brew install herdr`, then `make stow`.
 
 After install: open cmux → `cmux hooks setup` for agents on PATH. Right
 sidebar: **Opt+Cmd+B**. Launch Herdr with `hr` / `herdr`, or **Cmd+Shift+H**
-in cmux (custom action). Reload Herdr keys after edits: `hrr`.
+in cmux (custom action). Then `make herdr-plugins` once (Ctrl-h/j/k/l ↔ nvim).
+Reload Herdr keys after edits: `hrr`.
+
+Theme: **Catppuccin Latte** (same as tmux/Ghostty/starship), mauve accent,
+status/tab bar on top. Keys match tmux:
 
 | Key / command | Action |
 |---|---|
@@ -132,7 +136,9 @@ in cmux (custom action). Reload Herdr keys after edits: `hrr`.
 | `hrr` | reload Herdr config |
 | `Ctrl-a c` / `1..9` | new tab / switch tab |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
-| `Ctrl-a h/j/k/l` | focus pane (also `Ctrl-Alt-h/j/k/l`) |
+| `Ctrl-a h/j/k/l` | focus pane |
+| `Ctrl-h/j/k/l` | panes ↔ nvim (same as tmux) |
+| `Ctrl-a H/J/K/L` | resize pane |
 | `Ctrl-a T` | goto picker (sesh-like) |
 | `Ctrl-a s` | workspace picker |
 | `Ctrl-a d` | detach |
