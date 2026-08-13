@@ -1,0 +1,98 @@
+# Herdr — agent multiplexer (runs inside cmux or Ghostty).
+# Prefix matches tmux: Ctrl-a, release, then the action key.
+# Docs: https://herdr.dev/docs/configuration/ · keys: prefix+?
+
+onboarding = false
+
+[theme]
+name = "catppuccin-latte"
+
+[terminal]
+# New panes inherit the focused pane/workspace cwd (like tmux -c "#{pane_current_path}").
+new_cwd = "follow"
+# macOS: login shell so Homebrew / path_helper apply in new panes.
+shell_mode = "auto"
+
+[session]
+resume_agents_on_restore = true
+
+[keys]
+# Same prefix as stow/tmux/.config/tmux/tmux.conf
+prefix = "ctrl+a"
+
+# --- Tabs (tmux windows) ----------------------------------------------------
+new_tab = "prefix+c"
+next_tab = "prefix+n"
+previous_tab = "prefix+p"
+switch_tab = "prefix+1..9"
+# tmux: prefix+, renames window
+rename_tab = "prefix+comma"
+close_tab = "prefix+shift+x"
+
+# --- Splits (tmux panes) ----------------------------------------------------
+# Literal | — terminal delivers composed |, not shift+backslash (see herdr docs).
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+close_pane = "prefix+x"
+zoom = "prefix+z"
+# Prefix+hjkl matches tmux; ctrl+alt+hjkl is the safe no-prefix chord
+# (bare Ctrl-h/j/k/l would steal from nvim / agent TUIs).
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+# tmux uses prefix+H/J/K/L to resize; Herdr uses a resize mode instead.
+# prefix+r is reload in our tmux.conf — keep that muscle memory, put resize on R.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# --- Workspaces (tmux sessions) ---------------------------------------------
+# prefix+s = session tree in tmux → workspace picker here (settings moves to S).
+workspace_picker = "prefix+s"
+settings = "prefix+shift+s"
+# prefix+T = sesh in tmux → goto picker (rename_tab is on comma, so Shift-T is free).
+goto = "prefix+shift+t"
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+# tmux: prefix+o = last sesh session. Clear herdr's default notification jump on o.
+last_pane = "prefix+o"
+open_notification_target = ""
+# Notifications: use cmux Cmd+I / Cmd+Shift+U.
+
+# --- Session lifecycle ------------------------------------------------------
+# tmux: prefix+d detaches
+detach = "prefix+d"
+toggle_sidebar = "prefix+b"
+
+# --- Copy mode --------------------------------------------------------------
+# tmux: prefix+Enter (also keep herdr default [)
+copy_mode = ["prefix+enter", "prefix+["]
+
+[ui]
+show_agent_labels_on_pane_borders = true
+hide_tab_bar_when_single_tab = true
+# Agent-first: blocked/working agents float to the top of the sidebar.
+agent_panel_sort = "priority"
+tab_bar_position = "top"
+
+[ui.toast]
+# Outer-terminal notifications work well under cmux/Ghostty and over SSH.
+delivery = "terminal"
+delay_seconds = 1
+
+# Prefer task title over a repeated "claude" label when every pane is an agent.
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
+codex = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
+
+# Scratch shell without adding a tiled split (tmux-adjacent "popup" habit).
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-zsh}\""
+description = "scratch terminal"
+width = "80%"
+height = "80%"

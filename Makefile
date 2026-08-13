@@ -58,6 +58,18 @@ stow:
 		mv $(HOME)/.ssh/config "$$bak"; \
 		echo "Moved existing ~/.ssh/config -> $$bak (merge into ~/.ssh/config.local if needed)"; \
 	fi
+	@# cmux / herdr write real config files on first launch — back up before linking.
+	@mkdir -p $(HOME)/.config/cmux $(HOME)/.config/herdr
+	@if [ -e $(HOME)/.config/cmux/cmux.json ] && [ ! -L $(HOME)/.config/cmux/cmux.json ]; then \
+		bak="$(HOME)/.config/cmux/cmux.json.pre-stow.$$(date +%Y%m%d%H%M%S).bak"; \
+		mv $(HOME)/.config/cmux/cmux.json "$$bak"; \
+		echo "Moved existing ~/.config/cmux/cmux.json -> $$bak"; \
+	fi
+	@if [ -e $(HOME)/.config/herdr/config.toml ] && [ ! -L $(HOME)/.config/herdr/config.toml ]; then \
+		bak="$(HOME)/.config/herdr/config.toml.pre-stow.$$(date +%Y%m%d%H%M%S).bak"; \
+		mv $(HOME)/.config/herdr/config.toml "$$bak"; \
+		echo "Moved existing ~/.config/herdr/config.toml -> $$bak"; \
+	fi
 	stow --dir=stow --target=$(HOME) --restow $(PACKAGES)
 
 unstow:

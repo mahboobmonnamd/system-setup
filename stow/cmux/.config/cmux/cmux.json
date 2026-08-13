@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  // cmux = terminal (libghostty). Herdr = multiplexer inside it.
+  // Keep cmux chrome on Cmd/Opt so Ctrl-a + Ctrl-alt-hjkl reach Herdr.
+  // Theme/font still come from ~/.config/ghostty/config (Catppuccin Latte).
+
+  "app": {
+    "appearance": "light"
+  },
+
+  "shortcuts": {
+    "bindings": {
+      // --- Agent / app chrome (Cmd — does not fight Herdr prefix Ctrl-a) ---
+      "toggleSidebar": "cmd+b",
+      "toggleFileExplorer": "cmd+opt+b",
+      "showNotifications": "cmd+i",
+      "jumpToUnread": "cmd+shift+u",
+      "focusRightSidebar": "cmd+shift+e",
+
+      // --- cmux pane focus stays Opt+Cmd+arrows (defaults) ---
+      "focusLeft": "cmd+opt+left",
+      "focusRight": "cmd+opt+right",
+      "focusUp": "cmd+opt+up",
+      "focusDown": "cmd+opt+down",
+
+      // Prefer Herdr splits inside the agent workspace; keep cmux splits on Cmd.
+      "splitRight": "cmd+d",
+      "splitDown": "cmd+shift+d",
+
+      // Free Ctrl+P / Ctrl+N for terminal apps when the palette is closed.
+      // (Palette-open bindings still apply when the palette is visible.)
+      "commandPalettePrevious": "unbound",
+      "commandPaletteNext": "unbound",
+
+      // Do not claim Focus Back/Forward with Cmd+[ / ] — leave for terminal.
+      "focusHistoryBack": "unbound",
+      "focusHistoryForward": "unbound"
+    },
+
+    "actions": [
+      {
+        "id": "start-herdr",
+        "type": "command",
+        "title": "Start Herdr",
+        "keywords": ["herdr", "multiplexer", "agents", "tmux"],
+        "palette": true,
+        "shortcut": "cmd+shift+h",
+        "command": "exec herdr",
+        "target": "newTabInCurrentPane"
+      }
+    ]
+  }
+}

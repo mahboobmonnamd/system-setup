@@ -108,6 +108,7 @@ brew "beads"       # agent issue memory (`bd`) — graph tracker with deps
 # --- Terminal & font --------------------------------------------------------
 cask "ghostty"                        # the terminal (config in stow/ghostty)
 cask "cmux"                           # Ghostty-based terminal with agent tabs/sidebar
+brew "herdr"                          # agent multiplexer (config in stow/herdr)
 cask "font-jetbrains-mono-nerd-font"  # icons for prompt/eza/nvim
 
 # --- Window management (Spotlight stays as the launcher) --------------------

@@ -22,13 +22,20 @@ alias lg='lazygit'
 alias lzd='lazydocker'
 
 # --- tmux sessions (CLI; inside tmux use Ctrl-a T for sesh) ----------------
-# Matches the session card from the terminal reference cheat sheet.
+# Classic shell multiplexer. Agent-first work prefers Herdr (below).
 alias tn='tmux new -s'              # tn work          → new named session
 alias ta='tmux attach -t'           # ta work          → attach by name
 alias tl='tmux ls'                  # list sessions
 alias tk='tmux kill-session -t'     # tk work          → kill by name
 alias tksv='tmux kill-server'       # kill all sessions
 alias tmuxconf='$EDITOR ~/.config/tmux/tmux.conf'
+
+# --- Herdr (agent multiplexer; inside Herdr use Ctrl-a like tmux) ----------
+alias hr='herdr'                    # attach / launch Herdr
+alias hrs='herdr server'            # server subcommands
+alias hrr='herdr server reload-config'  # after editing ~/.config/herdr/config.toml
+alias herdrconf='$EDITOR ~/.config/herdr/config.toml'
+alias cmuxconf='$EDITOR ~/.config/cmux/cmux.json'
 
 # --- Git (gst/gco/glog are not system commands, safe as new names) ---------
 alias gst='git status -sb'
