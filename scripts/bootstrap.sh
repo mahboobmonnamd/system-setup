@@ -64,6 +64,9 @@ make -C "$REPO_ROOT" stow
 # on older OpenSSH; put machine-local hosts here (gitignored in the stow tree).
 [[ -f "$HOME/.ssh/config.local" ]] || touch "$HOME/.ssh/config.local"
 
+info "Herdr plugins (Ctrl-h/j/k/l ↔ nvim, same as vim-tmux-navigator)"
+make -C "$REPO_ROOT" herdr-plugins || true
+
 info "Language runtimes"
 mise use -g node@lts go@latest
 rustup show active-toolchain 2>/dev/null | grep -q stable || rustup default stable

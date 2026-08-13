@@ -13,7 +13,7 @@ PACKAGES ?= $(notdir $(wildcard stow/*))
 TO ?= base
 
 .PHONY: help brew stow unstow sync macos touchid bootstrap guide add check \
-	obsidian-sync obsidian-sync-install obsidian-sync-uninstall
+	herdr-plugins obsidian-sync obsidian-sync-install obsidian-sync-uninstall
 
 help:
 	@echo "make bootstrap  full fresh-machine setup (scripts/bootstrap.sh)"
@@ -23,6 +23,7 @@ help:
 	@echo "make stow       symlink stow/* into \$$HOME  (currently: $(PACKAGES))"
 	@echo "make unstow     remove those symlinks"
 	@echo "make sync       brew + stow"
+	@echo "make herdr-plugins  install Herdr plugins (vim-herdr-navigation for Ctrl-hjkl)"
 	@echo "make guide      open the terminal muscle-memory HTML guide"
 	@echo "make macos      apply macOS defaults (keyboard/Finder/Dock) — run yourself"
 	@echo "make touchid    enable Touch ID for sudo — run yourself"
@@ -76,6 +77,9 @@ unstow:
 	stow --dir=stow --target=$(HOME) --delete $(PACKAGES)
 
 sync: brew stow
+
+herdr-plugins:
+	bash scripts/herdr_plugins.sh
 
 check:
 	@PROFILE="$(PROFILE)" bash scripts/brew_check.sh

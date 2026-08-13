@@ -124,7 +124,12 @@ Install: `brew install --cask cmux` and `brew install herdr`, then `make stow`.
 
 After install: open cmux → `cmux hooks setup` for agents on PATH. Right
 sidebar: **Opt+Cmd+B**. Launch Herdr with `hr` / `herdr`, or **Cmd+Shift+H**
-in cmux (custom action). Reload Herdr keys after edits: `hrr`.
+in cmux (custom action). Then `make herdr-plugins` once (Ctrl-h/j/k/l ↔ nvim).
+Reload Herdr keys after edits: `hrr`.
+
+Theme: **Catppuccin Latte**, peach active-pane border (`#fe640b`), bottom
+tab bar so `Ctrl-a` shows a **PREFIX** hint. Keys match tmux (diffs called
+out below and in `docs/guide/herdr.html` / `tmux.html`):
 
 | Key / command | Action |
 |---|---|
@@ -132,12 +137,17 @@ in cmux (custom action). Reload Herdr keys after edits: `hrr`.
 | `hrr` | reload Herdr config |
 | `Ctrl-a c` / `1..9` | new tab / switch tab |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
-| `Ctrl-a h/j/k/l` | focus pane (also `Ctrl-Alt-h/j/k/l`) |
+| `Ctrl-a h/j/k/l` | focus pane |
+| `Ctrl-h/j/k/l` | panes ↔ nvim (same as tmux) |
+| `Ctrl-a q` | on-pane **letter** hints → type to focus (**diff:** tmux uses numbers) |
+| `Ctrl-a H/J/K/L` | resize pane |
 | `Ctrl-a T` | goto picker (sesh-like) |
 | `Ctrl-a s` | workspace picker |
+| `Ctrl-a N` | **new workspace** (**diff:** tmux = window/pane tree) |
+| `Ctrl-a o` | last focused pane (**diff:** tmux = last sesh) |
 | `Ctrl-a d` | detach |
 | `Ctrl-a r` | reload config |
-| `Cmd+I` / `Cmd+Shift+U` | cmux notifications / jump to unread |
+| `Cmd+I` / `Cmd+Shift+U` | cmux notifications / jump to unread (**diff:** tmux activity/bell) |
 
 Use **Ghostty + tmux** only for classic non-agent shell work (`tn` / `ta` / `tm`).
 
@@ -153,12 +163,15 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a c` / `Ctrl-a 1..9` | new window / switch window |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down (keeps current dir) |
 | `Ctrl-h/j/k/l` | move across panes AND nvim splits (no prefix) |
+| `Ctrl-a q` | pane **numbers** → type to focus (**diff:** Herdr uses letters) |
 | `Ctrl-a H/J/K/L` | resize pane by 5 |
 | `Ctrl-a T` | **sesh session picker** — fzf over sessions + zoxide dirs |
-| `Ctrl-a o` | jump to last sesh session |
+| `Ctrl-a o` | jump to last sesh session (**diff:** Herdr = last pane) |
 | `Ctrl-a s` / `(`/`)` | session tree / prev / next session |
+| `Ctrl-a N` | window/pane tree (**diff:** Herdr = new workspace) |
 | `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
+| *(no key)* activity / bell | background windows highlight (**diff:** cmux `Cmd+I`) |
 
 Sessions auto-save every 15 min (resurrect+continuum). Auto-restore is off
 to avoid a bare `tmux` race; restore manually with `Ctrl-a Ctrl-r`.
