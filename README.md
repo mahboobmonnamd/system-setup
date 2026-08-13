@@ -52,7 +52,8 @@ Ghostty with keybinds and drills from *this* setup.
 | `Ctrl-R` | fuzzy-search all shell history (atuin) |
 | `Ctrl-T` / `Alt-C` | fuzzy-pick files / cd into dirs with preview (fzf) |
 | `tn` / `ta` / `tl` / `tk` / `tm` | tmux new / attach / list / kill / sesh picker |
-| `hr` / `hrr` | Herdr attach / reload config |
+| `hn` / `ha` / `hl` / `hk` / `hksv` | Herdr session new-or-attach / attach / list / stop / stop server |
+| `hr` / `hrr` | Herdr default attach / reload config |
 | `ll` / `la` / `lt` | rich file listing / all / tree (eza) |
 | `lg` | lazygit — full git TUI |
 | `lzd` | lazydocker |
@@ -136,7 +137,9 @@ out below and in `docs/guide/herdr.html` / `tmux.html`):
 
 | Key / command | Action |
 |---|---|
-| `hr` / `herdr` | attach / launch Herdr |
+| `hr` / `herdr` | attach default, or fzf-pick when multiple sessions exist |
+| `hn agents` / `ha agents` | create-or-attach / attach named session (`--session`) |
+| `hl` / `hk agents` / `hksv` | list / stop named session / stop server |
 | `hrr` | reload Herdr config |
 | `Ctrl-a c` / `1..9` | new tab / switch tab (not panes) |
 | `Ctrl-a \|` / `Ctrl-a -` | split right / down |
@@ -148,9 +151,10 @@ out below and in `docs/guide/herdr.html` / `tmux.html`):
 | `Ctrl-a s` | workspace picker |
 | `Ctrl-a N` | **new workspace** (**diff:** tmux = window/pane tree) |
 | `Ctrl-a o` | last focused pane (**diff:** tmux = last sesh) |
+| `Ctrl-a u` | jump to blocked / needs-input agent (**diff:** tmux has no twin; cmux uses `Cmd+Shift+U` for outer tabs) |
 | `Ctrl-a d` | detach |
 | `Ctrl-a r` | reload config |
-| `Cmd+I` / `Cmd+Shift+U` | cmux notifications / jump to unread (**diff:** tmux activity/bell) |
+| `Cmd+I` / `Cmd+Shift+U` | cmux notifications / jump to unread tab (**diff:** tmux activity/bell; inside Herdr prefer `Ctrl-a u`) |
 
 Use **Ghostty + tmux** only for classic non-agent shell work (`tn` / `ta` / `tm`).
 
@@ -174,7 +178,7 @@ for the sesh fuzzy picker. Inside tmux, `Ctrl-a T` is the same picker.
 | `Ctrl-a N` | window/pane tree (**diff:** Herdr = new workspace) |
 | `Ctrl-a d` | detach; `ta <name>` to return |
 | `Ctrl-a r` / `Ctrl-a I` | reload config / install plugins |
-| *(no key)* activity / bell | background windows highlight (**diff:** cmux `Cmd+I`) |
+| *(no key)* activity / bell | background windows highlight (**diff:** Herdr `Ctrl-a u` · cmux `Cmd+I` / `Cmd+Shift+U`) |
 | `Shift+Enter` in Claude/Codex | newline (needs `extended-keys`; after stow run `tmux kill-server`) |
 
 Sessions auto-save every 15 min (resurrect+continuum). Auto-restore is off
