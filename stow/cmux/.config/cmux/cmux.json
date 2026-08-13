@@ -4,7 +4,8 @@
 
   // cmux = terminal (libghostty). Herdr = multiplexer inside it.
   // Keep cmux chrome on Cmd/Opt so Ctrl-a + Ctrl-alt-hjkl reach Herdr.
-  // Theme/font still come from ~/.config/ghostty/config (Catppuccin Latte).
+  // Theme/font + tab chrome sizes come from ~/.config/ghostty/config
+  // (surface-tab-bar-font-size / sidebar-font-size). Reload: Cmd+Shift+,
 
   "app": {
     "appearance": "light"
